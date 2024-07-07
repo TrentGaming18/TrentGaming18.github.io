@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>C1-Stat-Tracker.knit</title>
+
+<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Exandria Stat Tracker</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="C1-Stat-Tracker.html">Vox Machina</a>
+</li>
+<li>
+  <a href="C2-Stat-Tracker.html">Mighty Nein</a>
+</li>
+<li>
+  <a href="C3-Stat-Tracker.html">Bells Hells</a>
+</li>
+<li>
+  <a href="Exandria-Unlimited-Stats.html">Exandria Unlimited</a>
+</li>
+<li>
+  <a href="One-Shots.html">One Shots</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<center>
+<div id="vox-machina-critical-role-campaign-one" class="section level1">
+<h1><span style='font-family:palatino; font-size: 42px;'><span style='color:#7851a9'>
+<strong>Vox Machina ~ Critical Role Campaign One</strong></h1>
+</center>
+<hr />
+<p><img src="images/VM.png" width="100%" style="display: block; margin: auto;" />
+<span style="text-align:right; display:block;"><span
+style="font-family:palatino; font-size: 10px;"> Art By: <span
+class="citation">@Joe</span> Madureira</span></p>
+<p><span style='font-family:palatino; font-size: 16px;'>TEXT HERE</p>
+<hr />
+<p><span style='font-family:palatino; font-size: 24px;'>The main
+characters are:</p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#7851a9'><strong>Grog
+Strongjaw</strong></p>
+<p><span style='font-family:palatino; font-size: 16px;'></p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#7851a9'><strong>Keyleth</strong></p>
+<p><span style='font-family:palatino; font-size: 16px;'></p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#7851a9'><strong>Percival
+de Rolo</strong></p>
+<p><span style='font-family:palatino; font-size: 16px;'></p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#7851a9'><strong>Pike
+Trickfoot</strong></p>
+<p><span style='font-family:palatino; font-size: 16px;'></p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#7851a9'><strong>Scanlan
+Shorthalt</strong></p>
+<p><span style='font-family:palatino; font-size: 16px;'></p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#7851a9'><strong>Taryon
+Darrington</strong></p>
+<p><span style='font-family:palatino; font-size: 16px;'></p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#7851a9'><strong>Tiberius
+Stormwind</strong></p>
+<p><span style='font-family:palatino; font-size: 16px;'></p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#7851a9'><strong>Vax’ildan</strong></p>
+<p><span style='font-family:palatino; font-size: 16px;'></p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#7851a9'><strong>Vex’ahlia</strong></p>
+<p><span style='font-family:palatino; font-size: 16px;'></p>
+<hr />
+<p><span style='font-family:palatino; font-size: 24px;'>The side/guest
+characters are:</p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#7851a9'><strong>Arkhan</strong></p>
+<p><span style='font-family:palatino; font-size: 16px;'></p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#7851a9'><strong>Bertrand
+Bell</strong></p>
+<p><span style='font-family:palatino; font-size: 16px;'></p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#7851a9'><strong>Garthok</strong></p>
+<p><span style='font-family:palatino; font-size: 16px;'></p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#7851a9'><strong>Gern
+Blanston</strong></p>
+<p><span style='font-family:palatino; font-size: 16px;'></p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#7851a9'><strong>Ghostfist</strong></p>
+<p><span style='font-family:palatino; font-size: 16px;'></p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#7851a9'><strong>Kashaw
+Vesh</strong></p>
+<p><span style='font-family:palatino; font-size: 16px;'></p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#7851a9'><strong>Kerrek</strong></p>
+<p><span style='font-family:palatino; font-size: 16px;'></p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#7851a9'><strong>Lieve’tel
+Toluse</strong></p>
+<p><span style='font-family:palatino; font-size: 16px;'></p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#7851a9'><strong>Lillith
+Daturai</strong></p>
+<p><span style='font-family:palatino; font-size: 16px;'></p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#7851a9'><strong>Lionel</strong></p>
+<p><span style='font-family:palatino; font-size: 16px;'></p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#7851a9'><strong>Lyra</strong></p>
+<p><span style='font-family:palatino; font-size: 16px;'></p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#7851a9'><strong>Shale</strong></p>
+<p><span style='font-family:palatino; font-size: 16px;'></p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#7851a9'><strong>Sprigg</strong></p>
+<p><span style='font-family:palatino; font-size: 16px;'></p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#7851a9'><strong>Thorbir
+Falbek</strong></p>
+<p><span style='font-family:palatino; font-size: 16px;'></p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#7851a9'><strong>Tova</strong></p>
+<p><span style='font-family:palatino; font-size: 16px;'></p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#7851a9'><strong>Zahra
+Hydris</strong></p>
+<p><span style='font-family:palatino; font-size: 16px;'></p>
+<hr />
+<div id="arc-one" class="section level2">
+<h2><span style='font-family:palatino; font-size: 24px;'><span style='color:#7851a9'><strong>Arc
+One: </strong></h2>
+<div id="episodes-1--" class="section level4">
+<h4><span style='font-family:palatino; font-size: 24px;'><strong>Episodes
+1 - </strong></h4>
+<p><span style="text-align:right; display:block;"><span
+style="font-family:palatino; font-size: 10px;"> Art By: @</span></p>
+<p><span style='font-family:palatino; font-size: 16px;'>TEXT HERE</p>
+<hr />
+<div id="episode" class="section level5">
+<h5><span style='font-family:palatino'> **** ~ Episode</h5>
+</div>
+<div id="encounter" class="section level5">
+<h5><span style='font-family:palatino'><span style='color:gray'><strong>Encounter:</strong></h5>
+<ul>
+<li><span style='font-family:palatino'><span style='color:gray'></li>
+</ul>
+</div>
+<div id="arc-one-out-of-combat-actions" class="section level5">
+<h5><span style='font-family:palatino; font-size: 24px;'> <strong>Arc
+One Out of Combat Actions</strong></h5>
+<pre class="r"><code># Tiberius visits the House of Thunderbrand
+update_damage_taken(&#39;Tib&#39;, 8)
+
+# Brawl with Balgus
+add_damage(&#39;Vax&#39;, &#39;Bludgeoning&#39;, 27)</code></pre>
+<div style="text-align: center;">
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#7851a9'><strong>The
+Search for Grog</strong></p>
+</div>
+<p><img src="images/SFG2.png" width="40%" style="display: block; margin: auto;" />
+<span style="text-align:right; display:block;"><span
+style="font-family:palatino; font-size: 10px;"> Art By: <span
+class="citation">@Takayuuki_art</span></span></p>
+<p><span style='font-family:palatino; font-size: 16px;'>In the days
+following their climactic battle with Vecna, Vox Machina is in
+Whitestone, each member processing the victory individually. Pike, after
+a contemplative walk in Parchwood forest, returns to Whitestone Castle
+to find Grog unconscious after drawing a card from the Deck of Many
+Things. Her efforts to revive him fail, and she seeks help from her
+companions. Percy, Keyleth, Scanlan, and Vex gather to investigate,
+discovering that Grog’s card is blank. They decide to travel to
+Vasselheim for assistance, utilizing Keyleth’s Transport via Plants.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>Upon arriving in
+Vasselheim, they head to the Platinum Sanctuary, where High Bearer Vord
+and other leaders are gathered. Allura is summoned and determines that
+Grog’s soul is missing. Scanlan uses the Wish spell to locate Grog’s
+soul, revealing it is trapped in a red gem on Howler’s Crag in
+Pandemonium. Bertrand Bell, an older man claiming expertise in
+Pandemonium, and Lieve’tel Toluse, a priestess, volunteer to assist them
+despite some doubts about Bertrand’s credibility.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>The party rests
+and prepares for several days, consulting Gilmore for advice and
+support. Once ready, Allura Plane Shifts them to Pandemonium, where they
+are immediately assailed by extreme winds and darkness. Bertrand’s
+guidance proves faulty, but Lieve’tel successfully scries the gem’s
+location, and the party makes a challenging trek through the storm,
+encountering a disoriented Githzerai named Bob, who offers cryptic
+warnings before wandering off.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>Reaching a
+cavern system, the party is attacked by howlers but manages to defeat
+them and find temporary shelter. They continue through the caverns,
+confronting a powerful balor and sneaking past it to the tower’s summit.
+There, they face a massive, black-skinned Empyrean. A fierce battle
+ensues, with Bertrand and Lieve’tel knocked unconscious and Lieve’tel
+ultimately killed. Vex sends Trinket, carrying Grog’s body, to the gem,
+reviving Grog upon contact.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>With Grog
+awakened, he joins the fight, delivering critical hits that ultimately
+bring down the Empyrean. Despite severe injuries, Vox Machina triumphs,
+having restored Grog’s soul and defeated their formidable foe.</p>
+<hr />
+</div>
+<div id="howler-ambush" class="section level5">
+<h5><span style='font-family:palatino'> *Howler Ambush**</h5>
+</div>
+<div id="encounter-1" class="section level5">
+<h5><span style='font-family:palatino'><span style='color:gray'><strong>Encounter:</strong></h5>
+<ul>
+<li><span style='font-family:palatino'><span style='color:gray'>4
+Howlers</li>
+</ul>
+<pre class="r"><code># Round 1
+add_damage(&#39;Bertrand&#39;, &#39;Slashing&#39;, 33)
+add_damage(&#39;Lieve&#39;, &#39;Force&#39;, 26)
+  # Magic Missiles
+add_enemy_damage(&#39;Howler&#39;, &#39;Piercing&#39;, 12)
+add_enemy_damage(&#39;Howler&#39;, &#39;Psychic&#39;, 22)
+update_damage_taken(&#39;Bertrand&#39;, 34)
+add_damage(&#39;Vex&#39;, &#39;Piercing&#39;, 65)
+increment_kills(&#39;Vex&#39;)
+  # Howler
+add_damage(&#39;Keyleth&#39;, &#39;Lightning&#39;, 133)
+  # Chain Lightning
+add_damage(&#39;Scanlan&#39;, &#39;Thunder&#39;, 38)
+  # Thunderwave
+update_healing(&#39;Scanlan&#39;, 10)
+  # Healing Word on Bertrand
+# Round 2
+add_enemy_damage(&#39;Howler&#39;, &#39;Piercing&#39;, 14)
+add_enemy_damage(&#39;Howler&#39;, &#39;Psychic&#39;, 24)
+update_damage_taken(&#39;Bertrand&#39;, 38)
+update_healing(&#39;Lieve&#39;, 8)
+  # Healing Word on Bertrand
+add_enemy_damage(&#39;Howler&#39;, &#39;Piercing&#39;, 15)
+add_enemy_damage(&#39;Howler&#39;, &#39;Psychic&#39;, 22)
+update_damage_taken(&#39;Lieve&#39;, 37)
+add_damage(&#39;Vex&#39;, &#39;Piercing&#39;, 54)
+increment_kills(&#39;Vex&#39;)
+  # Howler
+add_damage(&#39;Percy&#39;, &#39;Slashing&#39;, 5)
+increment_kills(&#39;Percy&#39;)
+  # Howler
+add_damage(&#39;Percy&#39;, &#39;Piercing&#39;, 20)
+increment_kills(&#39;Percy&#39;)
+  # Howler</code></pre>
+</div>
+<div id="clash-with-the-forgotten-empyrean" class="section level5">
+<h5><span style='font-family:palatino'> <strong>Clash with the Forgotten
+Empyrean</strong></h5>
+</div>
+<div id="encounter-2" class="section level5">
+<h5><span style='font-family:palatino'><span style='color:gray'><strong>Encounter:</strong></h5>
+<ul>
+<li><span style='font-family:palatino'><span style='color:gray'>Corrupt
+Empyrean</li>
+</ul>
+<pre class="r"><code># Round 1
+add_damage(&#39;Bertrand&#39;, &#39;Slashing&#39;, 83)
+add_damage(&#39;Vex&#39;, &#39;Piercing&#39;, 51)
+add_damage(&#39;Vex&#39;, &#39;Fire&#39;, 7)
+  # Blazing Bow
+add_enemy_damage(&#39;Empyrean&#39;, &#39;Bludgeoning&#39;, 210)
+update_damage_taken(&#39;Bertrand&#39;, 70)
+update_damage_taken(&#39;Lieve&#39;, 70)
+update_damage_taken(&#39;Scanlan&#39;, 70)
+update_damage_taken(&#39;Pike&#39;, 9)
+add_enemy_damage(&#39;Empyrean&#39;, &#39;Bludgeoning&#39;, 119)
+update_damage_taken(&#39;Bertrand&#39;, 28)
+update_damage_taken(&#39;Scanlan&#39;, 28)
+update_damage_taken(&#39;Percy&#39;, 28)
+update_damage_taken(&#39;Keyleth&#39;, 35)
+add_damage(&#39;Pike&#39;, &#39;Radiant&#39;, 19)
+  # Guiding Bolt
+add_enemy_damage(&#39;Empyrean&#39;, &#39;Bludgeoning&#39;, 111)
+update_damage_taken(&#39;Bertrand&#39;, 37)
+update_damage_taken(&#39;Lieve&#39;, 37)
+update_damage_taken(&#39;Scanlan&#39;, 37)
+update_times_knocked_unconscious(&#39;Lieve&#39;)
+  # Knocked unconscious by the Empryean&#39;s slams
+# Round 2
+add_damage(&#39;Percy&#39;, &#39;Piercing&#39;, 166)
+add_enemy_damage(&#39;Empyrean&#39;, &#39;Bludgeoning&#39;, 64)
+update_damage_taken(&#39;Scanlan&#39;, 32)
+update_damage_taken(&#39;Bertrand&#39;, 32)
+# Lieve&#39;tel auto fails two saves from the Empyrean&#39;s attack
+add_damage(&#39;Keyleth&#39;, &#39;Bludgeoning&#39;, 29)
+update_healing(&#39;Bertrand&#39;, 27)
+  # Second Wind
+add_damage(&#39;Bertrand&#39;, &#39;Slashing&#39;, 44)
+add_enemy_damage(&#39;Empyrean&#39;, &#39;Bludgeoning&#39;, 38)
+update_damage_taken(&#39;Bertrand&#39;, 38)
+update_times_knocked_unconscious(&#39;Bertrand&#39;)
+  # Knocked unconscious by the Empyrean&#39;s slam
+update_times_killed(&#39;Lieve&#39;)
+  # Lieve&#39;tel is subsequently killed from her wounds
+add_damage(&#39;Vex&#39;, &#39;Piercing&#39;, 78)
+# Scanlan heals Bertrand back to consciousness
+add_enemy_damage(&#39;Empyrean&#39;, &#39;Bludgeoning&#39;, 29)
+update_damage_taken(&#39;Scanlan&#39;, 29)
+add_enemy_damage(&#39;Empyrean&#39;, &#39;Bludgeoning&#39;, 95)
+update_damage_taken(&#39;Grog&#39;, 38)
+update_damage_taken(&#39;Bertrand&#39;, 38)
+update_times_knocked_unconscious(&#39;Bertrand&#39;)
+  # Bertrand is knocked unconscious again by the Empyrean
+add_damage(&#39;Grog&#39;, &#39;Slashing&#39;, 152)
+increment_kills(&#39;Grog&#39;)
+  # Corrupt Empyrean</code></pre>
+</div>
+<div id="the-search-for-grog-out-of-combat-actions"
+class="section level5">
+<h5><span style='font-family:palatino; font-size: 24px;'> <strong>The
+Search For Grog Out of Combat Actions</strong></h5>
+<pre class="r"><code># Wind storm in Pandemonium
+update_damage_taken(&#39;Pike&#39;, 4)
+update_damage_taken(&#39;Scanlan&#39;, 4)
+update_damage_taken(&#39;Keyleth&#39;, 4)
+update_damage_taken(&#39;Percy&#39;, 4)
+update_damage_taken(&#39;Vex&#39;, 4)
+update_damage_taken(&#39;Bertrand&#39;, 4)
+update_damage_taken(&#39;Lieve&#39;, 4)
+
+# Bugbears stole Percy&#39;s arm
+update_damage_taken(&#39;Percy&#39;, 23)
+update_damage_taken(&#39;Bertrand&#39;, 23)
+increment_kills(&#39;Bertrand&#39;)
+  # Bugbear
+increment_kills(&#39;Bertrand&#39;)
+  # Bugbear
+increment_kills(&#39;Bertrand&#39;)
+  # Bugbear
+increment_kills(&#39;Bertrand&#39;)
+  # Bugbear
+increment_kills(&#39;Bertrand&#39;)
+  # Bugbear
+
+# Through the Balor
+update_damage_taken(&#39;Pike&#39;, 49)
+update_damage_taken(&#39;Scanlan&#39;, 49)
+update_damage_taken(&#39;Keyleth&#39;, 49)
+update_damage_taken(&#39;Grog&#39;, 49)
+update_damage_taken(&#39;Vex&#39;, 49)
+update_damage_taken(&#39;Lieve&#39;, 49)
+update_damage_taken(&#39;Percy&#39;, 49)
+update_damage_taken(&#39;Bertrand&#39;, 49)
+update_healing(&#39;Lieve&#39;, 508)
+  # Mass Heal on everyone </code></pre>
+<hr />
+</div>
+</div>
+</div>
+<div id="the-search-for-bob" class="section level2"
+style="text-align: center;">
+<h2><span style='font-family:palatino; font-size: 24px;'><span style='color:#7851a9'><strong>The
+Search for Bob</strong></h2>
+</div>
+<p><img src="images/SFB3.png" width="40%" style="display: block; margin: auto;" />
+<span style="text-align:right; display:block;"><span
+style="font-family:palatino; font-size: 10px;"> Art By: <span
+class="citation">@Takayuuki_art</span></span></p>
+<p><span style='font-family:palatino; font-size: 16px;'>After their
+intense battle against the corrupted Empyrean and the arduous journey to
+retrieve Grog’s soul, Vox Machina finds themselves confronted with yet
+another challenge: the disappearance of their belongings. As they take
+stock of their losses, suspicion falls heavily on Bob, the enigmatic
+figure they encountered in their earlier adventures.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>In the sanctuary
+of Scanlan’s Magnificent Mansion, they devise a plan to bring Lieve’tel
+back to life, utilizing Vex’s wedding ring for the ritual. Amidst
+personal moments and discussions, including Scanlan’s elaborate bed and
+Lieve’tel’s flirtations with Bertrand, the group prepares for their next
+move.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>The morning
+brings a new challenge: descending the treacherous mountain of
+Pandemonium. Percy’s resourcefulness leads them to a solution involving
+transformation magic and strategic planning. However, their journey is
+fraught with danger as they encounter mysterious phenomena like the iron
+tree and the ominous presence of the dust titan.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>Their quest to
+retrieve their belongings leads them to a confrontation with Bob, where
+negotiations turn desperate as the elemental threat looms ever closer.
+In a tense battle against the dust titan, Vox Machina fights for
+survival, employing every skill and spell at their disposal.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>In the aftermath
+of the battle, amidst injuries and exhaustion, alliances shift as
+secrets are revealed. Bob’s true identity emerges, offering closure to
+his enigmatic presence. As they bid farewell to Pandemonium, Vox Machina
+faces their next steps with resolve, even as personal paths diverge.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>Returning to
+Whitestone, they find solace and camaraderie in their reunion. Lieve’tel
+contemplates her future while embracing the warmth of newfound
+connections. As they gather for dinner, amidst laughter and banter, they
+find comfort in each other’s company, ready to face whatever challenges
+await them next.</p>
+<hr />
+<div id="dust-titans-assault" class="section level5">
+<h5><span style='font-family:palatino'> <strong>Dust Titan’s
+Assault</strong></h5>
+</div>
+<div id="encounter-3" class="section level5">
+<h5><span style='font-family:palatino'><span style='color:gray'><strong>Encounter:</strong></h5>
+<ul>
+<li><span style='font-family:palatino'><span style='color:gray'>Dust
+Titan</li>
+</ul>
+<pre class="r"><code># Round 1
+add_damage(&#39;Grog&#39;, &#39;Slashing&#39;, 13)
+add_damage(&#39;Grog&#39;, &#39;Necrotic&#39;, 3)
+add_enemy_damage(&#39;Dust Titan&#39;, &#39;Piercing&#39;, 181)
+update_damage_taken(&#39;Scanlan&#39;, 16)
+update_damage_taken(&#39;Pike&#39;, 49)
+update_damage_taken(&#39;Grog&#39;, 16)
+update_damage_taken(&#39;Keyleth&#39;, 100)
+update_healing(&#39;Lieve&#39;, 48)
+  # Mass Healing Word on Keyleth, Grog, and Pike
+add_enemy_damage(&#39;Dust Titan&#39;, &#39;Piercing&#39;, 72)
+update_damage_taken(&#39;Keyleth&#39;, 72)
+add_damage(&#39;Scanlan&#39;, &#39;Force&#39;, 36)
+  # Bigby&#39;s Hand
+# Round 2
+add_damage(&#39;Percy&#39;, &#39;Piercing&#39;, 27)
+add_damage(&#39;Percy&#39;, &#39;Psychic&#39;, 4)
+add_damage(&#39;Percy&#39;, &#39;Necrotic&#39;, 4)
+add_damage(&#39;Percy&#39;, &#39;Lightning&#39;, 39)
+  # Cabal&#39;s Ruin
+add_damage(&#39;Keyleth&#39;, &#39;Necrotic&#39;, 48)
+  # Blight
+add_enemy_damage(&#39;Dust Titan&#39;, &#39;Piercing&#39;, 49)
+update_damage_taken(&#39;Pike&#39;, 41)
+update_damage_taken(&#39;Grog&#39;, 8)
+update_healing(&#39;Lieve&#39;, 23)
+  # Healing Word on Pike
+# Round 3
+update_damage_taken(&#39;Scanlan&#39;, 3)</code></pre>
+</div>
+<div id="the-search-for-bob-out-of-combat-actions"
+class="section level5">
+<h5><span style='font-family:palatino; font-size: 24px;'> <strong>The
+Search For Bob Out of Combat Actions</strong></h5>
+<pre class="r"><code># Aftermath of the Corrupted Empyrean
+update_healing(&#39;Keyleth&#39;, 12)
+  # Healing Word on Bertrand bringing him back to consciousness
+update_healing(&#39;Pike&#39;, 1)
+  # Revives Lieve&#39;tel 
+
+# Going down Howlers Crag
+update_damage_taken(&#39;Keyleth&#39;, 5)
+
+# Recovery in Whitestone
+update_healing(&#39;Lieve&#39;, 224)
+  # Mass Heal on everyone</code></pre>
+<hr />
+</div>
+<div id="dalens-closet" class="section level2"
+style="text-align: center;">
+<h2><span style='font-family:palatino; font-size: 24px;'><span style='color:#7851a9'><strong>Dalen’s
+Closet</strong></h2>
+</div>
+<p><img src="images/DC.png" width="100%" style="display: block; margin: auto;" />
+<span style="text-align:right; display:block;"><span
+style="font-family:palatino; font-size: 10px;"> Art By: <span
+class="citation">@AnemoneTea</span></span></p>
+<p><span style='font-family:palatino; font-size: 16px;'>Percival and
+Vex’halia plan an intimate destination wedding at Dalen’s Closet,
+inviting a multitude but secretly hoping for a small turnout. As the
+wedding approaches, friends gather in Whitestone. Keyleth arrives with
+Derrig, her bodyguard, while Taryon and the rest of the party prepare
+for their roles in the ceremony.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>The rehearsal
+dinner sets the stage for the festivities, with heartfelt speeches and
+gifts from well-wishers. However, the evening takes a dark turn when
+guests mysteriously fall unconscious, and shadowy figures attack,
+kidnapping Vex and Percy. Held captive by the malevolent Sylas
+Briarwood, the couple faces a perilous fate as they are thrown off a
+cliff into the ocean.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>The party
+springs into action, racing against time to rescue their friends.
+Despite the harrowing ordeal, they manage to save Percy and revive Vex.
+With Sylas defeated and their loved ones safe, the group decides to
+proceed with the wedding immediately. Amidst joy and tears, vows are
+exchanged, and Scanlan’s heartfelt wish brings a bittersweet reunion
+with Vex’s departed brother, Vax’ildan.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>As the
+celebration commences, the resilient spirit of Vox Machina shines
+through, reaffirming bonds of friendship and love amidst adversity. With
+laughter and camaraderie, they embrace the future, honoring the past,
+and celebrating the unbreakable ties that bind them together.</p>
+<hr />
+<div id="unwelcome-guests-at-dinner" class="section level5">
+<h5><span style='font-family:palatino'> <strong>Unwelcome Guests at
+Dinner</strong></h5>
+</div>
+<div id="encounter-4" class="section level5">
+<h5><span style='font-family:palatino'><span style='color:gray'><strong>Encounter:</strong></h5>
+<ul>
+<li><span style='font-family:palatino'><span style='color:gray'>2
+Vampires</li>
+</ul>
+<pre class="r"><code># Pre-Initiative
+add_damage(&#39;Derrig&#39;, &#39;Slashing&#39;, 55)
+# Round 1
+add_damage(&#39;Grog&#39;, &#39;Slashing&#39;, 49)
+update_healing(&#39;Derrig&#39;, 1)
+  # Heals Keyleth using herbs
+# Round 2
+add_damage(&#39;Grog&#39;, &#39;Slashing&#39;, 20)
+add_enemy_damage(&#39;Vampire&#39;, &#39;Slashing&#39;, 8)
+add_enemy_damage(&#39;Vampire&#39;, &#39;Piercing&#39;, 7)
+add_enemy_damage(&#39;Vampire&#39;, &#39;Necrotic&#39;, 9)
+update_damage_taken(&#39;Grog&#39;, 24)
+update_healing(&#39;Keyleth&#39;, 7)
+  # Healing Word on Pike waking her back uo
+add_damage(&#39;Derrig&#39;, &#39;Slashing&#39;, 38)
+update_healing(&#39;Pike&#39;, 66)
+  # Mass Healing Word on Pike, Keyleth, Scanlan, Kima, Grog, Allura waking up Allura and Scanlan 
+add_damage(&#39;Pike&#39;, &#39;Radiant&#39;, 24)
+  # Guiding Bolt
+# Round 3
+add_damage(&#39;Vex&#39;, &#39;Piercing&#39;, 16)
+  # Trinket
+add_damage(&#39;Vex&#39;, &#39;Slashing&#39;, 8)
+  # Trinket
+add_damage(&#39;Grog&#39;, &#39;Slashing&#39;, 45)
+add_enemy_damage(&#39;Vampire&#39;, &#39;Piercing&#39;, 6)
+add_enemy_damage(&#39;Vampire&#39;, &#39;Necrotic&#39;, 7)
+update_damage_taken(&#39;Grog&#39;, 13)
+add_damage(&#39;Grog&#39;, &#39;Slashing&#39;, 20)
+increment_kills(&#39;Grog&#39;)
+  # Vampire
+update_healing(&#39;Pike&#39;, 100)
+  # Pike heals herself, Grog, Scanlan, Derrig, Keyleth with Mass Cure Wounds</code></pre>
+</div>
+<div id="sylas-reckoning" class="section level5">
+<h5><span style='font-family:palatino'> <strong>Sylas’
+Reckoning</strong></h5>
+</div>
+<div id="encounter-5" class="section level5">
+<h5><span style='font-family:palatino'><span style='color:gray'><strong>Encounter:</strong></h5>
+<ul>
+<li><span style='font-family:palatino'><span style='color:gray'>Sylas
+Briarwood</li>
+<li><span style='font-family:palatino'><span style='color:gray'>4
+Vampires</li>
+</ul>
+<pre class="r"><code># Round 1
+add_enemy_damage(&#39;Vampire&#39;, &#39;Slashing&#39;, 7)
+update_damage_taken(&#39;Grog&#39;, 7)
+add_enemy_damage(&#39;Sylas&#39;, &#39;Slashing&#39;, 32)
+add_enemy_damage(&#39;Sylas&#39;, &#39;Necrotic&#39;, 36)
+update_damage_taken(&#39;Grog&#39;, 68)
+add_damage(&#39;Grog&#39;, &#39;Slashing&#39;, 43)
+update_healing(&#39;Pike&#39;, 24)
+  # Cure Wounds on Vex&#39;halia
+update_healing(&#39;Vex&#39;, 16)
+  # Cure Wounds on herself
+update_healing(&#39;Percy&#39;, 27)
+  # Second Wind
+update_healing(&#39;Scanlan&#39;, 7)
+  # Healing Word on himself
+# Round 2
+add_damage(&#39;Percy&#39;, &#39;Piercing&#39;, 50)
+add_enemy_damage(&#39;Vampire&#39;, &#39;Slashing&#39;, 11)
+update_damage_taken(&#39;Grog&#39;, 11)
+add_damage(&#39;Grog&#39;, &#39;Slashing&#39;, 27)
+add_enemy_damage(&#39;Sylas&#39;, &#39;Slashing&#39;, 32)
+add_enemy_damage(&#39;Sylas&#39;, &#39;Necrotic&#39;, 45)
+update_damage_taken(&#39;Grog&#39;, 77)
+add_damage(&#39;Grog&#39;, &#39;Slashing&#39;, 79)
+add_damage(&#39;Grog&#39;, &#39;Necrotic&#39;, 8)
+add_damage(&#39;Scanlan&#39;, &#39;Lightning&#39;, 36)
+  # Lightning Bolt 
+# Round 3
+add_enemy_damage(&#39;Vampire&#39;, &#39;Slashing&#39;, 6)
+add_enemy_damage(&#39;Vampire&#39;, &#39;Piercing&#39;, 2)
+add_enemy_damage(&#39;Vampire&#39;, &#39;Necrotic&#39;, 6)
+update_damage_taken(&#39;Grog&#39;, 14)
+add_damage(&#39;Derrig&#39;, &#39;Slashing&#39;, 51)
+add_damage(&#39;Grog&#39;, &#39;Slashing&#39;, 108)
+add_damage(&#39;Grog&#39;, &#39;Necrotic&#39;, 11) 
+increment_kills(&#39;Grog&#39;)
+  # Vampire
+add_damage(&#39;Vex&#39;, &#39;Piercing&#39;, 22)
+  # Conjure Barrage
+add_damage(&#39;Scanlan&#39;, &#39;Fire&#39;, 26)
+  # Wand of Fire
+# Round 4
+add_damage(&#39;Percy&#39;, &#39;Piercing&#39;, 74)
+add_damage(&#39;Pike&#39;, &#39;Radiant&#39;, 40)
+  # Daylight
+increment_kills(&#39;Pike&#39;)
+  # Vampire
+increment_kills(&#39;Pike&#39;)
+  # Vampire
+add_damage(&#39;Grog&#39;, &#39;Slashing&#39;, 28)
+increment_kills(&#39;Grog&#39;)
+  # Vampire
+add_damage(&#39;Keyleth&#39;, &#39;Radiant&#39;, 13)
+  # Sunbeam
+add_damage(&#39;Percy&#39;, &#39;Piercing&#39;, 13)
+add_damage(&#39;Grog&#39;, &#39;Slashing&#39;, 31)
+add_damage(&#39;Grog&#39;, &#39;Necrotic&#39;, 2)
+add_damage(&#39;Vex&#39;, &#39;Radiant&#39;, 30)
+increment_kills(&#39;Vex&#39;)
+  # Sylas Briarwood</code></pre>
+</div>
+<div id="dalens-closet-out-of-combat-actions" class="section level5">
+<h5><span style='font-family:palatino; font-size: 24px;'>
+<strong>Dalen’s Closet Out of Combat Actions</strong></h5>
+<pre class="r"><code># Vex and Percy awake to Sylas
+add_damage(&#39;Vex&#39;, &#39;Bludgeoning&#39;, 2)
+
+# Vex starts drowning
+update_times_knocked_unconscious(&#39;Vex&#39;)
+  # Vex falls unconscious from drowning
+# Vex fails a death save
+# Vex fails a death save
+update_times_killed(&#39;Vex&#39;)
+  # Vex drowns 
+update_healing(&#39;Pike&#39;, 1)
+  # Pike revives Vex&#39;halia</code></pre>
+<hr />
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

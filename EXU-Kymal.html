@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>EXU-Kymal.knit</title>
+
+<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Exandria Stat Tracker</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="C1-Stat-Tracker.html">Vox Machina</a>
+</li>
+<li>
+  <a href="C2-Stat-Tracker.html">Mighty Nein</a>
+</li>
+<li>
+  <a href="C3-Stat-Tracker.html">Bells Hells</a>
+</li>
+<li>
+  <a href="Exandria-Unlimited-Stats.html">Exandria Unlimited</a>
+</li>
+<li>
+  <a href="One-Shots.html">One Shots</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<center>
+<div id="exandria-unlimited-kymal" class="section level1">
+<h1><span style='font-family:palatino; font-size: 42px;'><span style='color:#136163'>
+<strong>Exandria Unlimited: Kymal</strong></h1>
+</center>
+<hr />
+<p><img src="images/EXUKymal.png" width="100%" style="display: block; margin: auto;" />
+<span style="text-align:right; display:block;"><span
+style="font-family:palatino; font-size: 10px;"> Art By: <span
+class="citation">@agarthanguide</span></span></p>
+<p><span style='font-family:palatino; font-size: 16px;'>Brontë
+Wyvernwind, now known as Dorian Storm, is traveling with his brother
+Cyrus on a skyship to Emon, feeling conflicted between his
+responsibility to Cyrus and his life in Marquet with Bells Hells. They
+plan to seek Shaun Gilmore’s help to travel from Emon to Kymal.
+Eventually, they reach Kymal and join former companions Dariax Zaveon,
+Opal, and Fy’ra Rai at The Maiden’s Wish casino. Fy’ra has been
+searching for her sister, Opal hides the effects of the Circlet of
+Barbed Vision, and Dariax wins at a dice game, drawing the dealer’s
+suspicion. The group meets Morrighan Ferus, a bartender, and pursues a
+pickpocket who stole Opal’s Pearl of Power.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>Dorian and Cyrus
+need money to pay off a bounty, and they plan to romance Morrighan to
+learn about potential opportunities. Morrighan, overhearing their
+conversation, later reveals she needs to steal from the casino’s vault
+due to threats from the Nameless Ones, a new group in town. She proposes
+a heist, and the group learns that the penthouse of actor Phaedrov
+Krishtan might hold valuable information. They break into the penthouse
+during Phaedrov’s performance, encounter guards, and face a chaotic
+battle involving Nameless Ones assassins. They manage to defeat the
+enemies, find blueprints, and a valuable urn.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>The group plans
+a heist to get money for Cyrus’s bounty. They explore the tunnels
+beneath the casino and face a goliath lieutenant of the Nameless Ones.
+After a fierce battle, they find and steal 50,000 gold from the vault.
+Morrighan also discovers a disturbing marble carving linked to the Raven
+Queen, which she is compelled to destroy. The party plans their escape
+using the sky deck, which they plan to detach from the building.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>As they prepare
+to leave, Cyrus brings explosives to help separate the sky deck. They
+encounter resistance from the Nameless Ones but manage to secure their
+escape route. Opal uses an illusion to fake the sky deck’s collapse,
+buying them time to flee. Dorian uses his mandolin to help Cyrus steady
+the sky deck, and the group successfully makes their getaway, ready to
+face their next challenge.</p>
+<hr />
+<p><span style='font-family:palatino; font-size: 24px;'>The characters
+are:</p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#136163'><strong>Dariax
+Zaveon</strong>
+<img src="images/DariaxK.png" width="35%" style="display: block; margin: auto;" /></p>
+<p><span style='font-family:palatino; font-size: 16px;'>Dariax Zaveon, a
+dwarven sorcerer/bard and member of the Crown Keepers, grew up in Turst
+Fields alongside his older brother, Taros. While Taros followed the
+family farm path, Dariax was a troublemaker, often causing literal and
+figurative fires that Taros had to put out. Despite their differences,
+they maintained a decent relationship. Dariax has dabbled in thieves’
+circles and once claimed a relationship with a burlesque dancer, Tharla
+Starr, though this was later revealed to be false. He also had a
+passionate but tumultuous relationship with Deni$e Bembachula, which
+ended when he left her to deal with the fallout of some shady business
+they were involved in. It was during this time, in 842 PD, that Dariax
+joined the Crown Keepers.</p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#136163'><strong>Dorian
+Storm</strong>
+<img src="images/DorianK.png" width="35%" style="display: block; margin: auto;" /></p>
+<p><span style='font-family:palatino; font-size: 16px;'>Dorian Storm,
+originally born as Brontë Wyvernwind, is an air genasi bard and member
+of both the Crown Keepers and Bells Hells. Born into the wealthy and
+prominent Wyvernwind family, Dorian lived a sheltered life among the
+tents of the Silken Squall. Despite his privileged upbringing, he felt
+constrained by his family’s expectations, particularly their use of Zone
+of Truth to extract confessions from him when caught lying. Around 842
+PD, Dorian left home, adopting the name Dorian Storm and embarking on
+travels that took him to Marquet and Emon, where he pursued music
+gigs.</p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#136163'><strong>Fy’ra
+Rai</strong>
+<img src="images/FyraK.png" width="35%" style="display: block; margin: auto;" /></p>
+<p><span style='font-family:palatino; font-size: 16px;'>Fy’ra Rai, a
+fire genasi monk, hails from the Elemental Plane of Fire and was raised
+by strict parents alongside her twin sister, Fy’ra Kai. Despite their
+competitive relationship, Fy’ra Rai harbored guilt over an incident
+where her sister fell, leading to her own injury. Both siblings
+eventually left home separately, and Fy’ra Rai believed her sister had
+perished, blaming herself for not protecting her.</p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#136163'><strong>Morrighan
+Ferus</strong>
+<img src="images/MorrighanK.png" width="35%" style="display: block; margin: auto;" /></p>
+<p><span style='font-family:palatino; font-size: 16px;'>Morrighan Ferus,
+a lagomore paladin and former bartender, spent much of her life in
+Kymal, navigating the city’s underworld by working at casinos and
+executing heists. Feeling the weight of her existence in Kymal, she
+joined forces with the Crown Keepers for a lucrative heist at The
+Maiden’s Wish. During the mission, she experienced a profound connection
+to a mysterious bas-relief, guided by an inner birdsong that led her to
+destroy the artifact with the help of her companions. As they escaped
+with their spoils, a single raven seemed to affirm Morrighan’s actions,
+hinting at a greater destiny yet to unfold.</p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#136163'><strong>Opal</strong>
+<img src="images/OpalK.png" width="35%" style="display: block; margin: auto;" /></p>
+<p><span style='font-family:palatino; font-size: 16px;'>Opal, a human
+warlock and member of the Crown Keepers, hailed from Byroden, born in
+824 PD. Raised with her twin sister Ted by their father after their
+mother’s departure, Opal left home at 18, eventually arriving in Emon in
+842 PD.</p>
+<hr />
+<div id="the-standoff-in-the-dressing-room-episode-1"
+class="section level5">
+<h5><span style='font-family:palatino; font-size: 24px;'> <strong>The
+Standoff in the Dressing Room</strong> ~ Episode 1</h5>
+</div>
+<div id="encounter" class="section level5">
+<h5><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'><strong>Encounter:</strong></h5>
+<ul>
+<li><span style='font-family:palatino; font-size: 16px;'>5 Guards</li>
+<li><span style='font-family:palatino; font-size: 16px;'>3
+Assassins</li>
+</ul>
+<pre class="r"><code># Round 1 
+add_damage(&#39;Dorian&#39;, &#39;Slashing&#39;, 10)
+add_enemy_damage(&#39;Guard&#39;, &#39;Bludgeoning&#39;, 12)
+update_damage_taken(&#39;Dorian&#39;, 5)
+update_damage_taken(&#39;Morrighan&#39;, 7)
+add_damage(&quot;Fy&#39;ra&quot;, &#39;Bludgeoning&#39;, 7)
+# Round 2
+add_enemy_damage(&#39;Guard&#39;, &#39;Bludgeoning&#39;, 3)
+add_enemy_damage(&#39;Guard&#39;, &#39;Piercing&#39;, 11)
+update_damage_taken(&quot;Fy&#39;ra&quot;, 14)
+add_damage(&#39;Morrighan&#39;, &#39;Fire&#39;, 12)
+  # Burning Hands
+add_damage(&quot;Fy&#39;ra&quot;, &#39;Thunder&#39;, 37)
+  # Thunderwave
+add_damage(&#39;Opal&#39;, &#39;Cold&#39;, 7)
+  # Hunger of Hadar
+add_damage(&#39;Dariax&#39;, &#39;Fire&#39;, 105)
+  # Fireball
+increment_kills(&#39;Dariax&#39;)
+  # Assassin
+increment_kills(&#39;Dariax&#39;)
+  # Assassin
+increment_kills(&#39;Dariax&#39;)
+  # Assassin
+add_damage(&#39;Dariax&#39;, &#39;Radiant&#39;, 11)
+  # Sacred flame
+# Round 3
+add_enemy_damage(&#39;Guard&#39;, &#39;Bludgeponing&#39;, 7)
+update_damage_taken(&#39;Opal&#39;, 7)
+add_enemy_damage(&#39;Guard&#39;, &#39;Bludgeoning&#39;, 10)
+add_enemy_damage(&#39;Guard&#39;, &#39;Radiant&#39;, 3)
+  # Divine Smite
+update_damage_taken(&quot;Fy&#39;ra&quot;, 13)
+add_damage(&#39;Morrighan&#39;, &#39;Slashing&#39;, 16)
+add_enemy_damage(&#39;Guard&#39;, &#39;&#39;, 18)
+update_damage_taken(&#39;Dariax&#39;, 18)
+add_damage(&quot;Fy&#39;ra&quot;, &#39;Bludgeoning&#39;, 19)
+add_damage(&quot;Fy&#39;ra&quot;, &#39;Radiant&#39;, 3)
+increment_kills(&quot;Fy&#39;ra&quot;)
+  # Guard
+add_damage(&#39;Opal&#39;, &#39;Force&#39;, 9)
+  # Eldritch Blast
+increment_kills(&#39;Opal&#39;)
+  # Guard
+add_damage(&#39;Dariax&#39;, &#39;Radiant&#39;, 15)
+  # Sacred Flame
+increment_kills(&#39;Opal&#39;)
+  # Guard
+# Round 4
+add_damage(&#39;Dorian&#39;, &#39;Piercing&#39;, 5)
+add_damage(&quot;Fy&#39;ra&quot;, &#39;Bludgeoning&#39;, 8)
+add_damage(&#39;Dariax&#39;, &#39;Radiant&#39;, 10)
+  # Sacred Flame
+increment_kills(&#39;Morrighan&#39;)
+  # Guard</code></pre>
+<p><br></p>
+</div>
+<div id="clash-with-a-nameless-one-lieutenant-episode-2"
+class="section level5">
+<h5><span style='font-family:palatino; font-size: 24px;'> <strong>Clash
+with a Nameless One Lieutenant</strong> ~ Episode 2</h5>
+</div>
+<div id="encounter-1" class="section level5">
+<h5><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'><strong>Encounter:</strong></h5>
+<ul>
+<li><span style='font-family:palatino; font-size: 16px;'>Half Giant</li>
+</ul>
+<pre class="r"><code># Pre-Initiative
+add_enemy_damage(&#39;Giant&#39;, &#39;Poison&#39;, 12)
+  # Poison Cloud
+update_damage_taken(&#39;Opal&#39;, 4)
+update_damage_taken(&#39;Morrighan&#39;, 8)
+# Round 1
+add_damage(&#39;Morrighan&#39;, &#39;Slashing&#39;, 23)
+add_enemy_damage(&#39;Giant&#39;, &#39;Bludgeoning&#39;, 3)
+update_damage_taken(&#39;Morrighan&#39;, 3)
+add_damage(&quot;Fy&#39;ra&quot;, &#39;Bludgeoning&#39;, 20)
+add_enemy_damage(&#39;Giant&#39;, &#39;Bludgeoning&#39;, 5)
+update_damage_taken(&quot;Fy&#39;ra&quot;, 5)
+# Round 2
+add_damage(&#39;Morrighan&#39;, &#39;Slashing&#39;, 11)
+add_damage(&quot;Fy&#39;ra&quot;, &#39;Bludgeoning&#39;, 31)
+add_damage(&#39;Dorian&#39;, &#39;Psychic&#39;, 7)
+  # Dissonant Whispers
+add_damage(&#39;Opal&#39;, &#39;Force&#39;, 7)
+  # Eldritch Blast 2/2
+# Round 3
+add_damage(&quot;Fy&#39;ra&quot;, &#39;Bludgeoning&#39;, 21)
+add_damage(&#39;Opal&#39;, &#39;Piercing&#39;, 19)
+increment_kills(&#39;Opal&#39;)
+  # Half Giant</code></pre>
+<p><br></p>
+</div>
+<div id="non-fighting-damages" class="section level5">
+<h5><span style='font-family:palatino; font-size: 24px;'>
+<strong>Non-Fighting Damages</strong></h5>
+<pre class="r"><code># Dorian strums a mandolin
+update_damage_taken(&#39;Dorian&#39;, 10)
+
+# Opal takes damage
+update_damage_taken(&#39;Opal&#39;, 6)
+
+# Escaping with the brumestone
+add_damage(&#39;Dorian&#39;, &#39;Bludgeoning&#39;, 12)
+add_damage(&#39;Dorian&#39;, &#39;Thunder&#39;, 20)
+  # Shatter
+add_damage(&#39;Opal&#39;, &#39;Force&#39;, 10)
+  # Eldritch Blast
+add_damage(&quot;Fy&#39;ra&quot;, &#39;Bludgeoning&#39;, 8)
+add_damage(&#39;Morrighan&#39;, &#39;Slashing&#39;, 7)
+add_damage(&#39;Dorian&#39;, &#39;Thunder&#39;, 20)
+  # Chromatic Orb ~ Thunder
+add_damage(&#39;Dariax&#39;, &#39;Fire&#39;, 26)
+  # Fireball
+add_damage(&quot;Fy&#39;ra&quot;, &#39;Bludgeoning&#39;, 13)</code></pre>
+<hr />
+</div>
+<div id="total-stats" class="section level3">
+<h3><span style='font-family:palatino; font-size: 24px;'><strong>Total
+Stats</strong></h3>
+</div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div id="dariax" class="section level3">
+<h3><span style='font-family:palatino; font-size: 24px;'><span style='color:#136163'><strong>Dariax</strong></h3>
+<p><span style='font-family:palatino; font-size: 16px;'><strong>Damage:<br>
+Fire: 131 <br> Radiant: 36 <br> Total Damage Done: 167<br> Healing:
+0<br> Damage Taken: 18<br> Times Knocked Unconscious: 0<br> Times
+Killed: 0<br> Amount of kills: 3</strong></p>
+</div>
+</div><div class="column" style="width:50%;">
+<div id="dorian" class="section level3">
+<h3><span style='font-family:palatino; font-size: 24px;'><span style='color:#136163'><strong>Dorian</strong></h3>
+<p><span style='font-family:palatino; font-size: 16px;'><strong>Damage:<br>
+Slashing: 10 <br> Piercing: 5 <br> Psychic: 7 <br> Bludgeoning: 12 <br>
+Thunder: 40 <br> Total Damage Done: 74<br> Healing: 0<br> Damage Taken:
+15<br> Times Knocked Unconscious: 0<br> Times Killed: 0<br> Amount of
+kills: </strong></p>
+</div>
+</div>
+</div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div id="fyra" class="section level3">
+<h3><span style='font-family:palatino; font-size: 24px;'><span style='color:#136163'><strong>Fy’ra</strong></h3>
+<p><span style='font-family:palatino; font-size: 16px;'><strong>Damage:<br>
+Bludgeoning: 127 <br> Thunder: 37 <br> Radiant: 3 <br> Total Damage
+Done: 167<br> Healing: 0<br> Damage Taken: 32<br> Times Knocked
+Unconscious: 0<br> Times Killed: 0<br> Amount of kills: 1</strong></p>
+</div>
+</div><div class="column" style="width:50%;">
+<div id="morrighan" class="section level3">
+<h3><span style='font-family:palatino; font-size: 24px;'><span style='color:#136163'><strong>Morrighan</strong></h3>
+<p><span style='font-family:palatino; font-size: 16px;'><strong>Damage:<br>
+Fire: 12 <br> Slashing: 57 <br> Total Damage Done: 69<br> Healing: 0<br>
+Damage Taken: 18<br> Times Knocked Unconscious: 0<br> Times Killed:
+0<br> Amount of kills: 1</strong></p>
+</div>
+</div>
+</div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div id="opal" class="section level3">
+<h3><span style='font-family:palatino; font-size: 24px;'><span style='color:#136163'><strong>Opal</strong></h3>
+<p><span style='font-family:palatino; font-size: 16px;'><strong>Damage:<br>
+Cold: 7 <br> Force: 26 <br> Piercing: 19 <br> Total Damage Done: 52<br>
+Healing: 0<br> Damage Taken: 17<br> Times Knocked Unconscious: 0<br>
+Times Killed: 0<br> Amount of kills: 3</strong></p>
+</div>
+</div><div class="column" style="width:50%;">
+
+</div>
+</div>
+<p><span style='font-family:palatino; font-size: 12px;'>* Note, the
+damage totals are not 100% accurate, this could be from players not
+saying what damage type the attack did or separating damage types (such
+as Hex damage)</p>
+<hr />
+<p><span style='font-family:palatino; font-size: 12px;'>* The character
+artwork was made by: <span class="citation">@agarthanguide</span></p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

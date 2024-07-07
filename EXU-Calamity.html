@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>EXU-Calamity.knit</title>
+
+<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Exandria Stat Tracker</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="C1-Stat-Tracker.html">Vox Machina</a>
+</li>
+<li>
+  <a href="C2-Stat-Tracker.html">Mighty Nein</a>
+</li>
+<li>
+  <a href="C3-Stat-Tracker.html">Bells Hells</a>
+</li>
+<li>
+  <a href="Exandria-Unlimited-Stats.html">Exandria Unlimited</a>
+</li>
+<li>
+  <a href="One-Shots.html">One Shots</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<center>
+<div id="exandria-unlimited-calamity" class="section level1">
+<h1><span style='font-family:palatino; font-size: 42px;'><span style='color:#73001d'>
+<strong>Exandria Unlimited: Calamity</strong></h1>
+</center>
+<hr />
+<p><img src="images/EXUCalamity.png" width="100%" style="display: block; margin: auto;" />
+<span style="text-align:right; display:block;"><span
+style="font-family:palatino; font-size: 10px;"> Art By: <span
+class="citation">@agarthanguide</span></span></p>
+<p><span style='font-family:palatino; font-size: 16px;line-height: 2;'>In
+a world of magic and intrigue, the fate of Exandria hangs in the balance
+as the Ring of Brass, a group of diverse individuals with intertwined
+destinies, grapples with treachery, manipulation, and the looming threat
+of ancient evils.</p>
+<p><span style='font-family:palatino; font-size: 16px;line-height: 2;'>The
+story begins with the revelation that a powerful artifact, the Orb of
+Knowledge, has been stolen from the Sorcerer’s University in Avalir.
+This theft sets off a chain of events that lead the Ring of Brass,
+comprised of Patia, Nydas, Zerxus, Laerryn, Loquatius, and Cerrit, on a
+perilous journey to uncover the truth and save their world.</p>
+<p><span style='font-family:palatino; font-size: 16px;line-height: 2;'>As
+they delve deeper into the mystery, they discover a web of deceit woven
+by Lycretia, a powerful mage with her own agenda. Through memories
+extracted from captured mages, the Ring learns of a plot orchestrated by
+Cormorant, a sinister figure allied with dark forces known as the
+Betrayers, to destabilize Exandria. Purvan Suul, a key figure in
+Vasselheim, is targeted to prevent him from aiding their cause.</p>
+<p><span style='font-family:palatino; font-size: 16px;line-height: 2;'>Amidst
+the chaos, the Ring confronts internal conflicts and doubts. Laerryn,
+wielding the power of the Astral Leywright, grapples with the weight of
+her responsibility and the consequences of her actions. Zerxus faces a
+moral dilemma as he is offered a pact by the Lord of the Hells, while
+Nydas struggles with the burden of leadership and the sacrifices it
+demands.</p>
+<p><span style='font-family:palatino; font-size: 16px;line-height: 2;'>As
+tensions escalate, the Ring races against time to thwart the Betrayers’
+plans and prevent the primordials, Emperor Rau’shaun and Empress
+Ka’mort, from being unleashed upon Exandria. In a desperate bid to save
+their world, they make sacrifices that test their resolve and challenge
+their beliefs.</p>
+<p><span style='font-family:palatino; font-size: 16px;line-height: 2;'>Ultimately,
+as Avalir descends into chaos and destruction, the Ring of Brass stands
+united in their determination to protect Exandria. Through courage,
+sacrifice, and unwavering resolve, they confront the forces of darkness
+and forge a path towards hope and redemption.</p>
+<p><span style='font-family:palatino; font-size: 16px;line-height: 2;'>In
+the aftermath of the cataclysmic events, Exandria lies shattered but not
+defeated. The Ring of Brass’s actions have spared the world from total
+annihilation, paving the way for a new era of rebuilding and renewal.
+Though scars remain, the spirit of resilience and hope endures, ensuring
+that Exandria will rise again.</p>
+<hr />
+<p><span style='font-family:palatino; font-size: 24px;'>The characters
+are:</p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#73001d'><strong>Cerrit
+Agrupnin</strong>
+<img src="images/Cerrit.png" width="40%" style="display: block; margin: auto;" /></p>
+<p><span style='font-family:palatino; font-size: 16px;line-height: 2;'>Cerrit
+Agrupnin, an eisfuura rogue, holds the esteemed position of Senior
+Sightwarden within the Eyes of Avalir. Despite his demanding role,
+Cerrit is a devoted family man, blessed with a loving wife and two
+children: Maya, his spirited seven-year-old daughter, and Kir, his
+playful five-year-old son. While his wife, a scientist, often travels
+for work, Cerrit maintains a close bond with his family, facilitated by
+a sending stone that Kir uses to communicate with him, sometimes
+revealing his sister’s mischievous escapades. Despite the demands of his
+duty, Cerrit cherishes the comfort and joy of his familial
+relationships.</p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#73001d'><strong>Laerryn
+Coramar-Seelie</strong>
+<img src="images/Laerryn.png" width="40%" style="display: block; margin: auto;" /></p>
+<p><span style='font-family:palatino; font-size: 16px;line-height: 2;'>Laerryn
+Coramar-Seelie, an elven wizard, held the esteemed position of Architect
+Arcane within the city of Avalir. Utilizing the Grand Geometer she had
+meticulously crafted, Laerryn diligently monitored the approaching
+apogee solstice. Her calculations hinted at a high likelihood of
+significant shifts in the ley lines, prompting heightened concern.</p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#73001d'><strong>Loquatius
+Seelie</strong>
+<img src="images/Loq.png" width="40%" style="display: block; margin: auto;" /></p>
+<p><span style='font-family:palatino; font-size: 16px;line-height: 2;'>Loquatius
+Seelie, a changeling warlock/bard, resides within the vibrant city of
+Avalir where he serves as a broadcaster in the esteemed Herald’s Tome.
+Hailing originally from the mystical Feywild and a member of the Seelie
+Court, Loquatius pledged his allegiance to Lady Elmenore as her devoted
+warlock. His journey led him to Exandria, where he found love in the
+arms of a mortal woman, Laerryn Coramar. Despite their affection, their
+union proved tumultuous, culminating in divorce less than seven years
+later, prompting Loquatius to depart their shared home in Avalir,
+leaving behind a trail of unresolved differences.</p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#73001d'><strong>Nydas
+Okiro</strong>
+<img src="images/Nydas.png" width="40%" style="display: block; margin: auto;" /></p>
+<p><span style='font-family:palatino; font-size: 16px;line-height: 2;'>Nydas
+Okiro, a human sorcerer/bard and former pirate, ascended to the
+prestigious role of Guildmaster of the Golden Scythe in Avalir. Renowned
+for his cunning and ambition, Nydas not only led the guild but also
+founded the Sorcerer’s University within the city’s walls. However,
+beneath his charismatic facade lies a darker truth. Avalir, known for
+its annual journey across Exandria to gather ether, had fallen prey to
+corruption. Despite tradition dictating the allocation of ether for the
+Replenishment, a significant portion was diverted by nefarious means.
+Nydas played a pivotal role in this scheme, ensuring the Leywright’s
+manipulation to maintain secrecy and sustain the illicit flow of ether
+for personal gain, unbeknownst to the citizens of Avalir.</p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#73001d'><strong>Patia
+Por’co</strong>
+<img src="images/Patia.png" width="40%" style="display: block; margin: auto;" /></p>
+<p><span style='font-family:palatino; font-size: 16px;line-height: 2;'>Patia
+Por’co, an elven wizard known for her role as the Keeper of Scrolls and
+Archmage of the Librarium Incantatum in Avalir, carried a hidden burden
+from her past. Despite fondly mentioning her grandfather, Patia remained
+reticent about her parents, their absence shrouded in mystery. It wasn’t
+until later that she unraveled the truth: her memories of them had been
+deliberately erased by her grandfather, Imyr Por’co, who deemed them
+failures and harbored greater aspirations for Patia. This revelation
+cast a shadow over her past, illuminating the complexities of her
+familial ties and the weight of expectations placed upon her
+shoulders.</p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#73001d'><strong>Zerxus
+Ilerez</strong>
+<img src="images/Zerxus.png" width="40%" style="display: block; margin: auto;" /></p>
+<p><span style='font-family:palatino; font-size: 16px;line-height: 2;'>Zerxus
+Ilerez, a human paladin from a town near Cathmoíra, rose to become the
+revered First Knight of Avalir after marrying Evandrin and raising their
+son Elias. Tragedy struck when Evandrin became ensnared in another
+realm, leaving Zerxus burdened with grief and guilt. Despite his efforts
+to resurrect Evandrin, he faced failure and sought solace in the lore of
+the Betrayer Gods. As the looming calamity approached, Zerxus resided in
+the Tower of the First Knight with his loyal griffon, Tempus, while
+Elias remained distant, dwelling in Cathmoíra under another’s care.
+Their fractured bond echoed the tumultuous times ahead.</p>
+<hr />
+<div id="magister-cormorants-demise-episode-2" class="section level5">
+<h5><span style='font-family:palatino; font-size: 24px;'>
+<strong>Magister Cormorant’s Demise</strong> ~ Episode 2</h5>
+</div>
+<div id="encounter" class="section level5">
+<h5><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'><strong>Encounter:</strong></h5>
+<ul>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'>Magister
+Micah Cormorant</li>
+</ul>
+<pre class="r"><code># Round 1
+add_damage(&#39;Laerryn&#39;, &#39;Fire&#39;, 41)
+  # Fireball
+add_damage(&#39;Laerryn&#39;, &#39;Bludgeoning&#39;, 26)
+  # Stone Construct
+increment_kills(&#39;Laerryn&#39;)
+  # Micah Cormorant</code></pre>
+<p><br></p>
+</div>
+<div id="battle-in-the-streets-of-avalir-episode-3"
+class="section level5">
+<h5><span style='font-family:palatino; font-size: 24px;'> <strong>Battle
+in the Streets of Avalir</strong> ~ Episode 3</h5>
+</div>
+<div id="encounter-1" class="section level5">
+<h5><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'><strong>Encounter:</strong></h5>
+<ul>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'>Lacrytia
+Hollow</li>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'>Milus
+Phren</li>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'>2
+Spellguard Knights</li>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'>Xartaza</li>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'>4
+Mages</li>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'>4
+Skeletons</li>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'>6
+K’nauthi Clerics</li>
+</ul>
+<pre class="r"><code># Round 1
+add_damage(&#39;Nydas&#39;, &#39;Slashing&#39;, 32)
+add_damage(&#39;Patia&#39;, &#39;Fire&#39;, 136)
+  # Fireball
+increment_kills(&#39;Patia&#39;)
+  # Skeleton
+increment_kills(&#39;Patia&#39;)
+  # Skeleton
+increment_kills(&#39;Patia&#39;)
+  # Skeleton
+increment_kills(&#39;Patia&#39;)
+  # Skeleton
+add_enemy_damage(&#39;Phren&#39;, &#39;Slashing&#39;, 18)
+update_damage_taken(&#39;Nydas&#39;, 18)
+add_enemy_damage(&#39;Spellguard&#39;, &#39;Slashing&#39;, 27)
+add_enemy_damage(&#39;Spellguard&#39;, &#39;Psychic&#39;, 28)
+update_damage_taken(&#39;Cerrit&#39;, 16)
+update_damage_taken(&#39;Zerxus&#39;, 39)
+add_damage(&#39;Cerrit&#39;, &#39;Slashing&#39;, 24)
+add_damage(&#39;Zerxus&#39;, &#39;Radiant&#39;, 38)
+add_damage(&#39;Zerxus&#39;, &#39;Radiant&#39;, 38)
+  # Holy Avenger
+add_enemy_damage(&#39;Mages&#39;, &#39;Fire&#39;, 71)
+  # Fireball
+update_damage_taken(&#39;Zerxus&#39;, 34)
+update_damage_taken(&#39;Loq&#39;, 34)
+update_damage_taken(&#39;Laerryn&#39;, 3)
+add_enemy_damage(&#39;Clerics&#39;, &#39;Force&#39;, 23)
+  # Spiritual Weapon
+update_damage_taken(&#39;Nydas&#39;, 11)
+# Round 2
+# Nydas does a dragon thing
+add_damage(&#39;Nydas&#39;, &#39;Slashing&#39;, 30)
+add_enemy_damage(&#39;Phren&#39;, &#39;Slashing&#39;, 50)
+add_damage(&#39;Cerrit&#39;, &#39;Slashing&#39;, 68)
+increment_kills(&#39;Cerrit&#39;)
+  # Mage 
+add_damage(&#39;Loq&#39;, &#39;Psychic&#39;, 28)
+  # Psychic Lance
+add_damage(&#39;Loq&#39;, &#39;Bludgeoning&#39;, 40)
+add_damage(&#39;Zerxus&#39;, &#39;Slashing&#39;, 51)
+add_damage(&#39;Zerxus&#39;, &#39;Radiant&#39;, 82)
+  # Holy Avenger
+increment_kills(&#39;Zerxus&#39;)
+  # Milus Phren
+add_enemy_damage(&#39;Erinyes&#39;, &#39;Slashing&#39;, 28)
+add_damage(&#39;Zerxus&#39;, &#39;Slashing&#39;, 13)
+add_damage(&#39;Zerxus&#39;, &#39;Radiant&#39;, 11)
+  # Holy Avenger
+add_damage(&#39;Laerryn&#39;, &#39;Bludgeoning&#39;, 200)
+  # Reverse Gravity 
+increment_kills(&#39;Laerryn&#39;)
+  # K&#39;nauthi Cleric
+increment_kills(&#39;Laerryn&#39;)
+  # K&#39;nauthi Cleric
+increment_kills(&#39;Laerryn&#39;)
+  # K&#39;nauthi Cleric
+increment_kills(&#39;Laerryn&#39;)
+  # K&#39;nauthi Cleric
+increment_kills(&#39;Laerryn&#39;)
+  # K&#39;nauthi Cleric
+# Round 3
+add_damage(&#39;Cerrit&#39;, &#39;Piercing&#39;, 9)
+increment_kills(&#39;Cerrit&#39;)
+  # Spellguard Knight
+increment_kills(&#39;Patia&#39;)
+  # Lacrytia Hollow
+increment_kills(&#39;Nydas&#39;)
+  # Mage
+increment_kills(&#39;Nydas&#39;)
+  # Mage</code></pre>
+<p><br></p>
+</div>
+<div id="the-ring-of-brass-vs.-vespin-chloras-episode-5"
+class="section level5">
+<h5><span style='font-family:palatino; font-size: 24px;'> <strong>The
+Ring of Brass vs. Vespin Chloras</strong> ~ Episode 5</h5>
+</div>
+<div id="encounter-2" class="section level5">
+<h5><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'><strong>Encounter:</strong></h5>
+<ul>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'>Vespin
+Chloras</li>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'>4
+Taxmen</li>
+</ul>
+<pre class="r"><code># Round 1
+add_damage(&#39;Cerrit&#39;, &#39;Piercing&#39;, 17)
+add_enemy_damage(&#39;Vespin&#39;, &#39;Fire&#39;, 10)
+  # Fire Bolt
+update_damage_taken(&#39;Cerrit&#39;, 10)
+add_damage(&#39;Nydas&#39;, &#39;Cold&#39;, 175)
+  # Cone of Cold
+add_enemy_damage(&#39;Taxmen&#39;, &#39;Slashing&#39;, 23)
+add_damage(&#39;Loq&#39;, &#39;Psychic&#39;, 14)
+  # Psychic Lance
+add_enemy_damage(&#39;Vespin&#39;, &#39;Fire&#39;, 19)
+  # Fire Bolt
+update_damage_taken(&#39;Patia&#39;, 19)
+# Round 2
+add_damage(&#39;Cerrit&#39;, &#39;Slashing&#39;, 34)
+add_enemy_damage(&#39;Vespin&#39;, &#39;Fire&#39;, 42)
+  # 
+add_enemy_damage(&#39;Taxmen&#39;, &#39;Slashing&#39;, 20)
+update_damage_taken(&#39;Nydas&#39;, 20)
+add_damage(&#39;Nydas&#39;, &#39;Slashing&#39;, 9)
+add_enemy_damage(&#39;Taxmen&#39;, &#39;Slashing&#39;, 82)
+add_enemy_damage(&#39;Taxmen&#39;, &#39;Psychic&#39;, 25)
+update_damage_taken(&#39;Zerxus&#39;, 107)
+update_times_knocked_unconscious(&#39;Zerxus&#39;)
+  # Knocked unconscious by the Taxman 
+# Round 3
+add_damage(&#39;Cerrit&#39;, &#39;Slashing&#39;, 109)
+increment_kills(&#39;Cerrit&#39;)
+  # Vespin Chloras
+add_damage(&#39;Nydas&#39;, &#39;Slashing&#39;, 8)
+add_damage(&#39;Cerrit&#39;, &#39;&#39;, 8)
+add_enemy_damage(&#39;Taxmen&#39;, &#39;Slashing&#39;, 53)
+update_damage_taken(&#39;Nydas&#39;, 23)
+update_damage_taken(&#39;Cerrit&#39;, 30)
+# Zerxus autofails two death saves from Nydas&#39; strike
+update_times_knocked_unconscious(&#39;Nydas&#39;)
+  # Nydas is knocked unconscious by a Taxman 
+add_enemy_damage(&#39;Taxmen&#39;, &#39;Psychic&#39;, 39)
+  # Dispelling Blast
+update_damage_taken(&#39;Patia&#39;, 39)
+update_times_knocked_unconscious(&#39;Patia&#39;)
+  # Knocked unconscious by the Taxman&#39;s Dispelling Blast
+update_damage_taken(&#39;Laerryn&#39;, 40)
+update_healing(&#39;Loq&#39;, 10)
+  # Healing Word on Laerryn</code></pre>
+<p><br></p>
+</div>
+<div id="non-fighting-damages" class="section level5">
+<h5><span style='font-family:palatino; font-size: 24px;'>
+<strong>Non-Fighting Damages</strong></h5>
+<pre class="r"><code># Cerrit finds an invisible figure
+add_damage(&#39;Cerrit&#39;, &#39;Slashing&#39;, 37)
+increment_kills(&#39;Cerrit&#39;)
+  # Invisible Figure
+
+# Destruction of the Tree of Names
+update_damage_taken(&#39;Patia&#39;, 153)
+update_damage_taken(&#39;Loq&#39;, 150)
+update_damage_taken(&#39;Nydas&#39;, 169)
+update_damage_taken(&#39;Laerryn&#39;, 172)
+update_damage_taken(&#39;Zerxus&#39;, 140)
+update_times_knocked_unconscious(&#39;Patia&#39;)
+  # She is knocked out from the fire of the Tree of Names
+update_times_killed(&#39;Patia&#39;)
+  # She is subsequently killed outright from the explosion of the Tree of Names
+update_times_knocked_unconscious(&#39;Nydas&#39;)
+  # He was knocked unconscious by the explosion of the Tree of Names
+update_times_knocked_unconscious(&#39;Loq&#39;)
+  # He was knocked unconscious by the explosion of the Tree of Names
+update_times_knocked_unconscious(&#39;Zerxus&#39;)
+  # He was knocked unconscious by the explosion of the Tree of Names
+# Nydas auto fails a death save from the debris
+# Loquatius auto fails a death save from the debris
+# Zerxus auto fails a death save from the debris
+
+# Zerxus speaks with the Lord of Hells, Asmodeus
+update_times_killed(&#39;Zerxus&#39;)
+  # Asmodeus kills him by pulling off Zerxus&#39; skin
+update_times_killed(&#39;Zerxus&#39;)
+  # Asmodeus continues his slaughter on Zerxus
+update_times_killed(&#39;Zerxus&#39;)
+  # Asmodeus snaps Zerxus&#39; neck
+
+# Back to the Time Stop
+# Loquatius fails a death save
+update_times_killed(&#39;Loq&#39;)
+  # Loquatius is subsequently killed 
+
+# The party is saved... for now
+update_healing(&#39;Zerxus&#39;, 1)
+  # Uses Revivify on Loquatius bringing him back to life
+update_healing(&#39;Zerxus&#39;, 5)
+  # Lay on Hands on Nydas, brining him back to consciousness
+update_healing(&#39;Zerxus&#39;, 1)
+  # Uses Revivify on Patia bringing him back to life
+update_healing(&#39;Loq&#39;, 15)
+  # Cure Wounds on Nydas
+
+# Loquatius heals Laerryn
+update_healing(&#39;Loq&#39;, 9)
+  # Cure Wounds on Laerryn
+
+# Nydas versus Badran 
+add_enemy_damage(&#39;Badran&#39;, &#39;Slashing&#39;, 24)
+update_damage_taken(&#39;Nydas&#39;, 24)
+add_damage(&#39;Nydas&#39;, &#39;Slashing&#39;, 45)
+
+# The Fall of the Ring of Brass
+update_times_killed(&#39;Patia&#39;)
+  # Patia is consumed by lava during the collision
+update_times_killed(&#39;Nydas&#39;)
+  # Nydas is consumed by the lava during the collision
+update_times_killed(&#39;Laerryn&#39;)
+  # Laerynn is killed in an explosion during the collision
+update_times_killed(&#39;Loq&#39;)
+  # Loquatius is killed in an explosion during the collision</code></pre>
+<hr />
+</div>
+<div id="total-stats" class="section level3">
+<h3><span style='font-family:palatino; font-size: 24px;'><strong>Total
+Stats</strong></h3>
+</div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div id="cerrit" class="section level3">
+<h3><span style='font-family:palatino; font-size: 24px;'><span style='color:#73001d'><strong>Cerrit</strong></h3>
+<p><span style='font-family:palatino; font-size: 16px;'><strong>Damage:<br>
+Slashing: 272 <br> Piercing: 26 <br> Total Damage Done: 298<br> Healing:
+0<br> Damage Taken: 56<br> Times Knocked Unconscious: 0<br> Times
+Killed: 0<br> Amount of kills: 4</strong></p>
+</div>
+</div><div class="column" style="width:50%;">
+<div id="laerryn" class="section level3">
+<h3><span style='font-family:palatino; font-size: 24px;'><span style='color:#73001d'><strong>Laerryn</strong></h3>
+<p><span style='font-family:palatino; font-size: 16px;'><strong>Damage:<br>
+Fire: 41<br> Bludgeoning: 226 <br> Total Damage Done: 267<br> Healing:
+0<br> Damage Taken: 215<br> Times Knocked Unconscious: 0<br> Times
+Killed: 1<br> Amount of kills: 6</strong></p>
+</div>
+</div>
+</div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div id="loquatius" class="section level3">
+<h3><span style='font-family:palatino; font-size: 24px;'><span style='color:#73001d'><strong>Loquatius</strong></h3>
+<p><span style='font-family:palatino; font-size: 16px;'><strong>Damage:<br>
+Psychic: 42 <br> Bludgeoning: 40 <br> Total Damage Done: 82<br> Healing:
+34<br> Damage Taken: 184<br> Times Knocked Unconscious: 1<br> Times
+Killed: 2<br> Amount of kills: 0</strong></p>
+</div>
+</div><div class="column" style="width:50%;">
+<div id="nydas" class="section level3">
+<h3><span style='font-family:palatino; font-size: 24px;'><span style='color:#73001d'><strong>Nydas</strong></h3>
+<p><span style='font-family:palatino; font-size: 16px;'><strong>Damage:<br>
+Slashing: 124 <br> Cold: 175 <br> Total Damage Done: 299<br> Healing:
+0<br> Damage Taken: 265<br> Times Knocked Unconscious: 2<br> Times
+Killed: 1<br> Amount of kills: 2</strong></p>
+</div>
+</div>
+</div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div id="patia" class="section level3">
+<h3><span style='font-family:palatino; font-size: 24px;'><span style='color:#73001d'><strong>Patia</strong></h3>
+<p><span style='font-family:palatino; font-size: 16px;'><strong>Damage:<br>
+Fire: 136 <br> Total Damage Done: 136<br> Healing: 0<br> Damage Taken:
+211<br> Times Knocked Unconscious: 2<br> Times Killed: 2<br> Amount of
+kills: 5</strong></p>
+</div>
+</div><div class="column" style="width:50%;">
+<div id="zerxus" class="section level3">
+<h3><span style='font-family:palatino; font-size: 24px;'><span style='color:#73001d'><strong>Zerxus</strong></h3>
+<p><span style='font-family:palatino; font-size: 16px;'><strong>Damage:<br>
+Radiant: 169<br> Slashing: 64<br> Total Damage Done: 233<br> Healing:
+7<br> Damage Taken: 320<br> Times Knocked Unconscious: 2<br> Times
+Killed: 3<br> Amount of kills: 1</strong></p>
+</div>
+</div>
+</div>
+<p><br> <br></p>
+<p><span style='font-family:palatino; font-size: 12px;'>* Note, the
+damage totals are not 100% accurate, this could be from players not
+saying what damage type the attack did or separating damage types (such
+as Hex damage)</p>
+<hr />
+<p><span style='font-family:palatino; font-size: 12px;'>* The character
+artwork was made by: <span class="citation">@agarthanguide</span></p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

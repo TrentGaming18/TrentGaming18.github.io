@@ -1,0 +1,1634 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>C2-Stat-Tracker.knit</title>
+
+<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Exandria Stat Tracker</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="C1-Stat-Tracker.html">Vox Machina</a>
+</li>
+<li>
+  <a href="C2-Stat-Tracker.html">Mighty Nein</a>
+</li>
+<li>
+  <a href="C3-Stat-Tracker.html">Bells Hells</a>
+</li>
+<li>
+  <a href="Exandria-Unlimited-Stats.html">Exandria Unlimited</a>
+</li>
+<li>
+  <a href="One-Shots.html">One Shots</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<center>
+<div id="mighty-nein-critical-role-campaign-two" class="section level1">
+<h1><span style='font-family:palatino; font-size: 42px;'><span style='color:#3A4079'>
+<strong>Mighty Nein ~ Critical Role Campaign Two</strong></h1>
+</center>
+<hr />
+<p><img src="images/MN.png" width="100%" style="display: block; margin: auto;" />
+<span style="text-align:right; display:block;"><span
+style="font-family:palatino; font-size: 10px;"> Art By: <span
+class="citation">@ornerine</span></span></p>
+<p><span style='font-family:palatino; font-size: 16px;'>TEXT HERE</p>
+<hr />
+<p><span style='font-family:palatino; font-size: 24px;'>The main
+characters are:</p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#3A4079'><strong>Beauregard
+Lionett</strong>
+<img src="images/Beau.png" width="40%" style="display: block; margin: auto;" /></p>
+<p><span style='font-family:palatino; font-size: 16px;'>Beauregard
+Lionett is a human monk of the Cobalt Soul. She originally worked as the
+bookkeeper for her family’s wine business in Kamordah. Seeking revenge
+or perhaps her parents’ attention, she began stealing and reselling the
+wine at a higher price. This escalated into other crimes, including
+extortion and trafficking.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>When her father
+discovered her illegal activities, he bribed an archivist of the Cobalt
+Soul to “kidnap” her, avoiding direct confrontation and the shame she
+brought to the family. Six months into her training with the Cobalt
+Soul, Beau received a letter from her mother announcing the birth of her
+brother, Thoreau Lionett Jr. Beau saw this as a sign her parents no
+longer wanted contact with her. Believing they would stop paying for her
+training, she decided to leave and pursue her own path.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>While traveling
+along the Amber Road, Beau met Jester and Fjord and joined their
+journey. On their way to study magic at the Soltryce Academy in
+Rexxentrum, the trio saved a fisherman’s daughter from a giant snake in
+Trostenwald.</p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#3A4079'><strong>Caduceus
+Clay</strong>
+<img src="images/Cad.png" width="40%" style="display: block; margin: auto;" /></p>
+<p><span style='font-family:palatino; font-size: 16px;'>Caduceus Clay is
+a devout follower of the Wildmother, a deity revered for her connection
+to nature and life. He hails from the dense Savalierwood, where his
+family has long served the sacred duty of protecting the graveyard
+nestled within it. For generations, they have safeguarded the resting
+place of the deceased, guided by their faith and devotion to the
+Wildmother, also known as Melora in some regions.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>Around four to
+five years ago, Caduceus returned to his ancestral home in the
+Savalierwood, only to find it plagued by a spreading curse. In a
+desperate bid to find a cure, his parents, two sisters, and a brother
+set out on a quest, leaving Caduceus behind to maintain the graveyard.
+Known locally as the Bone Orchard, the sanctuary-like graveyard lies
+deep within the cursed woods, its stone church standing as a beacon of
+hope amidst the encroaching blight.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>Caduceus now
+shoulders the responsibility of tending to this sacred place, a task
+fraught with peril as the cursed woods continue to creep closer with
+each passing day. In the face of this encroaching darkness, Caduceus
+draws strength from his faith in the Wildmother, knowing that his
+actions honor both his family’s legacy and the divine will of his
+deity.</p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#3A4079'><strong>Caleb
+Widogast</strong>
+<img src="images/Caleb.png" width="40%" style="display: block; margin: auto;" /></p>
+<p><span style='font-family:palatino; font-size: 16px;'>Caleb Widogast,
+born Bren Aldric Ermendrud, is a human wizard and member of the Mighty
+Nein. Bren attended the Soltryce Academy at 15, dreaming of becoming a
+teacher. However, he fell under the abusive tutelage of Trent Ikithon,
+who conducted cruel experiments on Bren and two other students, Eadwulf
+Grieve and Astrid Becke, embedding crystals into their skin to enhance
+their magical abilities. The three were also trained as Volstrucker,
+tasked with interrogating and executing dissidents.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>Trent
+manipulated their memories, making them believe their parents had
+betrayed the empire, leading to them killing their own parents. Bren
+broke down after hearing his parents’ screams during the murder and
+spent the next eleven years in the Vergesson Sanatorium. There, another
+patient restored his true memories, allowing him to escape. He adopted
+the alias Caleb Widogast and spent five years hiding from Trent, plagued
+by guilt over his past actions.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>Caleb met Nott
+in a small jail, where they devised an escape plan and fled together.
+They survived through petty theft and con schemes, initially staying
+together out of convenience but eventually forming a strong bond.</p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#3A4079'><strong>Fjord</strong>
+<img src="images/Fjord.png" width="40%" style="display: block; margin: auto;" /></p>
+<p><span style='font-family:palatino; font-size: 16px;'>Fjord is a
+half-orc warlock and paladin who grew up as an orphan in Port Damali on
+the Menagerie Coast, with no knowledge of his parents. He worked at the
+docks and later joined the crew of the Tide’s Breath under Captain
+Vandran, who became a father figure to him. Fjord rose to the position
+of first mate, but the ship was sabotaged by a fellow crew member,
+Sabian. During the ensuing chaos, Fjord made a desperate pact with the
+entity Uk’otoa to survive.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>After washing
+ashore with new magical abilities and no memory of the pact, Fjord
+returned to Port Damali to investigate, but left due to suspicions about
+his survival. He then sought out Jester, who he knew had magical
+knowledge, and they decided to travel together to the Soltryce Academy
+in Rexxentrum. Along their journey, they met Beauregard Lionett in
+Trostenwald shortly before joining the rest of their group.</p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#3A4079'><strong>Jester
+Lavorre</strong>
+<img src="images/Jester.png" width="40%" style="display: block; margin: auto;" /></p>
+<p><span style='font-family:palatino; font-size: 16px;'>Jester Lavorre,
+a tiefling cleric of the Traveler and member of the Mighty Nein, spent
+her childhood confined to the Lavish Chateau by her mother, who aimed to
+shield her from the outside world. Encouraged to express herself through
+art, Jester often observed Nicodranas from her balcony.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>At thirteen, she
+befriended a boy from the streets, only to face accusations from Lord
+Robert Sharpe, a client of her mother’s. Feeling misunderstood, Jester
+found solace in the Traveler’s friendship. In her late teens, encouraged
+by the Traveler, she ventured into the world, playing tricks and facing
+danger.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>A confrontation
+with Sharpe led to Jester realizing her mother’s secret efforts to
+expose his connections to the Revelry. Fearing for Jester’s safety, her
+mother urged her to leave. Jester departed with the Traveler. While
+journeying towards the Soltryce Academy in Rexxentrum, where Fjord
+planned to study magic, Jester met Beauregard along the Amber Road. They
+soon encountered the others who would form the Mighty Nein.</p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#3A4079'><strong>Mollymauk
+Tealeaf</strong></p>
+<p><span style='font-family:palatino; font-size: 16px;'>Mollymauk
+Tealeaf is a mysterious tiefling with a fragmented past and a penchant
+for adventure. Awakening with no memories, he found solace and purpose
+among the performers of The Fletching and Moondrop Traveling Carnival of
+Curiosities. Under the guidance of the fortune teller, Lestera, Molly
+embraced carnival life, commemorating his experiences with tattoos and
+honing his skills in card-reading and sleight of hand. Adopting the name
+“Mollymauk Tealeaf,” he became a beloved member of the troupe, known for
+his charisma and flair as “The Ice Spinner” during performances.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>Throughout his
+time with the carnival, Molly embarked on sporadic solo adventures,
+often cloaked in secrecy under the guise of “choir practice.” His
+loyalty to Lestera and the carnival was unwavering, even after her
+passing, when he inherited her role as the carnival’s fortune teller.
+Guided by Lestera’s legacy, Molly welcomed newcomers like Yasha Nydoorin
+and fostered a sense of belonging within the group.</p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#3A4079'><strong>Veth
+Brenatto</strong></p>
+<p><span style='font-family:palatino; font-size: 16px;'>Revvetha “Veth”
+Brenatto, a halfling with a knack for both rogue tactics and wizardry,
+underwent a transformative journey that shaped her into the character
+known as Nott the Brave for a time. Originally born as Revvetha “Veth”
+Smyt’hh in the town of Felderwin, she faced ridicule and abuse from her
+surroundings, including her own siblings who tormented her for her
+differences. Despite these challenges, she found love with a halfling
+named Yeza Brenatto, with whom she eventually married and had a son
+named Luc.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>Tragedy struck
+when her family was kidnapped by a goblin clan led by Drekkit and Khaaz.
+In a desperate bid to save her loved ones, Veth sacrificed herself, only
+to undergo a harrowing transformation orchestrated by a cruel
+spellcaster named Isharnai. Emerging from the ordeal as a goblin named
+Nott, she was thrust into a life of servitude within the goblin clan,
+even taking on the role of Khaaz’s assistant as a torturer. After a
+brief stint in jail for theft, she met Caleb, who became both a
+companion and a friend on their subsequent travels.</p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#3A4079'><strong>Yasha
+Nydoorin</strong>
+<img src="images/Yasha.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><span style='font-family:palatino; font-size: 16px;'>Yasha Nydoorin,
+a protector aasimar barbarian, was raised by the Dolorav tribe in the
+Iothia Moorland after her original clan was decimated. Under the tribe’s
+harsh upbringing, she was groomed as a weapon, known as “Orphan Maker,”
+bound by a blood oath called “The Marking.” Despite this, she fell in
+love with Zuala, defying tribal customs and facing death as a
+consequence. Surviving the ordeal, she fled, her hair turning black as
+she embraced her fallen nature.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>During her
+flight, Yasha was ensnared by the cambion Obann, enduring magical
+enslavement until finding herself at an altar to The Stormlord, who
+became her guiding force. She crossed paths with Mollymauk Tealeaf,
+finding solace in his companionship and joining The Fletching and
+Moondrop Traveling Carnival of Curiosities as security. Known as “The
+Brute,” Yasha found acceptance among the carnies, forming strong bonds
+until parting ways after confronting a corrupt lawmaster in
+Nogvurot.</p>
+<hr />
+<p><span style='font-family:palatino; font-size: 24px;'>The side/guest
+characters are:</p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#3A4079'><strong>Calianna
+Mordsson</strong></p>
+<p><span style='font-family:palatino; font-size: 16px;'>Calianna
+Mordsson is a half-elven sorcerer with draconic heritage. She was born
+in a bustling port city but spent little time there during her early
+years. Orphaned and left to fend for herself on the streets, she was
+eventually taken in by a mysterious cult that promised her she was
+destined for greatness. They raised her, nurturing her magical abilities
+and reinforcing her belief in her unique importance.</p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#3A4079'><strong>Keg</strong></p>
+<p><span style='font-family:palatino; font-size: 16px;'>Keg is a stout
+fighter hailing from the rough-and-tumble town of Shadycreek Run. A
+seasoned warrior, she once belonged to the notorious mercenary group
+known as the Iron Shepherds. Born and raised in the unforgiving
+environment of Shadycreek Run, Keg’s life has been shaped by the town’s
+harsh realities. At some point in her life, Keg married a woman, but the
+marriage was abruptly called off after just an hour. During her time
+with the Iron Shepherds, she became familiar with her comrades Dwelma,
+Wohn, Protto, Lorenzo, and Ruzza. Despite her long tenure with the
+group, Keg never fully grasped the true extent of Lorenzo’s or Ruzza’s
+abilities.</p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#3A4079'><strong>Luc
+Brenatto</strong>
+<img src="images/Luc.png" width="40%" style="display: block; margin: auto;" /></p>
+<p><span style='font-family:palatino; font-size: 16px;'>Luc Brenatto,
+son of Yeza and Veth Brenatto from Felderwin, initially thrived at the
+Wildemount Wildlings Camp in Nicodranas, transitioning from a talented
+camper to a youthful instructor in stealth, spellcraft, and alchemy. His
+life took a tumultuous turn after a transformative trip to the Feywild
+prematurely aged him into a rebellious teenager, straining his
+relationship with his parents who sought to protect him.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>In 843 PD, Luc’s
+frustrations peaked, leading him to run away from home. Despite efforts
+from Veth and her ally Kingsley Tealeaf to find him, tensions persisted.
+During the apogee solstice, conflicts escalated when Luc was denied the
+opportunity to lead young adventurers against sea creatures in
+Nicodranas. His subsequent involvement with the Mighty Nein and his
+daring escape via Caleb’s Teleportation Circle marked a pivotal moment,
+highlighting his desire for independence and adventure amidst familial
+discord.</p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#3A4079'><strong>Nila</strong></p>
+<p><span style='font-family:palatino; font-size: 16px;'>Nila is a
+firbolg druid and a member of the Guiatao Clan. Despite her potential,
+the clan did not depend on her or her powers, preferring to keep her
+occupied at a distance. She was assigned the task of tending to the
+mosses surrounding their tribe, a hardy and easy-to-grow plant. This
+seemingly trivial duty ignited a desire in Nila to prove her worth both
+to herself and to her tribe, driving her to seek opportunities to
+demonstrate that she could be relied upon in a greater capacity.</p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#3A4079'><strong>Rab
+“Aggy” Agg</strong></p>
+<p><span style='font-family:palatino; font-size: 16px;'>Rab Agg, a dwarf
+practicing the ways of a monk, crossed paths with the Mighty Nein when
+they encountered him deep within the Rexxentrum Archive of the Cobalt
+Soul. This meeting was facilitated by a monk outside who had previously
+enlisted the aid of an investigator friend to resolve a personal
+matter.</p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#3A4079'><strong>Reani</strong></p>
+<p><span style='font-family:palatino; font-size: 16px;'>Reanminere,
+known as Reani, is an aasimar druid with a rich history. Abandoned in
+Nicodranas as a child, she was raised by an alchemist named Landon, who
+became a father figure to her. Her angelic guide, Samliel, began
+communicating with her in dreams during her childhood. After an
+encounter with fey, Reani gained druidic powers. She grew up in
+Nicodranas, where she once snuck into the Lavish Chateau to see the Ruby
+of the Sea perform.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>As an adult,
+Reani traveled widely, helping people and fighting evil. Guided by
+Samliel to Uthodurn, she became a vigilante known as Ivae’ess, battling
+the city’s criminal underworld in various animal forms while remaining
+anonymous. She befriended the local blacksmith, Umagorn Smeltborne, and
+secured a small, plant-filled home on the Liber Disk through trade. A
+romance with a Glassblade named Fen began after he saved her life.
+However, their relationship ended when a failed mission into the
+Savalirwood left Reani as one of the only survivors, and her increasing
+dedication to dangerous missions strained their bond. Reani continues to
+live in Uthodurn, committed to her duty to Samliel.</p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#3A4079'><strong>Shakäste</strong></p>
+<p><span style='font-family:palatino; font-size: 16px;'>Shakäste, known
+by his alias “Hush,” hails from the Marrow Valley near the city of
+Alfield. Raised amidst the vibrant energy of his homeland, he frequently
+aids and guides the community, particularly in Alfield and its
+surrounding areas. His charisma and wisdom extend beyond his local
+engagements; in the Menagerie Coast, he has made a name for himself as a
+captivating motivational speaker, consistently drawing large audiences
+with his inspiring rhetoric.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>Unbeknownst to
+many, Shakäste is a covert member of the enigmatic Golden Grin
+organization. Under the guise of “Hush,” his daring exploits have become
+the stuff of legend, chronicled in the popular novellas titled Heroic
+Deeds of the Golden Grin, circulated anonymously throughout Deastok.
+Initially dismissed as mere fiction by the Cobalt Soul, Shakäste’s
+existence was later confirmed, sparking intrigue and speculation within
+the secretive ranks of the organization. Adding to his mystique is his
+familiar, the Grand Duchess Anastasia Nikolaevna, known affectionately
+as “Stacy.” Often taking the form of an abrahum, a mesmerizing “dark,
+midnight” hummingbird, she symbolizes the enigmatic and multifaceted
+nature of Shakäste himself.</p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#3A4079'><strong>Twiggy</strong></p>
+<p><span style='font-family:palatino; font-size: 16px;'>Twiggy is a
+gnome rogue from Port Damali, a city known for its bustling trade and
+intrigue. Orphaned at a young age, Twiggy has had to rely on her wits
+and agility to survive. During her time in Port Damali, she stole a
+powerful magical artifact she calls the Happy Fun Ball of Tricks from a
+dubious location, possibly the Exalted Collection Auction House. She
+took this artifact to prevent it from falling into the hands of Sir
+Cadigan, a malevolent figure who had previously imprisoned her in a
+cage. While in captivity, Twiggy honed her skills in illusion magic,
+which eventually enabled her daring escape.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>Fleeing Port
+Damali to evade those pursuing her for the artifact, Twiggy stowed away
+on various ships. During her journey, she discovered that manipulating
+certain rings on the Happy Fun Ball could produce coins and create
+distracting flashes and noises. After a series of escapes and hiding on
+different vessels, Twiggy ultimately found herself on Darktow Isle.
+There, she hid in a box that was loaded onto the Squalleater and
+remained concealed in the cargo hold for about a week before being
+discovered by the adventuring group known as the Mighty Nein.</p>
+<hr />
+<div id="arc-one" class="section level2">
+<h2><span style='font-family:palatino; font-size: 24px;'><span style='color:#3A4079'><strong>Arc
+One: </strong></h2>
+<div id="episodes-1--" class="section level4">
+<h4><span style='font-family:palatino; font-size: 24px;'><strong>Episodes
+1 - </strong></h4>
+<p><span style="text-align:right; display:block;"><span
+style="font-family:palatino; font-size: 10px;"> Art By: @</span></p>
+<p><span style='font-family:palatino; font-size: 16px;'>TEXT HERE</p>
+<hr />
+<div id="episode-1" class="section level5">
+<h5><span style='font-family:palatino'> **** ~ Episode 1</h5>
+</div>
+<div id="encounter" class="section level5">
+<h5><span style='font-family:palatino'><span style='color:gray'><strong>Encounter:</strong></h5>
+<ul>
+<li><span style='font-family:palatino'><span style='color:gray'>2 Undead
+Husk</li>
+</ul>
+<pre class="r"><code># Round 1
+add_damage(&#39;Jester&#39;, &#39;Radiant&#39;, 18) 
+    # Guiding Bolt
+add_damage(&#39;Fjord&#39;, &#39;Slashing&#39;, 11)
+add_damage(&#39;Caleb&#39;, &#39;Cold&#39;, 9) 
+    # Chromatic Orb
+add_damage(&#39;Beau&#39;, &#39;Bludgeoning&#39;, 11)
+add_damage(&#39;Molly&#39;, &#39;Slashing&#39;, 8)
+add_damage(&#39;Molly&#39;, &#39;Cold&#39;, 1) 
+    # Crimson Rite ~ Rite of the Frozen
+# Round 2
+add_damage(&#39;Jester&#39;, &#39;Necrotic&#39;, 3)
+  # Toll the Dead
+add_enemy_damage(&#39;Undead Husk&#39;, &#39;Bludgeoning&#39;, 15)
+update_damage_taken(&#39;Beau&#39;, 15)
+add_damage(&#39;Fjord&#39;, &#39;Slashing&#39;, 12)
+add_enemy_damage(&#39;Undead Husk&#39;, &#39;Bludgeoning&#39;, 8)
+update_damage_taken(&#39;Molly&#39;, 8)
+add_damage(&#39;Yasha&#39;, &#39;Slashing&#39;, 12)
+increment_kills(&#39;Yasha&#39;)
+    # Undead Husk
+add_damage(&#39;Fjord&#39;, &#39;Slashing&#39;, 12)
+add_damage(&#39;Fjord&#39;, &#39;Necrotic&#39;, 5) 
+    # Hex
+add_damage(&#39;Veth&#39;, &#39;Piercing&#39;, 14)
+add_damage(&#39;Molly&#39;, &#39;Slashing&#39;, 10)
+add_damage(&#39;Molly&#39;, &#39;Cold&#39;, 3) 
+    # Crimson Rite ~ Rite of the Frozen
+add_damage(&#39;Beau&#39;, &#39;Bludgeoning&#39;, 19)
+increment_kills(&#39;Beau&#39;)
+    # Undead Husk
+update_healing(&#39;Jester&#39;, 17)
+    # Cure Wounds on Beau and Molly</code></pre>
+</div>
+<div id="episode-3" class="section level5">
+<h5><span style='font-family:palatino'> **** ~ Episode 3</h5>
+</div>
+<div id="encounter-1" class="section level5">
+<h5><span style='font-family:palatino'><span style='color:gray'><strong>Encounter:</strong></h5>
+<ul>
+<li><span style='font-family:palatino'><span style='color:gray'>2 Undead
+Husks</li>
+</ul>
+<pre class="r"><code># Round 1
+add_damage(&#39;Beau&#39;, &#39;Bludgeoning&#39;, 8)
+add_damage(&#39;Caleb&#39;, &#39;Cold&#39;, 9)
+  # Chromatic Orb
+add_damage(&#39;Molly&#39;, &#39;Slashing&#39;, 22)
+increment_kills(&#39;Molly&#39;)
+  # Undead Husk
+add_enemy_damage(&#39;Undead Husk&#39;, &#39;Bludgeoning&#39;, 5)
+update_damage_taken(&#39;Molly&#39;, 5)
+add_damage(&#39;Veth&#39;, &#39;Piercing&#39;, 10)
+add_damage(&#39;Fjord&#39;, &#39;Force&#39;, 9)
+  # Eldritch Blast 
+# Round 2
+add_damage(&#39;Beau&#39;, &#39;Bludgeoning&#39;, 17)
+add_damage(&#39;Caleb&#39;, &#39;Fire&#39;, 4)
+  # Fire Bolt
+add_damage(&#39;Molly&#39;, &#39;Slashing&#39;, 9)
+add_enemy_damage(&#39;Undead Husk&#39;, &#39;Bludgeoning&#39;, 20)
+update_damage_taken(&#39;Molly&#39;, 20)
+update_times_knocked_unconscious(&#39;Molly&#39;)
+  # Knocked unconscious by a heavy blow from the Undead Husk
+increment_kills(&#39;Veth&#39;)
+  # Undead Husk</code></pre>
+</div>
+<div id="episode-3-1" class="section level5">
+<h5><span style='font-family:palatino'> **** ~ Episode 3</h5>
+</div>
+<div id="encounter-2" class="section level5">
+<h5><span style='font-family:palatino'><span style='color:gray'><strong>Encounter:</strong></h5>
+<ul>
+<li><span style='font-family:palatino'><span style='color:gray'>Kylre
+the Nergaliid</li>
+<li><span style='font-family:palatino'><span style='color:gray'>Toya</li>
+<li><span style='font-family:palatino'><span style='color:gray'>3
+Imps</li>
+</ul>
+<pre class="r"><code># Round 1
+add_damage(&#39;Beau&#39;, &#39;Bludgeoning&#39;, 7)
+add_damage(&#39;Fjord&#39;, &#39;Force&#39;, 19)
+  # Eldritch Blast
+# Round 2
+add_damage(&#39;Molly&#39;, &#39;Slashing&#39;, 8)
+add_damage(&#39;Molly&#39;, &#39;Cold&#39;, 1)
+  # Crimson Rite ~ Rite of the Frozen
+add_enemy_damage(&#39;Imp&#39;, &#39;Piercing&#39;, 5)
+add_enemy_damage(&#39;Imp&#39;, &#39;Poison&#39;, 4)
+update_damage_taken(&#39;Molly&#39;, 9)
+add_damage(&#39;Molly&#39;, &#39;Slashing&#39;, 7)
+increment_kills(&#39;Molly&#39;)
+  # Imp
+add_enemy_damage(&#39;Kylre&#39;, &#39;Psychic&#39;, 4)
+  # Siphon Life
+update_damage_taken(&#39;Caleb&#39;, 4)
+add_damage(&#39;Beau&#39;, &#39;Bludgeoning&#39;, 8)
+add_damage(&#39;Veth&#39;, &#39;Slashing&#39;, 12)
+add_damage(&#39;Fjord&#39;, &#39;Slashing&#39;, 14)
+add_damage(&#39;Fjord&#39;, &#39;Psychic&#39;, 1)
+  # Wrathful Smite
+# Round 3
+add_enemy_damage(&#39;Imp&#39;, &#39;Piercing&#39;, 13)
+add_enemy_damage(&#39;Imp&#39;, &#39;Poison&#39;, 11)
+update_damage_taken(&#39;Jester&#39;, 12)
+update_damage_taken(&#39;Caleb&#39;, 12)
+update_times_knocked_unconscious(&#39;Caleb&#39;)
+  # Knocked unconscious by the Imp&#39;s strike
+add_damage(&#39;Molly&#39;, &#39;Psychic&#39;, 4)
+  # Vicious Mockery
+add_enemy_damage(&#39;Kylre&#39;, &#39;Piercing&#39;, 11)
+update_damage_taken(&#39;Veth&#39;, 11)
+add_damage(&#39;Veth&#39;, &#39;Slashing&#39;, 11)
+add_damage(&#39;Fjord&#39;, &#39;Slashing&#39;, 11)
+add_damage(&#39;Fjord&#39;, &#39;Psychic&#39;, 5)
+  # Wrathful Smite
+update_healing(&#39;Jester&#39;, 9)
+  # Cure Wounds on herself
+# Caleb succeeds on a death save
+add_damage(&#39;Fjord&#39;, &#39;Force&#39;, 14)
+  # Edlritch Blast
+increment_kills(&#39;Fjord&#39;)
+  # Kylre
+# Round 4
+add_enemy_damage(&#39;Imp&#39;, &#39;Piercing&#39;, 7)
+add_enemy_damage(&#39;Imp&#39;, &#39;Poison&#39;, 14)
+update_damage_taken(&#39;Fjord&#39;, 21)
+update_times_knocked_unconscious(&#39;Fjord&#39;)
+  # Knocked unconcious by the Imp&#39;s strike
+add_damage(&#39;Jester&#39;, &#39;Radiant&#39;, 6)
+  # Word of Radiance
+increment_kills(&#39;Jester&#39;)
+  # Imp
+# Caleb succeeds on a death save
+# Fjord fails a death save
+# Round 5
+add_damage(&#39;Beau&#39;, &#39;Bludgeoning&#39;, 12)
+increment_kills(&#39;Beau&#39;)
+  # Imp
+update_healing(&#39;Jester&#39;, 5)
+  # Cure Wounds on Fjord, bringing him back to consciousness
+# Caleb fails a death save
+update_healing(&#39;Veth&#39;, 1)
+  # Mouth to mouth on Caleb, bringing him back to consciousness</code></pre>
+</div>
+<div id="episode-5" class="section level5">
+<h5><span style='font-family:palatino'> **** ~ Episode 5</h5>
+</div>
+<div id="encounter-3" class="section level5">
+<h5><span style='font-family:palatino'><span style='color:gray'><strong>Encounter:</strong></h5>
+<ul>
+<li><span style='font-family:palatino'><span style='color:gray'>1 Gnoll
+Pack Leader</li>
+<li><span style='font-family:palatino'><span style='color:gray'>5
+Gnolls</li>
+<li><span style='font-family:palatino'><span style='color:gray'>4
+Skeleton Gnolls</li>
+</ul>
+<pre class="r"><code># Surprise Round 
+add_damage(&#39;Molly&#39;, &#39;Psychic&#39;, 3)
+  # Vicious Mockery
+add_damage(&#39;Jester&#39;, &#39;Force&#39;, 10)
+  # Spiritual Weapon ~ Lollipop
+increment_kills(&#39;Jester&#39;)
+  # Skeleton Gnoll
+# Round 1
+add_damage(&#39;Beau&#39;, &#39;Piercing&#39;, 6)
+add_damage(&#39;Jester&#39;, &#39;Radiant&#39;, 4)
+  # Sacred Flame
+add_damage(&#39;Caleb&#39;, &#39;Fire&#39;, 19)
+  # Scorching Ray 3/3
+add_damage(&#39;Veth&#39;, &#39;Piercing&#39;, 12)
+update_damage_taken(&#39;Veth&#39;, 5)
+add_enemy_damage(&#39;Gnoll&#39;, &#39;Piercing&#39;, 6)
+update_damage_taken(&#39;Beau&#39;, 6)
+# Round 2
+add_damage(&#39;Fjord&#39;, &#39;Piercing&#39;, 9)
+add_enemy_damage(&#39;Gnoll&#39;, &#39;Piercing&#39;, 9)
+update_damage_taken(&#39;Veth&#39;, 9)
+add_damage(&#39;Fjord&#39;, &#39;Force&#39;, 14)
+  # Eldritch Blast 
+add_enemy_damage(&#39;Gnoll Pack Leader&#39;, &#39;Slashing&#39;, 12)
+update_damage_taken(&#39;Fjord&#39;, 12)
+add_damage(&#39;Fjord&#39;, &#39;Cold&#39;, 10)
+  # Armor of Agathys
+add_damage(&#39;Molly&#39;, &#39;Slashing&#39;, 9)
+add_enemy_damage(&#39;Gnoll&#39;, &#39;Bludgeoning&#39;, 5)
+update_damage_taken(&#39;Jester&#39;, 5)
+add_damage(&#39;Jester&#39;, &#39;Cold&#39;, 9)
+  # Hellish Rebuke
+add_damage(&#39;Jester&#39;, &#39;Radiant&#39;, 9)
+  # Guiding Bolt
+add_damage(&#39;Jester&#39;, &#39;Force&#39;, 9)
+  # Spiritual Weapon ~ Lollipop
+add_enemy_damage(&#39;Gnoll&#39;, &#39;Bludgeoning&#39;, 6)
+update_damage_taken(&#39;Jester&#39;, 6)
+# Round 3
+add_damage(&#39;Beau&#39;, &#39;Bludgeoning&#39;, 15)
+increment_kills(&#39;Beau&#39;)
+  # Skeleton Gnoll
+increment_kills(&#39;Beau&#39;)
+  # Gnoll
+add_enemy_damage(&#39;Gnoll&#39;, &#39;Piercing&#39;, 14)
+update_damage_taken(&#39;Jester&#39;, 8)
+update_damage_taken(&#39;Fjord&#39;, 6)
+add_enemy_damage(&#39;Gnoll Pack Leader&#39;, &#39;Slashing&#39;, 10)
+update_damage_taken(&#39;Fjord&#39;, 10)
+add_damage(&#39;Molly&#39;, &#39;Slashing&#39;, 5)
+add_damage(&#39;Molly&#39;, &#39;Radiant&#39;, 2)
+  # Crimson Rite ~ Rite of the Dawn
+add_damage(&#39;Caleb&#39;, &#39;Fire&#39;, 11)
+  # Chromatic Orb
+# Round 4
+add_damage(&#39;Beau&#39;, &#39;Bludgeoning&#39;, 27)
+increment_kills(&#39;Beau&#39;)
+  # Gnoll
+update_damage_taken(&#39;Veth&#39;, 4)
+add_damage(&#39;Jester&#39;, &#39;Necrotic&#39;, 26)
+  # Inflict Wounds
+# Round 5
+add_enemy_damage(&#39;Gnoll Pack Leader&#39;, &#39;Piercing&#39;, 29)
+update_damage_taken(&#39;Veth&#39;, 8)
+update_times_knocked_unconscious(&#39;Veth&#39;)
+  # Knocked unconscious by the Gnoll Pack Leader&#39;s bow shot
+update_damage_taken(&#39;Molly&#39;, 21)
+update_times_knocked_unconscious(&#39;Molly&#39;)
+  # Knocked unconscious by the Gnoll Pack Leader&#39;s bow shot
+update_healing(&#39;Jester&#39;, 22)
+  # Cure Wounds on Nott and Molly bringing them back to consciousness</code></pre>
+</div>
+<div id="episode-6" class="section level5">
+<h5><span style='font-family:palatino'> **** ~ Episode 6</h5>
+</div>
+<div id="encounter-4" class="section level5">
+<h5><span style='font-family:palatino'><span style='color:gray'><strong>Encounter:</strong></h5>
+<ul>
+<li><span style='font-family:palatino'><span style='color:gray'>5
+Gnolls</li>
+<li><span style='font-family:palatino'><span style='color:gray'>4
+Hyenas</li>
+</ul>
+<pre class="r"><code># Surprise Round
+add_damage(&#39;Jester&#39;, &#39;Force&#39;, 9)
+  # Spiritual Weapon ~ Lollipop
+add_damage(&#39;Fjord&#39;, &#39;Force&#39;, 15)
+  # Eldritch Blast
+add_damage(&#39;Caleb&#39;, &#39;Fire&#39;, 7)
+  # Fire Bolt
+increment_kills(&#39;Caleb&#39;)
+  # Gnoll
+add_damage(&#39;Veth&#39;, &#39;Piercing&#39;, 14)
+increment_kills(&#39;Veth&#39;)
+  # Gnoll
+add_damage(&#39;Molly&#39;, &#39;Psychic&#39;, 3)
+  # Vicious Mockery
+# Round 2
+add_damage(&#39;Jester&#39;, &#39;Force&#39;, 9)
+  # Spiritual Weapon ~ Lollipop
+add_damage(&#39;Jester&#39;, &#39;Necrotic&#39;, 2)
+  # Toll the Dead
+add_enemy_damage(&#39;Hyena&#39;, &#39;Piercing&#39;, 10)
+update_damage_taken(&#39;Fjord&#39;, 10)
+add_damage(&#39;Fjord&#39;, &#39;Cold&#39;, 20)
+  # Armor of Agathys
+increment_kills(&#39;Fjord&#39;)
+  # Hyena
+increment_kills(&#39;Fjord&#39;)
+  # Hyena
+add_damage(&#39;Fjord&#39;, &#39;Slashing&#39;, 15)
+# Round 3
+add_damage(&#39;Molly&#39;, &#39;Slashing&#39;, 12)
+increment_kills(&#39;Molly&#39;)
+  # Gnoll
+add_enemy_damage(&#39;Gnoll&#39;, &#39;Piercing&#39;, 8)
+update_damage_taken(&#39;Fjord&#39;, 8)
+add_damage(&#39;Beau&#39;, &#39;Bludgeoning&#39;, 8)
+add_damage(&#39;Jester&#39;, &#39;Necrotic&#39;, 7)
+  # Toll the Dead
+increment_kills(&#39;Jester&#39;)
+  # Gnoll
+add_enemy_damage(&#39;Hyena&#39;, &#39;Piercing&#39;, 2)
+update_damage_taken(&#39;Molly&#39;, 2)
+add_damage(&#39;Fjord&#39;, &#39;Slashing&#39;, 11)
+increment_kills(&#39;Fjord&#39;)
+  # Hyena
+add_damage(&#39;Molly&#39;, &#39;Slashing&#39;, 8)
+increment_kills(&#39;Molly&#39;)
+  # Hyena
+# Round 4
+add_damage(&#39;Beau&#39;, &#39;Bludgeoning&#39;, 10)
+add_damage(&#39;Veth&#39;, &#39;Slashing&#39;, 13)
+increment_kills(&#39;Veth&#39;)
+  # Gnoll
+update_healing(&#39;Jester&#39;, 7)
+  # Cure Wounds on Fjord</code></pre>
+</div>
+<div id="episode-7" class="section level5">
+<h5><span style='font-family:palatino'> **** ~ Episode 7</h5>
+</div>
+<div id="encounter-5" class="section level5">
+<h5><span style='font-family:palatino'><span style='color:gray'><strong>Encounter:</strong></h5>
+<ul>
+<li><span style='font-family:palatino'><span style='color:gray'>3
+Gnolls</li>
+<li><span style='font-family:palatino'><span style='color:gray'>2
+Hyenas</li>
+<li><span style='font-family:palatino'><span style='color:gray'>1
+Skeleton Gnoll</li>
+</ul>
+<pre class="r"><code># Surprise Round
+add_damage(&#39;Veth&#39;, &#39;Piercing&#39;, 11)
+add_damage(&#39;Molly&#39;, &#39;Psychic&#39;, 3)
+  # Vicious Mockery
+add_damage(&#39;Fjord&#39;, &#39;Force&#39;, 16)
+  # Eldritch Blast 
+# Round 1
+add_damage(&#39;Veth&#39;, &#39;Piercing&#39;, 8)
+increment_kills(&#39;Veth&#39;)
+  # Gnoll
+add_damage(&#39;Molly&#39;, &#39;Slashing&#39;, 8)
+add_damage(&#39;Fjord&#39;, &#39;Force&#39;, 16)
+  # Eldritch Blast
+increment_kills(&#39;Fjord&#39;)
+  # Gnoll
+add_enemy_damage(&#39;Hyena&#39;, &#39;Piercing&#39;, 3)
+update_damage_taken(&#39;Molly&#39;, 2)
+update_damage_taken(&#39;Veth&#39;, 1)
+add_damage(&#39;Shakäste&#39;, &#39;Thunder&#39;, 12)
+  # Thunderwave
+# Round 2
+add_damage(&#39;Beau&#39;, &#39;Bludgeoning&#39;, 10)
+increment_kills(&#39;Beau&#39;)
+  # Hyena
+add_damage(&#39;Molly&#39;, &#39;Slashing&#39;, 22)
+increment_kills(&#39;Molly&#39;)
+  # Skeleton Gnoll
+increment_kills(&#39;Molly&#39;)
+  # Hyena
+add_enemy_damage(&#39;Gnoll&#39;, &#39;Piercing&#39;, 4)
+update_damage_taken(&#39;Caleb&#39;, 4)
+add_damage(&#39;Fjord&#39;, &#39;Force&#39;, 11)
+  # Eldritch Blast
+increment_kills(&#39;Fjord&#39;)
+  # Gnoll</code></pre>
+</div>
+<div id="episode-7-1" class="section level5">
+<h5><span style='font-family:palatino'> **** ~ Episode 7</h5>
+</div>
+<div id="encounter-6" class="section level5">
+<h5><span style='font-family:palatino'><span style='color:gray'><strong>Encounter:</strong></h5>
+<ul>
+<li><span style='font-family:palatino'><span style='color:gray'>1 Gnoll
+Pack Leader</li>
+<li><span style='font-family:palatino'><span style='color:gray'>4
+Gnolls</li>
+<li><span style='font-family:palatino'><span style='color:gray'>2
+Skeleton Gnolls</li>
+</ul>
+<pre class="r"><code># Pre-Initiative
+add_damage(&#39;Fjord&#39;, &#39;Force&#39;, 14)
+  # Eldritch Blast
+add_enemy_damage(&#39;Gnoll&#39;, &#39;Piercing&#39;, 10)
+update_damage_taken(&#39;Fjord&#39;, 10)
+add_damage(&#39;Veth&#39;, &#39;Piercing&#39;, 5)
+add_damage(&#39;Fjord&#39;, &#39;Force&#39;, 13)
+  # Eldritch Blast
+increment_kills(&#39;Fjord&#39;)
+  # Gnoll (shared with Nott)
+increment_kills(&#39;Veth&#39;)
+  # Gnoll (shared with Fjord)
+add_damage(&#39;Shakäste&#39;, &#39;Radiant&#39;, 1)
+  # Sacred Flame
+# Round 1
+add_damage(&#39;Shakäste&#39;, &#39;Cold&#39;, 3)
+  # Frostbite
+add_damage(&#39;Beau&#39;, &#39;Bludgeoning&#39;, 20)
+increment_kills(&#39;Beau&#39;)
+  # Skeleton Gnoll
+# Round 2
+update_healing(&#39;Shakäste&#39;, 15)
+  # Aid on himself, Jester, and Beau
+add_damage(&#39;Molly&#39;, &#39;Slashing&#39;, 21)
+increment_kills(&#39;Molly&#39;)
+  # Skeleton Gnoll
+add_damage(&#39;Veth&#39;, &#39;Piercing&#39;, 12)
+increment_kills(&#39;Veth&#39;)
+  # Gnoll
+add_damage(&#39;Jester&#39;, &#39;Necrotic&#39;, 6)
+  # Toll the Dead
+add_damage(&#39;Caleb&#39;, &#39;Fire&#39;, 20)
+  # Scorching Ray 3/3
+add_damage(&#39;Fjord&#39;, &#39;Force&#39;, 8)
+  # Eldritch Blast
+# Round 3
+add_enemy_damage(&#39;Gnoll Pack Leader&#39;, &#39;Bludgeoning&#39;, 11)
+update_damage_taken(&#39;Beau&#39;, 11)
+add_enemy_damage(&#39;Gnoll&#39;, &#39;Piercing&#39;, 12)
+update_damage_taken(&#39;Molly&#39;, 4)
+update_damage_taken(&#39;Jester&#39;, 8)
+add_damage(&#39;Molly&#39;, &#39;Slashing&#39;, 20)
+update_damage_taken(&#39;Molly&#39;, 3)
+add_damage(&#39;Jester&#39;, &#39;Slashing&#39;, 4)
+add_damage(&#39;Veth&#39;, &#39;Piercing&#39;, 15)
+increment_kills(&#39;Jester&#39;)
+  # Gnoll Pack Leader (shared with Nott)
+increment_kills(&#39;Veth&#39;)
+  # Gnoll Pack Leader (shared with Jester)
+update_healing(&#39;Fjord&#39;, 7)
+  # Hexblade&#39;s Curse
+add_damage(&#39;Caleb&#39;, &#39;Thunder&#39;, 8)
+  # Chromatic Orb
+add_damage(&#39;Fjord&#39;, &#39;Force&#39;, 15)
+  # Eldritch Blast
+increment_kills(&#39;Fjord&#39;)
+  # Gnoll
+# Round 4
+add_damage(&#39;Shakäste&#39;, &#39;Radiant&#39;, 6)
+  # Sacred Flame
+add_damage(&#39;Beau&#39;, &#39;Bludgeoning&#39;, 5)
+increment_kills(&#39;Beau&#39;)
+  # Gnoll</code></pre>
+</div>
+<div id="episode-7-2" class="section level5">
+<h5><span style='font-family:palatino'> **** ~ Episode 7</h5>
+</div>
+<div id="encounter-7" class="section level5">
+<h5><span style='font-family:palatino'><span style='color:gray'><strong>Encounter:</strong></h5>
+<ul>
+<li><span style='font-family:palatino'><span style='color:gray'>1
+Manticore</li>
+<li><span style='font-family:palatino'><span style='color:gray'>1
+Yeenoghu Priest</li>
+</ul>
+<pre class="r"><code># Round 1
+add_damage(&#39;Molly&#39;, &#39;Psychic&#39;, 1)
+  # Vicious Mockery
+add_damage(&#39;Fjord&#39;, &#39;Slashing&#39;, 13)
+add_enemy_damage(&#39;Manticore&#39;, &#39;Slashing&#39;, 14)
+add_enemy_damage(&#39;Manticore&#39;, &#39;Piercing&#39;, 10)
+update_damage_taken(&#39;Jester&#39;, 9)
+update_damage_taken(&#39;Fjord&#39;, 15)
+add_damage(&#39;Jester&#39;, &#39;Cold&#39;, 13)
+  # Hellish Rebuke
+add_damage(&#39;Fjord&#39;, &#39;Cold&#39;, 20)
+  # Armor of Agathys
+add_damage(&#39;Shakäste&#39;, &#39;Force&#39;, 4)
+  # Spiritual Weapon ~ Estelle Getty
+# Round 2
+add_damage(&#39;Molly&#39;, &#39;Psychic&#39;, 4)
+  # Vicious Mockery
+add_damage(&#39;Jester&#39;, &#39;Radiant&#39;, 6)
+  # Sacred Flame
+add_damage(&#39;Veth&#39;, &#39;Slashing&#39;, 17)
+increment_kills(&#39;Veth&#39;)
+  # Manticore Cub
+add_enemy_damage(&#39;Manticore&#39;, &#39;Slashing&#39;, 9)
+add_enemy_damage(&#39;Manticore&#39;, &#39;Piercing&#39;, 21)
+update_damage_taken(&#39;Veth&#39;, 30)
+update_times_knocked_unconscious(&#39;Veth&#39;)
+  # Knocked unconscious by the Manticore&#39;s 
+add_damage(&#39;Caleb&#39;, &#39;Cold&#39;, 15)
+  # Chromatic Orb
+add_enemy_damage(&#39;Yeenoghu Priest&#39;, &#39;Necrotic&#39;, 14)
+  # Inflict Wounds
+update_damage_taken(&#39;Jester&#39;, 14)
+update_times_knocked_unconscious(&#39;Jester&#39;)
+  # Knocked unconscious by the priest&#39;s Inflict Wounds
+add_damage(&#39;Shakäste&#39;, &#39;Radiant&#39;, 3)
+  # Sacred Flame
+# Round 3
+update_healing(&#39;Fjord&#39;, 8)
+  # Regular potion on Jester, bringing her back to consciousness 
+update_healing(&#39;Jester&#39;, 8)
+  # Cure Wounds on Nott, bringing her back to consciousness
+add_damage(&#39;Beau&#39;, &#39;Bludgeoning&#39;, 16)
+add_damage(&#39;Caleb&#39;, &#39;Fire&#39;, 10)
+  # Fire Bolt
+increment_kills(&#39;Caleb&#39;)
+  # Yeenoghu Priest
+add_damage(&#39;Shakäste&#39;, &#39;Force&#39;, 7)
+  # Spiritual Weapon ~ Estelle Getty
+add_damage(&#39;Shakäste&#39;, &#39;Radiant&#39;, 6)
+  # Sacred Flame
+increment_kills(&#39;Shakäste&#39;)
+  # Manticore</code></pre>
+</div>
+<div id="arc-one-out-of-combat-actions" class="section level5">
+<h5><span style='font-family:palatino; font-size: 24px;'> <strong>Arc
+One Out of Combat Actions</strong></h5>
+<pre class="r"><code># Beau meets Expositor Dairon
+add_enemy_damage(&#39;Dairon&#39;, &#39;Bludgeoning&#39;, 17)
+update_damage_taken(&#39;Beau&#39;, 17)
+add_damage(&#39;Beau&#39;, &#39;Bludgeoning&#39;, 31)
+
+# Ambushing Hyenas
+add_damage(&#39;Caleb&#39;, &#39;Fire&#39;, 1)
+  # Firebolt
+add_damage(&#39;Jester&#39;, &#39;Radiant&#39;, 4)
+  # Sacred Flame
+increment_kills(&#39;Jester&#39;)
+  # Hyena
+add_damage(&#39;Molly&#39;, &#39;Slashing&#39;, 7)
+add_damage(&#39;Molly&#39;, &#39;Radiant&#39;, 3)
+  # Crimson Rite ~ Rite of the Dawn
+increment_kills(&#39;Molly&#39;)
+  # Hyena
+add_damage(&#39;Veth&#39;, &#39;Piercing&#39;, 13)
+increment_kills(&#39;Veth&#39;)
+  # Hyena
+
+# Gnolls in the mines
+add_damage(&#39;Veth&#39;, &#39;Piercing&#39;, 11)
+add_enemy_damage(&#39;Gnoll&#39;, &#39;Piercing&#39;, 6)
+update_damage_taken(&#39;Veth&#39;, 6)
+add_damage(&#39;Jester&#39;, &#39;Radiant&#39;, 10)
+  # Guiding Bolt
+add_damage(&#39;Fjord&#39;, &#39;Force&#39;, 9)
+  # Eldritch Blast
+add_damage(&#39;Molly&#39;, &#39;Psychic&#39;, 3)
+  # Vicious Mockery
+add_damage(&#39;Veth&#39;, &#39;Lightning&#39;, 7)
+  # Shocking Grasp
+increment_kills(&#39;Veth&#39;)
+  # Gnoll
+add_enemy_damage(&#39;Gnoll&#39;, &#39;Piercing&#39;, 4)
+update_damage_taken(&#39;Fjord&#39;, 4)
+add_damage(&#39;Beau&#39;, &#39;Bludgeoning&#39;, 10)
+increment_kills(&#39;Beau&#39;)
+  # Gnoll</code></pre>
+</div>
+</div>
+</div>
+<div id="mighty-nein-reunited" class="section level2"
+style="text-align: center;">
+<h2><span style='font-family:palatino; font-size: 24px;'><span style='color:#3A4079'><strong>Mighty
+Nein Reunited</strong></h2>
+</div>
+<p><img src="images/MNR.jpg" width="100%" style="display: block; margin: auto;" />
+<span style="text-align:right; display:block;"><span
+style="font-family:palatino; font-size: 10px;"> Art By: @</span></p>
+<p><span style='font-family:palatino; font-size: 16px;'>Six months have
+passed since the Mighty Nein, the legendary group of adventurers, went
+their separate ways. Despite their heroics, few in the wider world know
+of their accomplishments. Veth Brenatto, now settled in Nicodranas with
+her husband Yeza and their son Luc, has started a new venture – an
+adventurer’s camp called The Wildemount Wildlings. Yeza supports her by
+running his new apothecary, Brenatto’s Better Self. Meanwhile, in
+Zadash, Beau and Yasha have built a life together. Yasha has embraced
+homemaking and plans to teach self-defense at Veth’s camp, while Beau,
+frustrated with mundane tasks at the Cobalt Soul, suspects the Cerberus
+Assembly is up to something.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>Caleb Widogast
+resides in Rexxentrum, guest lecturing at the Soltryce Academy. Though
+Beau urges him to take a permanent teaching position to aid their
+efforts against the Assembly, Caleb remains hesitant. He is preparing to
+teach a magic class at Veth’s camp and anticipates a visit from Essek.
+On the ocean near the Swavain Islands, Fjord, Jester, and Kingsley sail
+on their ship, the Nein Heroez, running a new venture called Stone’s
+Throw Shipping. When an unexpected storm threatens, Fjord’s former
+warlock patron, Uk’otoa, sends his minions to reclaim a powerful
+artifact. Despite a fierce battle, Fjord relinquishes the crystal to
+save Jester, setting the stage for a new quest.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>Jester alerts
+the rest of the Mighty Nein about the imminent threat of Uk’otoa’s
+release. Caleb gathers the team and they reunite on the Twinward Isles.
+Their mission is to prevent Uk’otoa from being freed. They deduce the
+location of the final temple and teleport to Nicodranas, where they rest
+before heading to Cyrios End Forest. Through a combination of
+polymorphing and strategic planning, they reach the temple, prepared for
+an ambush. In a climactic battle, they confront Thoonum and Uk’otoa’s
+scions, but the final seal is broken, unleashing the Great
+Leviathan.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>To contain
+Uk’otoa, Fjord makes a pact with the Cloaked Serpent, the Betrayer God
+who originally sealed Uk’otoa. Fjord takes up a divine weapon, the Fang
+of the Spire King, and with the help of his friends, defeats Uk’otoa.
+However, the task isn’t over as Uk’otoa’s presence lingers. Fjord dives
+into the ocean, using his new powers to seal Uk’otoa once more. The
+Cloven Crystals, the keys to Uk’otoa’s release, are redistributed to
+ensure they remain hidden. The Mighty Nein return to their lives, each
+finding new purposes and continuing their legacies while always staying
+connected.</p>
+<div id="surrendering-to-the-leviathan" class="section level5">
+<h5><span style='font-family:palatino;font-size: 24px;'> **Surrendering
+to the Leviathan*</h5>
+</div>
+<div id="encounter-8" class="section level5">
+<h5><span style='font-family:palatino;font-size: 16px;'><span style='color:gray'><strong>Encounter:</strong></h5>
+<ul>
+<li><span style='font-family:palatino;font-size: 16px;'><span style='color:gray'>Thoonum
+the Storm Giant</li>
+<li><span style='font-family:palatino;font-size: 16px;'><span style='color:gray'>1
+Scion Mage</li>
+<li><span style='font-family:palatino;font-size: 16px;'><span style='color:gray'>7
+Scions</li>
+</ul>
+<pre class="r"><code># Pre-Initiative
+add_enemy_damage(&#39;Thoonum&#39;, &#39;Lightning&#39;, 91)
+  # Lightning Strike
+update_damage_taken(&#39;Fjord&#39;, 30)
+update_damage_taken(&#39;Jester&#39;, 61)
+add_damage(&#39;Jester&#39;, &#39;Cold&#39;, 21)
+  # Hellish Rebuke
+# Round 1
+add_damage(&#39;Kings&#39;, &#39;Slashing&#39;, 24)
+add_damage(&#39;Kings&#39;, &#39;Fire&#39;, 16)
+  # Crimson Rite ~ Rite of the Flame
+add_enemy_damage(&#39;Thoonum&#39;, &#39;Thunder&#39;, 76)
+  # Thunderous Slap
+update_damage_taken(&#39;Kings&#39;, 38)
+update_damage_taken(&#39;Jester&#39;, 38)
+add_damage(&#39;Jester&#39;, &#39;Necrotic&#39;, 54)
+  # Inflict Wounds
+add_enemy_damage(&#39;Thoonum&#39;, &#39;Bludgeoning&#39;, 42)
+update_damage_taken(&#39;Jester&#39;, 42)
+add_enemy_damage(&#39;Scion&#39;, &#39;Piercing&#39;, 8)
+add_enemy_damage(&#39;Scion&#39;, &#39;Slashing&#39;, 28)
+update_damage_taken(&#39;Kings&#39;, 18)
+update_damage_taken(&#39;Jester&#39;, 18)
+update_times_knocked_unconscious(&#39;Jester&#39;)
+  # Knocked unconscious by the Scion&#39;s attacks
+update_healing(&#39;Fjord&#39;, 40)
+  # Cure Wounds on Jester bringing her back to consciousness</code></pre>
+</div>
+<div id="breaking-the-final-seal-ukotoa-unleashed"
+class="section level5">
+<h5><span style='font-family:palatino;font-size: 24px;'>
+<strong>Breaking the Final Seal, Uk’otoa Unleashed</strong></h5>
+</div>
+<div id="encounter-9" class="section level5">
+<h5><span style='font-family:palatino'><span style='color:gray'><strong>Encounter:</strong></h5>
+<ul>
+<li><span style='font-family:palatino;font-size: 16px;'><span style='color:gray'>Thoonum
+the Storm Giant</li>
+<li><span style='font-family:palatino;font-size: 16px;'><span style='color:gray'>1
+Scion Mage</li>
+<li><span style='font-family:palatino;font-size: 16px;'><span style='color:gray'>5
+Scions</li>
+</ul>
+<pre class="r"><code># Round 1
+add_damage(&#39;Beau&#39;, &#39;Piercing&#39;, 6)
+add_damage(&#39;Fjord&#39;, &#39;Force&#39;, 55)
+  # Eldritch Blast 3/4
+add_damage(&#39;Jester&#39;, &#39;Bludgeoning&#39;, 28)
+  # Earthquake
+update_damage_taken(&#39;Yasha&#39;, 6)
+update_damage_taken(&#39;Kings&#39;, 6)
+add_damage(&#39;Caleb&#39;, &#39;Force&#39;, 76)
+  # Disintegrate
+add_damage(&#39;Caleb&#39;, &#39;Lightning&#39;, 15)
+  # Stormrider Boots
+add_damage(&#39;Beau&#39;, &#39;Bludgeoning&#39;, 27)
+# Round 2
+add_damage(&#39;Kings&#39;, &#39;Slashing&#39;, 59)
+add_damage(&#39;Kings&#39;, &#39;Radiant&#39;, 8)
+  # Crimson Rite ~ Rite of the Dawn
+add_damage(&#39;Beau&#39;, &#39;Force&#39;, 13)
+  # Belabor
+add_damage(&#39;Veth&#39;, &#39;Piercing&#39;, 46)
+update_damage_taken(&#39;Veth&#39;, 7)
+# Round 3
+add_damage(&#39;Beau&#39;, &#39;Bludgeoning&#39;, 41)
+add_damage(&#39;Caleb&#39;, &#39;Fire&#39;, 85)
+  # Widogast&#39;s Web of Fire
+add_damage(&#39;Veth&#39;, &#39;Piercing&#39;, 52)
+increment_kills(&#39;Veth&#39;)
+  # Thoonum
+add_damage(&#39;Fjord&#39;, &#39;Force&#39;, 74)
+  # Eldritch Blast 4/4
+add_damage(&#39;Yasha&#39;, &#39;Slashing&#39;, 55)
+add_damage(&#39;Yasha&#39;, &#39;Radiant&#39;, 17)
+  # Radiant Soul
+increment_kills(&#39;Yasha&#39;)
+  # Scion Mage
+add_damage(&#39;Jester&#39;, &#39;Radiant&#39;, 19)
+  # Guiding Bolt</code></pre>
+</div>
+<div id="the-fall-of-the-great-leviathan" class="section level5">
+<h5><span style='font-family:palatino;font-size: 24px;'> <strong>The
+Fall of the Great Leviathan</strong></h5>
+</div>
+<div id="encounter-10" class="section level5">
+<h5><span style='font-family:palatino;font-size: 16px;'><span style='color:gray'><strong>Encounter:</strong></h5>
+<ul>
+<li><span style='font-family:palatino;font-size: 16px;'><span style='color:gray'>Uk’otoa</li>
+</ul>
+<pre class="r"><code># Round 1
+add_enemy_damage(&quot;Uk&#39;otoa&quot;, &#39;Bludgeoning&#39;, 292)
+  # Tidal Wave
+update_damage_taken(&#39;Fjord&#39;, 45)
+update_damage_taken(&#39;Jester&#39;, 45)
+update_damage_taken(&#39;Caleb&#39;, 45)
+update_damage_taken(&#39;Veth&#39;, 45)
+update_damage_taken(&#39;Beau&#39;, 45)
+update_damage_taken(&#39;Kings&#39;, 45)
+update_damage_taken(&#39;Yasha&#39;, 22)
+add_damage(&#39;Fjord&#39;, &#39;Slashing&#39;, 22)
+add_enemy_damage(&quot;Uk&#39;otoa&quot;, &#39;Bludgeoning&#39;, 19)
+add_enemy_damage(&quot;Uk&#39;otoa&quot;, &#39;Acid&#39;, 5)
+update_damage_taken(&#39;Fjord&#39;, 24)
+add_damage(&#39;Kings&#39;, &#39;Slashing&#39;, 32)
+add_damage(&#39;Kings&#39;, &#39;Fire&#39;, 20)
+  # Crimson Rite ~ Rite of the Flame
+add_damage(&#39;Beau&#39;, &#39;Bludgeoning&#39;, 44)
+update_healing(&#39;Caleb&#39;, 26)
+  # Superior Healing Potion on himself
+add_damage(&#39;Veth&#39;, &#39;Piercing&#39;, 81)
+add_damage(&#39;Jester&#39;, &#39;Radiant&#39;, 11)
+  # Dawn
+add_damage(&#39;Kings&#39;, &#39;Psychic&#39;, 6)
+  # Brand of Castigation
+# Round 2
+add_damage(&#39;Yasha&#39;, &#39;Slashing&#39;, 21)
+add_enemy_damage(&quot;Uk&#39;otoa&quot;, &#39;Piercing&#39;, 30)
+add_enemy_damage(&quot;Uk&#39;otoa&quot;, &#39;Bludgeoning&#39;, 36)
+add_enemy_damage(&quot;Uk&#39;otoa&quot;, &#39;Acid&#39;, 22)
+update_damage_taken(&#39;Beau&#39;, 30)
+update_damage_taken(&#39;Fjord&#39;, 34)
+update_damage_taken(&#39;Yasha&#39;, 24)
+add_damage(&#39;Fjord&#39;, &#39;Radiant&#39;, 9)
+  # Star Razor
+add_damage(&#39;Fjord&#39;, &#39;Cold&#39;, 46)
+  # Cone of Cold
+add_damage(&#39;Beau&#39;, &#39;Bludgeoning&#39;, 10)
+add_damage(&#39;Kings&#39;, &#39;Slashing&#39;, 41)
+add_damage(&#39;Kings&#39;, &#39;Fire&#39;, 19)
+  # Crimson Rite ~ Rite of the Flame
+add_enemy_damage(&quot;Uk&#39;otoa&quot;, &#39;Bludgeoning&#39;, 20)
+add_enemy_damage(&quot;Uk&#39;otoa&quot;, &#39;Acid&#39;, 8)
+update_damage_taken(&#39;Kings&#39;, 28)
+add_damage(&#39;Caleb&#39;, &#39;Force&#39;, 75)
+  # Gravity Fissure
+update_damage_taken(&#39;Beau&#39;, 39)
+add_damage(&#39;Veth&#39;, &#39;Piercing&#39;, 54)
+add_damage(&#39;Jester&#39;, &#39;Radiant&#39;, 30)
+  # Dawn
+update_damage_taken(&#39;Yasha&#39;, 10)
+# Round 3
+add_damage(&#39;Kings&#39;, &#39;Psychic&#39;, 6)
+  # Brand of Castigation
+add_enemy_damage(&quot;Uk&#39;otoa&quot;, &#39;Bludgeoning&#39;, 228)
+  # Tidal Wave
+update_damage_taken(&#39;Fjord&#39;, 38)
+update_damage_taken(&#39;Jester&#39;, 38)
+update_damage_taken(&#39;Beau&#39;, 38)
+update_damage_taken(&#39;Veth&#39;, 38)
+update_damage_taken(&#39;Kings&#39;, 38)
+update_damage_taken(&#39;Yasha&#39;, 19)
+update_damage_taken(&#39;Caleb&#39;, 19)
+add_damage(&#39;Fjord&#39;, &#39;Cold&#39;, 66)
+  # Cone of Cold
+add_enemy_damage(&quot;Uk&#39;otoa&quot;, &#39;Lightning&#39;, 63)
+  # Uk&#39;otoa&#39;s Fury
+update_damage_taken(&#39;Fjord&#39;, 18)
+update_damage_taken(&#39;Jester&#39;, 18)
+update_damage_taken(&#39;Yasha&#39;, 18)
+update_damage_taken(&#39;Kings&#39;, 9)
+add_enemy_damage(&quot;Uk&#39;otoa&quot;, &#39;Bludgeoning&#39;, 17)
+add_enemy_damage(&quot;Uk&#39;otoa&quot;, &#39;Acid&#39;, 16)
+update_damage_taken(&#39;Kings&#39;, 33)
+add_damage(&#39;Kings&#39;, &#39;Psychic&#39;, 6)
+  # Brand of Castigation
+add_damage(&#39;Kings&#39;, &#39;Slashing&#39;, 21)
+add_damage(&#39;Kings&#39;, &#39;Fire&#39;, 24)
+  # Crimson Rite ~ Rite of the Flame
+add_damage(&#39;Beau&#39;, &#39;Bludgeoning&#39;, 30)
+add_damage(&#39;Yasha&#39;, &#39;Slashing&#39;, 43)
+add_damage(&#39;Yasha&#39;, &#39;Radiant&#39;, 14)
+  # Radiant Soul
+add_damage(&#39;Yasha&#39;, &#39;Fire&#39;, 11)
+  # Scalsaber
+add_damage(&#39;Caleb&#39;, &#39;Lightning&#39;, 124)
+  # Polymorph ~ Blue Dragon
+add_damage(&#39;Yasha&#39;, &#39;Slashing&#39;, 30)
+add_damage(&#39;Yasha&#39;, &#39;Fire&#39;, 5)
+  # Scaldsaber
+add_damage(&#39;Veth&#39;, &#39;Piercing&#39;, 58)
+add_enemy_damage(&quot;Uk&#39;otoa&quot;, &#39;Slashing&#39;, 25)
+  # Control Minion on Fjord
+update_damage_taken(&#39;Jester&#39;, 25)
+update_healing(&#39;Jester&#39;, 700)
+  # Mass Heal on everyone except Caleb
+# Round 4
+add_enemy_damage(&quot;Uk&#39;otoa&quot;, &#39;Piercing&#39;, 56)
+add_enemy_damage(&quot;Uk&#39;otoa&quot;, &#39;Bludgeoning&#39;, 53)
+add_enemy_damage(&quot;Uk&#39;otoa&quot;, &#39;Acid&#39;, 45)
+update_damage_taken(&#39;Beau&#39;, 56)
+update_damage_taken(&#39;Jester&#39;, 70)
+update_damage_taken(&#39;Yasha&#39;, 28)
+add_damage(&#39;Kings&#39;, &#39;Slashing&#39;, 45)
+add_damage(&#39;Kings&#39;, &#39;Fire&#39;, 25)
+  # Crimson Rite ~ Rite of the Flame
+add_damage(&#39;Kings&#39;, &#39;Force&#39;, 11)
+  # Fang of the Spire King
+add_enemy_damage(&quot;Uk&#39;otoa&quot;, &#39;Bludgeoning&#39;, 5)
+add_enemy_damage(&quot;Uk&#39;otoa&quot;, &#39;Acid&#39;, 9)
+update_damage_taken(&#39;Yasha&#39;, 14)
+add_damage(&#39;Yasha&#39;, &#39;Slashing&#39;, 55)
+add_damage(&#39;Yasha&#39;, &#39;Fire&#39;, 5)
+  # Scaldsaber
+increment_kills(&#39;Yasha&#39;)
+  # Uk&#39;otoa
+increment_kills(&#39;Jester&#39;)
+  # Uk&#39;otoa
+increment_kills(&#39;Fjord&#39;)
+  # Uk&#39;otoa
+increment_kills(&#39;Caleb&#39;)
+  # Uk&#39;otoa
+increment_kills(&#39;Veth&#39;)
+  # Uk&#39;otoa
+increment_kills(&#39;Kings&#39;)
+  # Uk&#39;otoa
+increment_kills(&#39;Beau&#39;)
+  # Uk&#39;otoa</code></pre>
+</div>
+<div id="mighty-nein-reunited-out-of-combat-actions"
+class="section level5">
+<h5><span style='font-family:palatino; font-size: 24px;'> <strong>Mighty
+Nein Reunited Out of Combat Actions</strong></h5>
+<pre class="r"><code># Storm at Sea
+update_damage_taken(&#39;Fjord&#39;, 7)
+update_damage_taken(&#39;Jester&#39;, 7)
+update_damage_taken(&#39;Kings&#39;, 7)
+
+# Teleporting to the Twinward Isles
+update_damage_taken(&#39;Caleb&#39;, 18)
+update_damage_taken(&#39;Beau&#39;, 18)
+update_damage_taken(&#39;Yasha&#39;, 18)
+update_damage_taken(&#39;Veth&#39;, 18)
+
+# Caleb hits a tree
+update_damage_taken(&#39;Caleb&#39;, 12)
+
+# Poisonous fungus
+update_damage_taken(&#39;Jester&#39;, 12)
+update_damage_taken(&#39;Fjord&#39;, 6)
+update_damage_taken(&#39;Yasha&#39;, 6)
+update_damage_taken(&#39;Caleb&#39;, 6)
+update_damage_taken(&#39;Veth&#39;, 6)
+update_damage_taken(&#39;Kings&#39;, 6)</code></pre>
+</div>
+<div id="echoes-of-the-solstice" class="section level2"
+style="text-align: center;">
+<h2><span style='font-family:palatino; font-size: 24px;'><span style='color:#3A4079'><strong>Echoes
+of the Solstice</strong></h2>
+</div>
+<p><img src="images/EoS2.jpg" width="100%" style="display: block; margin: auto;" />
+<span style="text-align:right; display:block;"><span
+style="font-family:palatino; font-size: 10px;"> Art By: <span
+class="citation">@justwesley</span></span></p>
+<p><span style='font-family:palatino; font-size: 16px;'>In the wake of
+their reunion, the Mighty Nein found themselves thrust into a harrowing
+mission to thwart Trent Ikithon’s sinister ambitions. Their journey led
+them to Blumenthal, where Caleb, haunted by memories of his tortured
+past, confronted Trent amidst a surreal vision of his parents brought
+back to a haunting semblance of life by dark magic. Jester’s revelation
+of the undead nature of these apparitions shattered the illusion,
+setting off a chain reaction that culminated in a devastating explosion,
+narrowly avoided by the fire-resistant Fjord, Jester, and Caleb.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>As the dust
+settled, Trent’s malevolent presence loomed larger than ever, empowered
+by artifacts that defied conventional battle tactics. The Nein, drawing
+on their diverse abilities and newfound resolve, engaged Trent in a
+fierce battle. Despite their concerted efforts, Trent’s evasive
+maneuvers and the emergence of Omentis, a Scion of Ruin, threatened to
+overwhelm them and bring ruin to the peaceful town of Blumenthal.
+Necrotic energies seeped into the surroundings, casting a grim shadow
+over their efforts.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>The turning
+point came with a coordinated effort: Caleb’s transformation into a
+formidable dragon, Luc’s strategic intervention, and Jester’s summoning
+of allies shifted momentum. Yasha and Beau’s relentless assault on
+Omentis weakened its defenses, exposing the artifact that bound Trent
+within the monstrous entity. With Beau’s daring move to retrieve and
+destroy the artifact, the Nein succeeded in trapping Trent within
+Omentis, averting catastrophe and restoring hope to Blumenthal.</p>
+<div id="trent-and-the-scion-of-ruin" class="section level5">
+<h5><span style='font-family:palatino;font-size: 24px;'> <strong>Trent
+and the Scion of Ruin</strong></h5>
+</div>
+<div id="encounter-11" class="section level5">
+<h5><span style='font-family:palatino;font-size: 16px;'><span style='color:gray'><strong>Encounter:</strong></h5>
+<ul>
+<li><span style='font-family:palatino;font-size: 16px;'><span style='color:gray'>Trent
+Ikithon</li>
+<li><span style='font-family:palatino;font-size: 16px;'><span style='color:gray'>Omentis
+the Scion of Ruin</li>
+<li><span style='font-family:palatino;font-size: 16px;'><span style='color:gray'>Undead
+Leofric Ermendrud</li>
+<li><span style='font-family:palatino;font-size: 16px;'><span style='color:gray'>Undead
+Una Ermendrud</li>
+</ul>
+<pre class="r"><code># Pre-Initiative
+add_enemy_damage(&#39;Trent&#39;, &#39;Fire&#39;, 68)
+  # Fireball
+update_damage_taken(&#39;Fjord&#39;, 17)
+update_damage_taken(&#39;Jester&#39;, 17)
+update_damage_taken(&#39;Caleb&#39;, 34)
+# Round 1
+add_damage(&#39;Beau&#39;, &#39;Bludgeoning&#39;, 8)
+update_damage_taken(&#39;Beau&#39;, 5)
+add_enemy_damage(&#39;Trent&#39;, &#39;Fire&#39;, 258)
+  # Meteor Swarm
+add_enemy_damage(&#39;Trent&#39;, &#39;Bludgeoning&#39;, 263)
+  # Meteor Swarm
+update_damage_taken(&#39;Fjord&#39;, 52)
+update_damage_taken(&#39;Jester&#39;, 53)
+update_damage_taken(&#39;Beau&#39;, 72)
+update_damage_taken(&#39;Caleb&#39;, 72)
+update_damage_taken(&#39;Yasha&#39;, 54)
+update_damage_taken(&#39;Cad&#39;, 146)
+update_damage_taken(&#39;Luc&#39;, 72)
+add_damage(&#39;Fjord&#39;, &#39;Force&#39;, 33)
+  # Eldritch Blast 3/4
+add_damage(&#39;Beau&#39;, &#39;Bludgeoning&#39;, 33)
+update_damage_taken(&#39;Beau&#39;, 19)
+increment_kills(&#39;Beau&#39;)
+  # Undead Leofric
+add_enemy_damage(&#39;Trent&#39;, &#39;Lightning&#39;, 121)
+  # Chain Lightning
+update_damage_taken(&#39;Fjord&#39;, 11)
+update_damage_taken(&#39;Jester&#39;, 22)
+update_damage_taken(&#39;Yasha&#39;, 44)
+update_damage_taken(&#39;Caleb&#39;, 44)
+update_times_knocked_unconscious(&#39;Caleb&#39;)
+  # Knocked unconscious by Trent&#39;s Chain Lightning
+# Caleb fails a death save
+update_healing(&#39;Cad&#39;, 700)
+  # Mass Heal on everyone 
+# Round 2
+add_damage(&#39;Beau&#39;, &#39;Bludgeoning&#39;, 31)
+add_enemy_damage(&#39;Trent&#39;, &#39;Force&#39;, 52)
+update_damage_taken(&#39;Yasha&#39;, 35)
+update_damage_taken(&#39;Jester&#39;, 17)
+# Round 3
+add_damage(&#39;Yasha&#39;, &#39;Slashing&#39;, 120)
+add_damage(&#39;Yasha&#39;, &#39;Radiant&#39;, 40)
+  # Divine Fury/Holy Weapon/Radiant Soul
+add_damage(&#39;Beau&#39;, &#39;Bludgeoning&#39;, 35)
+add_enemy_damage(&#39;Omentis&#39;, &#39;Necrotic&#39;, 201)
+  # Void Hunger
+update_damage_taken(&#39;Fjord&#39;, 31)
+update_damage_taken(&#39;Beau&#39;, 31)
+update_damage_taken(&#39;Caleb&#39;, 31)
+update_damage_taken(&#39;Luc&#39;, 31)
+update_damage_taken(&#39;Fjord&#39;, 31)
+update_damage_taken(&#39;Jester&#39;, 31)
+update_damage_taken(&#39;Yasha&#39;, 15)
+add_enemy_damage(&#39;Omentis&#39;, &#39;Force&#39;, 75)
+  # Ire of Oblivion
+update_damage_taken(&#39;Yasha&#39;, 75)
+add_damage(&#39;Beau&#39;, &#39;Bludgeoning&#39;, 15)
+add_damage(&#39;Fjord&#39;, &#39;Slashing&#39;, 42)
+add_damage(&#39;Fjord&#39;, &#39;Radiant&#39;, 16)
+  # Divine Smite
+add_damage(&#39;Caleb&#39;, &#39;Cold&#39;, 77)
+  # Polymorph ~ Gelidon
+add_damage(&#39;Caleb&#39;, &#39;Slashing&#39;, 35)
+  # Caleb 2
+add_damage(&#39;Luc&#39;, &#39;Piercing&#39;, 26)
+add_damage(&#39;Cad&#39;, &#39;Radiant&#39;, 28)
+  # Holy Weapon
+# Round 4
+increment_kills(&#39;Beau&#39;)
+  # Trent Ikithon
+increment_kills(&#39;Caleb&#39;)
+  # Trent Ikithon</code></pre>
+</div>
+<div id="out-of-combat-actions" class="section level5">
+<h5><span style='font-family:palatino; font-size: 24px;'> <strong>Out of
+Combat Actions</strong></h5>
+<pre class="r"><code># Jester sends a message to her mom
+update_damage_taken(&#39;Jester&#39;, 14)
+
+# Jester and Veth test sending
+update_damage_taken(&#39;Jester&#39;, 9)
+
+# Aggy finds a series of runes
+update_damage_taken(&#39;Aggy&#39;, 38)
+update_healing(&#39;Cad&#39;, 18)
+  # Cure Wounds on Aggy
+update_damage_taken(&#39;Aggy&#39;, 91)
+update_times_killed(&#39;Aggy&#39;)
+  # Aggy is killed by a disintegration trap </code></pre>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

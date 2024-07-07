@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>EXU-Burden-of-the-Circlet.knit</title>
+
+<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Exandria Stat Tracker</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="C1-Stat-Tracker.html">Vox Machina</a>
+</li>
+<li>
+  <a href="C2-Stat-Tracker.html">Mighty Nein</a>
+</li>
+<li>
+  <a href="C3-Stat-Tracker.html">Bells Hells</a>
+</li>
+<li>
+  <a href="Exandria-Unlimited-Stats.html">Exandria Unlimited</a>
+</li>
+<li>
+  <a href="One-Shots.html">One Shots</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<center>
+<div id="exandria-unlimited-burden-of-the-circlet"
+class="section level1">
+<h1><span style='font-family:palatino; font-size: 42px;'><span style='color:#136163'>
+<strong>Exandria Unlimited: Burden of the Circlet</strong></h1>
+</center>
+<hr />
+<p><img src="images/BotC.png" width="50%" style="display: block; margin: auto;" />
+<span style="text-align:right; display:block;"><span
+style="font-family:palatino; font-size: 10px;"> Art By: <span
+class="citation">@lalalyssh</span></span></p>
+<p><span style='font-family:palatino; font-size: 16px;'>After a
+successful heist, the Crown Keepers and Morrighan escape with
+brumestone. They flee north to Wildwood Valley, pursued by Poska and
+Fy’ra Kai, carrying a small cache of brumestone. While in hiding, rumors
+of the Apogee Solstice and Ruidus trapped over Marquet reach them,
+disrupting magic like Sending, teleportation, and resurrection.
+Concerned gods and the Observer’s curiosity intensify. Dorian Storm
+receives a message from Orym to find Keyleth, prompting their journey
+towards Zephrah in the Summit Peaks. Opal, burdened by the Circlet of
+Barbed Vision and Vestige of Divergence, was suffering from lack of
+sleep and exhaustion. Suddenly, she stopped, seemingly growing larger
+and hearing the Spider Queen command her to sever ties with the Crown
+Keepers. Despite Opal’s protests via telepathy, she attacked her
+companions under the Queen’s control. In the chaos, Morrighan and Dorian
+tried to intervene while Fy’ra Rai attempted to remove the crown.
+Spiders appeared, causing further turmoil as memories and visions were
+manipulated or lost. The struggle culminated in tragic consequences,
+including Cyrus’s death and Morrighan’s departure with his spirit. Opal
+and Fy’ra Rai negotiated a tentative alliance with the Spider Queen,
+while Dorian and Dariax journeyed towards Zephrah, driven by vengeance
+and seeking answers.</p>
+<hr />
+<p><span style='font-family:palatino; font-size: 24px;'>The characters
+are:</p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#136163'><strong>Dariax
+Zaveon</strong></p>
+<p><span style='font-family:palatino; font-size: 16px;'>Dariax Zaveon, a
+dwarven sorcerer/bard and member of the Crown Keepers, grew up in Turst
+Fields alongside his older brother, Taros. While Taros followed the
+family farm path, Dariax was a troublemaker, often causing literal and
+figurative fires that Taros had to put out. Despite their differences,
+they maintained a decent relationship. Dariax has dabbled in thieves’
+circles and once claimed a relationship with a burlesque dancer, Tharla
+Starr, though this was later revealed to be false. He also had a
+passionate but tumultuous relationship with Deni$e Bembachula, which
+ended when he left her to deal with the fallout of some shady business
+they were involved in. It was during this time, in 842 PD, that Dariax
+joined the Crown Keepers.</p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#136163'><strong>Dorian
+Storm</strong></p>
+<p><span style='font-family:palatino; font-size: 16px;'>Dorian Storm,
+originally born as Brontë Wyvernwind, is an air genasi bard and member
+of both the Crown Keepers and Bells Hells. Born into the wealthy and
+prominent Wyvernwind family, Dorian lived a sheltered life among the
+tents of the Silken Squall. Despite his privileged upbringing, he felt
+constrained by his family’s expectations, particularly their use of Zone
+of Truth to extract confessions from him when caught lying. Around 842
+PD, Dorian left home, adopting the name Dorian Storm and embarking on
+travels that took him to Marquet and Emon, where he pursued music
+gigs.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>After the events
+with the Crown Keepers, Dorian returned to Byroden and joined Orym and
+Fearne in investigating the source of the attack on Zephrah, under the
+guidance of Keyleth. They journeyed to Jrusar via Transport via Plants,
+setting out on a mission that would lead them to further adventures as
+part of Bells Hells. Eventually, Dorian left the Bells Hells to assist
+his brother Cyrus in paying off his bounty.</p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#136163'><strong>Fy’ra
+Rai</strong></p>
+<p><span style='font-family:palatino; font-size: 16px;'>Fy’ra Rai, a
+fire genasi monk, hails from the Elemental Plane of Fire and was raised
+by strict parents alongside her twin sister, Fy’ra Kai. Despite their
+competitive relationship, Fy’ra Rai harbored guilt over an incident
+where her sister fell, leading to her own injury. Both siblings
+eventually left home separately, and Fy’ra Rai believed her sister had
+perished, blaming herself for not protecting her.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>Venturing alone,
+Fy’ra Rai crossed paths with Dariax, Dorian, Fearne, Opal, and Orym near
+Emon in 842 PD, embarking on adventures together. During a perilous
+encounter in the Feywild, Fy’ra sacrificed herself to ensure her
+friends’ safety, later returning to Exandria with newfound abilities
+granted by Melora, including “The Gift,” enhancing her intuition.</p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#136163'><strong>Morrighan
+Ferus</strong></p>
+<p><span style='font-family:palatino; font-size: 16px;'>Morrighan Ferus,
+a lagomore paladin and former bartender, spent much of her life in
+Kymal, navigating the city’s underworld by working at casinos and
+executing heists. Feeling the weight of her existence in Kymal, she
+joined forces with the Crown Keepers for a lucrative heist at The
+Maiden’s Wish. During the mission, she experienced a profound connection
+to a mysterious bas-relief, guided by an inner birdsong that led her to
+destroy the artifact with the help of her companions. As they escaped
+with their spoils, a single raven seemed to affirm Morrighan’s actions,
+hinting at a greater destiny yet to unfold.</p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#136163'><strong>Opal</strong></p>
+<p><span style='font-family:palatino; font-size: 16px;'>Opal, a human
+warlock and member of the Crown Keepers, hailed from Byroden, born in
+824 PD. Raised with her twin sister Ted by their father after their
+mother’s departure, Opal left home at 18, eventually arriving in Emon in
+842 PD.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>Throughout her
+adventures, Opal grappled with the loss of her magical abilities and her
+complex relationship with her sister Ted. Facing various challenges,
+including confrontations with mysterious foes, Opal ultimately triumphed
+in a climactic battle to save Ted, but not without consequences—the
+Circlet of Barbed Vision became fused to her skin, leaving a lasting
+mark on her journey.</p>
+<hr />
+<div id="friend-turned-foe-episode-92" class="section level5">
+<h5><span style='font-family:palatino; font-size: 24px;'> <strong>Friend
+Turned Foe</strong> ~ Episode 92</h5>
+</div>
+<div id="encounter" class="section level5">
+<h5><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'><strong>Encounter:</strong></h5>
+<ul>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'>Opal</li>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'>Ted</li>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'>7
+Spiders</li>
+</ul>
+<pre class="r"><code># Pre-Initiative 
+add_damage(&#39;Opal&#39;, &#39;Force&#39;, 31)
+  # Eldritch Blast 2/3
+update_damage_taken(&quot;Fy&#39;ra&quot;, 31)
+# Round 1
+add_damage(&#39;Morrighan&#39;, &#39;Piercing&#39;, 27)
+add_damage(&quot;Fy&#39;ra&quot;, &#39;Bludgeoning&#39;, 7)
+update_damage_taken(&#39;Opal&#39;, 7)
+add_enemy_damage(&#39;Ted&#39;, &#39;Piercing&#39;, 14)
+update_damage_taken(&#39;Morrighan&#39;, 14)
+update_damage_taken(&#39;Dariax&#39;, 2)
+# Round 2
+update_damage_taken(&#39;Morrighan&#39;, 5)
+update_healing(&#39;Morrighan&#39;, 31)
+  # Lay on Hands on Fy&#39;ra Rai
+add_damage(&#39;Opal&#39;, &#39;Force&#39;, 28)
+  # Eldritch Blast 3/3
+add_damage(&#39;Opal&#39;, &#39;Necrotic&#39;, 10)
+  # Baneful Scion
+update_healing(&#39;Opal&#39;, 10)
+  # Baneful Scion on herself
+update_damage_taken(&#39;Dariax&#39;, 38)
+add_enemy_damage(&#39;Ted&#39;, &#39;Piercing&#39;, 9)
+update_damage_taken(&#39;Dorian&#39;, 9)</code></pre>
+<p><br></p>
+</div>
+<div id="opal-the-twice-crowned-episode-93" class="section level5">
+<h5><span style='font-family:palatino; font-size: 24px;'> <strong>Opal
+the Twice-Crowned</strong> ~ Episode 93</h5>
+</div>
+<div id="encounter-1" class="section level5">
+<h5><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'><strong>Encounter:</strong></h5>
+<ul>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'>Opal
+the Twice Crowned Champion of the Spider Queen</li>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'>7
+Spiders</li>
+</ul>
+<pre class="r"><code># Round 1
+update_damage_taken(&#39;Morrighan&#39;, 14)
+update_damage_taken(&#39;Dariax&#39;, 14)
+update_damage_taken(&#39;Dorian&#39;, 14)
+add_damage(&#39;Morrighan&#39;, &#39;Piercing&#39;, 8)
+add_enemy_damage(&#39;Spiders&#39;, &#39;Poison&#39;, 15)
+update_damage_taken(&#39;Morrighan&#39;, 15)
+add_damage(&#39;Morrighan&#39;, &#39;Piercing&#39;, 8)
+add_damage(&#39;Morrighan&#39;, &#39;Radiant&#39;, 7)
+  # Divine Smite
+add_damage(&#39;Dorian&#39;, &#39;Thunder&#39;, 34)
+  # Chromatic Orb
+add_enemy_damage(&#39;Ted&#39;, &#39;Slashing&#39;, 44)
+update_damage_taken(&#39;Morrighan&#39;, 44)
+update_healing(&#39;Dariax&#39;, 69)
+  # Mass Cure Wounds on everyone except Fy&#39;ra Rai
+add_enemy_damage(&#39;Spiders&#39;, &#39;Piercing&#39;, 25)
+update_damage_taken(&#39;Morrighan&#39;, 14)
+update_damage_taken(&quot;Fy&#39;ra&quot;, 11)
+# Round 2
+add_damage(&#39;Morrighan&#39;, &#39;Piercing&#39;, 15)
+add_damage(&#39;Morrighan&#39;, &#39;Radiant&#39;, 15)
+  # Divine Smite
+increment_kills(&#39;Morrighan&#39;)
+  # Spider</code></pre>
+<p><br></p>
+</div>
+<div id="burden-on-the-circlet-out-of-combat-actions"
+class="section level5">
+<h5><span style='font-family:palatino; font-size: 24px;'> <strong>Burden
+on the Circlet Out of Combat Actions</strong></h5>
+<pre class="r"><code># Negotiating with the Spider Queen
+update_damage_taken(&quot;Fy&#39;ra&quot;, 9)</code></pre>
+<hr />
+<p><span style='font-family:palatino; font-size: 12px;'>* Note, the
+damage totals are not 100% accurate, this could be from players not
+saying what damage type the attack did or separating damage types (such
+as Hex damage)</p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
