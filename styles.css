@@ -1,9 +1,0 @@
-body {
-  font-family: "Palatino", "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
-}
-
-
-.navbar-brand,
-.navbar-nav a {
-    color: black !important; /* Set text color to black */
-}
