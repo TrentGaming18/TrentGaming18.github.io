@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>EXU-Downfall.knit</title>
+
+<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Exandria Stat Tracker</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="C1-Stat-Tracker.html">Vox Machina</a>
+</li>
+<li>
+  <a href="C2-Stat-Tracker.html">Mighty Nein</a>
+</li>
+<li>
+  <a href="C3-Stat-Tracker.html">Bells Hells</a>
+</li>
+<li>
+  <a href="Exandria-Unlimited-Stats.html">Exandria Unlimited</a>
+</li>
+<li>
+  <a href="One-Shots.html">One Shots</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<center>
+<div id="exandria-unlimited-downfall" class="section level1">
+<h1><span style='font-family:palatino; font-size: 42px;'><span style='color:#5a6666'>
+<strong>Exandria Unlimited: Downfall</strong></h1>
+</center>
+<hr />
+<p><img src="images/Downfall.png" width="100%" style="display: block; margin: auto;" />
+<span style="text-align:right; display:block;"><span
+style="font-family:palatino; font-size: 10px;"> Art By: <span
+class="citation">@EldritchBlep</span></span></p>
+<p><span style='font-family:palatino; font-size: 16px;'>In a realm
+beyond mortal comprehension, Tengar, the Eternal Palace, is facing a
+catastrophic event as a force of nothingness threatens to destroy
+everything. In a desperate attempt to escape, beings of light take on
+physical forms and flee across the stars. Their journey leads them to
+the world of Exandria, where the pantheon of gods is established.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>During the
+Calamity, Aeor stands as a bastion of ancient magic amidst widespread
+devastation. As the gods vanish, a group of refugees, including Trist,
+Ayden, Emhira, and Asha, seek refuge in Aeor. They are led by
+S.I.L.A.H.A., an aeormaton sorcerer, and encounter various challenges,
+including a cruel captain and a dying elderly man. The group boards a
+skyship and arrives in Aeor, where they are introduced to their divine
+counterparts: Trist (the Everlight), Ayden (the Dawnfather), Emhira (the
+Matron of Ravens), Asha (the Wildmother), and S.I.L.A.H.A. (the Arch
+Heart). They are accompanied by The Emissary, a proxy of the
+Lawbearer.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>Upon arriving in
+Aeor, they discover that the city is hiding a weapon capable of killing
+gods, known as the Factorum Malleus. The group learns that they must
+work with the Betrayer Gods to dismantle the weapon, which involves
+sabotaging multiple components: the Eravox Protocol, the Obtenebrator,
+and the Latimus Princeps. The group splits into teams to tackle these
+objectives, encountering celestial and demonic forces along the way.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>In their quest,
+the group faces intense battles, discovers hidden truths, and makes
+significant sacrifices. The Emissary ultimately plays a pivotal role in
+destroying the Factorum Malleus, and the gods shed their mortal forms to
+reunite above the clouds. They reflect on the devastation caused, their
+lost children, and the future of Exandria. The Dawnfather, in
+particular, struggles with leaving his children behind but finds solace
+in his family’s unity and hope for the future.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>The gods seal
+away the Betrayers and gaze upon the world they have altered, preparing
+to depart as they come to terms with their actions and their legacy.</p>
+<hr />
+<p><span style='font-family:palatino; font-size: 24px;'>The characters
+are:</p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#5a6666'><strong>Asha
+of the Wildmother</strong>
+<img src="images/Asha.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><span style='font-family:palatino; font-size: 16px;'>Asha is a wolf
+who can transform into an elven monk and serves as the mortal avatar of
+Melora, the Wildmother. When the Exandrian pantheon decided to
+neutralize Aeor’s dangerous technology, Melora agreed to contribute by
+sending Asha to join the mission as her mortal representative.</p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#5a6666'><strong>Ayden
+of the Dawnfather</strong>
+<img src="images/Ayden.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><span style='font-family:palatino; font-size: 16px;'>Ayden is a human
+barbarian, druid, paladin, and cleric. He serves as the mortal avatar of
+Pelor, the Dawnfather. When the Exandrian pantheon decided to counter
+the threat posed by Aeor’s dangerous technology, Pelor, one of the last
+to agree, contributed by bringing Ayden into existence as a mortal human
+boy. Born a decade and a half before the mission, Ayden experienced a
+warrior’s upbringing, fostering a connection with nature and the stars.
+This journey led him to become a paladin. His path eventually crossed
+with Trist, a teacher and the mortal incarnation of the Everlight,
+inspiring Ayden to become a cleric of the goddess, who had very few
+followers left.</p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#5a6666'><strong>Emhira
+of the Matron of Death</strong>
+<img src="images/Emhira.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><span style='font-family:palatino; font-size: 16px;'>Emhira is a
+human warlock and the mortal avatar of the Raven Queen. When the
+Exandrian pantheon decided to counter Aeor’s dangerous technology, the
+Raven Queen contributed by bringing Emhira into existence less than
+three decades before the mission. Empowered by a pact made before her
+birth, Emhira was born as a mortal girl. Purvan Suul, the Raven Queen’s
+champion, came to her home, explaining to her parents that a vision had
+directed him to protect her. He stayed as her guardian for many years,
+during which Emhira grew up under his watchful eye. With his guidance,
+she eventually manifested her warlock powers and understood her purpose
+as the mortal incarnation of the goddess of death. Before heading to
+Aeor, Emhira sought out the possessions of the mortal woman who became
+the Raven Queen to equip herself properly.</p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#5a6666'><strong>S.I.L.A.H.A.
+of the Arch Heart</strong>
+<img src="images/SILAHA.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><span style='font-family:palatino; font-size: 16px;'>S.I.L.A.H.A. is
+an Aeormaton sorcerer/warlock and the mortal avatar of Corellon, the
+Arch Heart. When the Exandrian pantheon decided to neutralize Aeor’s
+dangerous technology, Corellon contributed by taking a unique approach.
+Although Ioun was designated as the scout in Aeor, Corellon’s curiosity
+led them to manifest as S.I.L.A.H.A., an Aeormaton created by Primarch
+Selena Erenves, allowing them to bypass Aeor’s defenses against
+divinity.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>For three
+decades, S.I.L.A.H.A. immersed himself in Aeorian culture, appreciating
+its beauty and rising socially to become a respected figure due to his
+creator’s high status. During this time, he met Arcadia Cerenvetorix,
+the mortal avatar of Ioun. S.I.L.A.H.A. also established a secret
+sanctuary called Ars Elysia, where he and others could revel in beauty
+and pleasure. Adopting the persona of “the Chosen One” within this
+hidden tavern, he grew stronger through the adoration of others, making
+Ars Elysia a sacred place for him, even though such activities
+contradicted the divine plan.</p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#5a6666'><strong>The
+Emissary</strong>
+<img src="images/Emissary.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><span style='font-family:palatino; font-size: 16px;'>The Emissary was
+an earth genasi barbarian and the herald of Erathis, the Lawbearer. When
+the Exandrian pantheon decided to neutralize Aeor’s dangerous
+technology, Erathis was meant to send a mortal incarnation of herself to
+assemble a team for the mission. Instead, she created the Emissary and
+placed him in a crate, which was received and protected by Asha.</p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#5a6666'><strong>Trist
+of the Everlight</strong>
+<img src="images/Trist.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><span style='font-family:palatino; font-size: 16px;'>Trist is a human
+paladin/cleric and the mortal avatar of Sarenrae, the Everlight. When
+the Exandrian pantheon decided to neutralize Aeor’s dangerous
+technology, Sarenrae contributed by bringing Trist into existence less
+than four decades before the mission. Born as a mortal girl, Trist grew
+up to become a teacher. She met and married Amaris, a firbolg, with whom
+she had two children, Haylie and Topher.</p>
+<hr />
+<div id="the-cloaked-planetar-episode-100" class="section level5">
+<h5><span style='font-family:palatino; font-size: 24px;'> <strong>The
+Cloaked Planetar</strong> ~ Episode 100</h5>
+</div>
+<div id="encounter" class="section level5">
+<h5><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'><strong>Encounter:</strong></h5>
+<ul>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'>1
+Planetar</li>
+</ul>
+<pre class="r"><code># Round 1
+add_damage(&#39;Emhira&#39;, &#39;Psychic&#39;, 12)
+  # Shadow Blade</code></pre>
+<p><br></p>
+</div>
+<div id="the-scribes-ruin-episode-100" class="section level5">
+<h5><span style='font-family:palatino; font-size: 24px;'> <strong>The
+Scribe’s Ruin</strong> ~ Episode 100</h5>
+</div>
+<div id="encounter-1" class="section level5">
+<h5><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'><strong>Encounter:</strong></h5>
+<ul>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'>1
+Aeorian Archmage</li>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'>2
+Constructs</li>
+</ul>
+<pre class="r"><code># Round 1
+add_damage(&#39;Emissary&#39;, &#39;Slashing&#39;, 35)
+add_damage(&#39;Trist&#39;, &#39;Radiant&#39;, 36)
+  # Guiding Bolt
+add_enemy_damage(&#39;Constuct&#39;, &#39;Bludgeoning&#39;, 44)
+add_damage(&#39;Asha&#39;, &#39;Piercing&#39;, 12)
+add_damage(&#39;Asha&#39;, &#39;Poison&#39;, 7)
+add_damage(&#39;Asha&#39;, &#39;Bludgeoning&#39;, 26)
+increment_kills(&#39;Asha&#39;)
+  # Aeorian Archmage
+add_damage(&#39;Ayden&#39;, &#39;Radiant&#39;, 20)
+  # Guiding Bolt</code></pre>
+<p><br></p>
+</div>
+<div id="the-fall-of-the-factorum-malleus-episode-101"
+class="section level5">
+<h5><span style='font-family:palatino; font-size: 24px;'> <strong>The
+Fall of the Factorum Malleus</strong> ~ Episode 101</h5>
+</div>
+<div id="encounter-2" class="section level5">
+<h5><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'><strong>Encounter:</strong></h5>
+<ul>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'>Acastriel</li>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'>Adamar</li>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'>Selena</li>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'>Ataro
+the Undead Dragon</li>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'>5
+Aeorian Archmages</li>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'>4
+Aeorian Mages</li>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'>2
+Irrevocable Automatons</li>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'>1
+Glabrezu</li>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'>1
+Nalfeshnee</li>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'>1
+Brass Dragon</li>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'>1
+Silver Dragon</li>
+</ul>
+<pre class="r"><code># Round 1
+add_damage(&#39;Emissary&#39;, &#39;Slashing&#39;, 36)
+add_enemy_damage(&#39;Acastriel&#39;, &#39;Radiant&#39;, 28)
+  # Searing Burst
+add_enemy_damage(&#39;Acastriel&#39;, &#39;Fire&#39;, 28)
+  # Searing Burst
+update_damage_taken(&#39;SILAHA&#39;, 28)
+update_damage_taken(&#39;Emissary&#39;, 14)
+update_damage_taken(&#39;Ayden&#39;, 14)
+add_enemy_damage(&#39;Irrevocable&#39;, &#39;Radiant&#39;, 91)
+update_damage_taken(&#39;SILAHA&#39;, 45)
+update_damage_taken(&#39;Emissary&#39;, 23)
+update_damage_taken(&#39;Ayden&#39;, 23)
+add_enemy_damage(&#39;Glabrezu&#39;, &#39;Bludgeoning&#39;, 15)
+update_damage_taken(&#39;SILAHA&#39;, 7)
+update_damage_taken(&#39;Emissary&#39;, 4)
+update_damage_taken(&#39;Ayden&#39;, 4)
+add_enemy_damage(&#39;Nalfeshnee&#39;, &#39;Piercing&#39;, 32)
+update_damage_taken(&#39;Emissary&#39;, 16)
+update_damage_taken(&#39;Ayden&#39;, 16)
+add_enemy_damage(&#39;Brass Dragon&#39;, &#39;Fire&#39;, 91)
+update_damage_taken(&#39;SILAHA&#39;, 45)
+update_damage_taken(&#39;Emissary&#39;, 23)
+update_damage_taken(&#39;Ayden&#39;, 23)
+add_damage(&#39;Emhira&#39;, &#39;Radiant&#39;, 32)
+  # Crown of Stars
+add_damage(&#39;Emhira&#39;, &#39;Thunder&#39;, 40)
+  # Shatter
+add_enemy_damage(&#39;Acastriel&#39;, &#39;Slashing&#39;, 44)
+add_enemy_damage(&#39;Acastriel&#39;, &#39;Radiant&#39;, 54)
+update_damage_taken(&#39;Emhira&#39;, 49)
+update_damage_taken(&#39;Ayden&#39;, 49)
+add_damage(&#39;Asha&#39;, &#39;Piercing&#39;, 30)
+add_enemy_damage(&#39;Mage&#39;, &#39;Cold&#39;, 88)
+  # Cone of Cold
+update_damage_taken(&#39;Ayden&#39;, 22)
+update_damage_taken(&#39;SILAHA&#39;, 22)
+update_damage_taken(&#39;Asha&#39;, 22)
+update_damage_taken(&#39;Emhira&#39;, 11)
+update_damage_taken(&#39;Emissary&#39;, 11)
+add_enemy_damage(&#39;Adamar&#39;, &#39;Fore&#39;, 60)
+  # Wish ~ Finger of Death
+update_damage_taken(&#39;SILAHA&#39;, 60)
+update_healing(&#39;Ayden&#39;, 105)
+  # Mass Cure Wounds on himself, S.I.L.A.H.A., Emhira, The Emissary, and Zaharzht
+add_enemy_damage(&#39;Silver Dragon&#39;, &#39;Bludgeoning&#39;, 17)
+update_damage_taken(&#39;Emhira&#39;, 17)
+add_damage(&#39;Emhira&#39;, &#39;Necrotic&#39;, 25)
+  # Armor of Agathys
+add_enemy_damage(&#39;Ataro&#39;, &#39;Necrotic&#39;, 62)
+update_damage_taken(&#39;Ayden&#39;, 31)
+update_damage_taken(&#39;Emhira&#39;, 31)
+# Round 2
+add_enemy_damage(&#39;Irrevocable&#39;, &#39;Force&#39;, 60)
+update_damage_taken(&#39;Emissary&#39;, 30)
+update_damage_taken(&#39;Ayden&#39;, 30)
+add_enemy_damage(&#39;Glabrezu&#39;, &#39;Slashing&#39;, 23)
+update_damage_taken(&#39;Ayden&#39;, 15)
+update_damage_taken(&#39;Emissary&#39;, 8)
+add_enemy_damage(&#39;Nalfeshnee&#39;, &#39;Piercing&#39;, 30)
+update_damage_taken(&#39;Emissary&#39;, 15)
+update_damage_taken(&#39;Ayden&#39;, 15)
+add_damage(&#39;Emhira&#39;, &#39;Psychic&#39;, 305)
+  # Maddening Darkness
+update_damage_taken(&#39;Emissary&#39;, 9)
+update_damage_taken(&#39;Ayden&#39;, 16)
+add_enemy_damage(&#39;Acastriel&#39;, &#39;Piercing&#39;, 15)
+add_enemy_damage(&#39;Acastriel&#39;, &#39;Radiant&#39;, 27)
+update_damage_taken(&#39;Emhira&#39;, 42)
+add_damage(&#39;Asha&#39;, &#39;Piercing&#39;, 49)
+add_enemy_damage(&#39;Ataro&#39;, &#39;Bludgeoning&#39;, 17)
+update_damage_taken(&#39;Ayden&#39;, 17)
+update_healing(&#39;SILAHA&#39;, 100)
+  # Clockwork Cavalcade on himself
+add_damage(&#39;SILAHA&#39;, &#39;Fire&#39;, 380)
+  # Meteor Swarm
+add_damage(&#39;SILAHA&#39;, &#39;Bludgeoning&#39;, 610)
+  # Meteor Swarm
+increment_kills(&#39;SILAHA&#39;)
+  # Adamar
+increment_kills(&#39;SILAHA&#39;)
+  # Acastriel
+update_healing(&#39;Trist&#39;, 700)
+  # Mass Heal on The Emissary, Emhira, Ayden, S.I.L.A.H.A., Asha, and Zaharzht
+add_enemy_damage(&#39;Archmage&#39;, &#39;Necrotic&#39;, 120)
+  # Wish ~ Finger of Death
+add_enemy_damage(&#39;Archmage&#39;, &#39;Force&#39;, 120)
+  # Wish ~ Finger of Death
+update_damage_taken(&#39;Asha&#39;, 120)
+update_damage_taken(&#39;SILAHA&#39;, 120)
+add_enemy_damage(&#39;Archmage&#39;, &#39;Fire&#39;, 70)
+  # Meteor Swarm
+add_enemy_damage(&#39;Archmage&#39;, &#39;Bludgeoning&#39;, 70)
+  # Meteor Swarm
+update_damage_taken(&#39;Emissary&#39;, 70)
+update_damage_taken(&#39;Ayden&#39;, 70)
+add_damage(&#39;Emhira&#39;, &#39;Psychic&#39;, 160)
+  # Maddening Darkness
+increment_kills(&#39;Ayden&#39;)
+  # Brass Dragon 
+increment_kills(&#39;Ayden&#39;)
+  # Silver Dragon 
+increment_kills(&#39;Ayden&#39;)
+  # Ataro the Undead Dragon 
+increment_kills(&#39;Ayden&#39;)
+  # Nalfeshnee 
+increment_kills(&#39;Ayden&#39;)
+  # Glabrezu 
+increment_kills(&#39;Ayden&#39;)
+  # Aeorian Archmage 
+increment_kills(&#39;Ayden&#39;)
+  # Aeorian Archmage 
+increment_kills(&#39;Ayden&#39;)
+  # Aeorian Archmage 
+increment_kills(&#39;Ayden&#39;)
+  # Aeorian Archmage 
+increment_kills(&#39;Ayden&#39;)
+  # Aeorian Archmage 
+# Round 3
+add_damage(&#39;Emissary&#39;, &#39;Slashing&#39;, 116)
+add_damage(&#39;Emhira&#39;, &#39;Force&#39;, 220)
+  # Eldritch Blast 2/2</code></pre>
+<p><br></p>
+</div>
+<div id="echoes-of-cassidas-demise-episode-101" class="section level5">
+<h5><span style='font-family:palatino; font-size: 24px;'> <strong>Echoes
+of Cassida’s Demise</strong> ~ Episode 101</h5>
+</div>
+<div id="encounter-3" class="section level5">
+<h5><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'><strong>Encounter:</strong></h5>
+<ul>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'>Asmodeus</li>
+</ul>
+<pre class="r"><code># Round 1
+add_damage(&#39;Trist&#39;, &#39;Radiant&#39;, 500)
+  # Guiding Bolt</code></pre>
+<p><br></p>
+</div>
+<div id="out-of-combat-actions" class="section level5">
+<h5><span style='font-family:palatino; font-size: 24px;'> <strong>Out of
+Combat Actions</strong></h5>
+<pre class="r"><code># Trist heals Hallis
+update_healing(&#39;Trist&#39;, 70)
+  # Lay on Hands
+
+# Ayden heals in the hospital
+update_healing(&#39;Ayden&#39;, 75)</code></pre>
+<hr />
+</div>
+<div id="total-stats" class="section level3">
+<h3><span style='font-family:palatino; font-size: 24px;'><strong>Total
+Stats</strong></h3>
+</div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div id="asha" class="section level3">
+<h3><span style='font-family:palatino; font-size: 24px;'><span style='color:#5a6666'><strong>Asha</strong></h3>
+<p><span style='font-family:palatino; font-size: 16px;'>Damage:<br>
+Piercing: 91 <br> Poison: 7 <br> Bludgeoning: 26<br> Total Damage Done:
+124<br> Healing: 0<br> Damage Taken: 142<br> Times Knocked Unconscious:
+0<br> Times Killed: 0<br> Amount of kills: 1</p>
+</div>
+</div><div class="column" style="width:50%;">
+<div id="ayden" class="section level3">
+<h3><span style='font-family:palatino; font-size: 24px;'><span style='color:#5a6666'><strong>Ayden</strong></h3>
+<p><span style='font-family:palatino; font-size: 16px;'>Damage:<br>
+Radiant: 20<br> Total Damage Done: 20<br> Healing: 180<br> Damage Taken:
+345<br> Times Knocked Unconscious: 0<br> Times Killed: 0<br> Amount of
+kills: 10</p>
+</div>
+</div>
+</div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div id="emhira" class="section level3">
+<h3><span style='font-family:palatino; font-size: 24px;'><span style='color:#5a6666'><strong>Emhira</strong></h3>
+<p><span style='font-family:palatino; font-size: 16px;'>Damage:<br>
+Psychic: 477<br> Radiant: 32<br> Thunder: 40<br> Necrotic: 25<br> Force:
+220<br> Total Damage Done: 794<br> Healing: 0<br> Damage Taken: 150<br>
+Times Knocked Unconscious: 0<br> Times Killed: 0<br> Amount of kills:
+0</p>
+</div>
+</div><div class="column" style="width:50%;">
+<div id="s.i.l.a.h.a." class="section level3">
+<h3><span style='font-family:palatino; font-size: 24px;'><span style='color:#5a6666'><strong>S.I.L.A.H.A.</strong></h3>
+<p><span style='font-family:palatino; font-size: 16px;'>Damage:<br>
+Fire: 380<br> Bludgeoning: 610<br> Total Damage Done: 990<br> Healing:
+100<br> Damage Taken: 327<br> Times Knocked Unconscious: 0<br> Times
+Killed: 0<br> Amount of kills: 2</p>
+</div>
+</div>
+</div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div id="the-emissary" class="section level3">
+<h3><span style='font-family:palatino; font-size: 24px;'><span style='color:#5a6666'><strong>The
+Emissary</strong></h3>
+<p><span style='font-family:palatino; font-size: 16px;'>Damage:<br>
+Slashing: 187<br> Total Damage Done: 187<br> Healing: 0<br> Damage
+Taken: 223<br> Times Knocked Unconscious: 0<br> Times Killed: 0<br>
+Amount of kills: 0</p>
+</div>
+</div><div class="column" style="width:50%;">
+<div id="trist" class="section level3">
+<h3><span style='font-family:palatino; font-size: 24px;'><span style='color:#5a6666'><strong>Trist</strong></h3>
+<p><span style='font-family:palatino; font-size: 16px;'>Damage:<br>
+Radiant: 536<br> Total Damage Done: 536<br> Healing: 770<br> Damage
+Taken: 0<br> Times Knocked Unconscious: 0<br> Times Killed: 0<br> Amount
+of kills: 0</p>
+</div>
+</div>
+</div>
+<p><span style='font-family:palatino; font-size: 12px;'>* Note, the
+damage totals are not 100% accurate, this could be from players not
+saying what damage type the attack did or separating damage types (such
+as Hex damage)</p>
+<hr />
+<p><span style='font-family:palatino; font-size: 12px;'>* The character
+artwork was made by: <span class="citation">@agarthanguide</span></p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
