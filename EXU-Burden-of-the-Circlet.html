@@ -30,8 +30,6 @@
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -42,23 +40,114 @@
   ul.task-list{list-style: none;}
     </style>
 
-<style type="text/css">code{white-space: pre;}</style>
-<script type="text/javascript">
-if (window.hljs) {
-  hljs.configure({languages: []});
-  hljs.initHighlightingOnLoad();
-  if (document.readyState && document.readyState === "complete") {
-    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
   }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
 }
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #204a87; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #204a87; font-weight: bold; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #ce5c00; font-weight: bold; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
 </script>
 
 
 
 
-
-
-<link rel="stylesheet" href="styles.css" type="text/css" />
+<link rel="stylesheet" href="styles-exuburden.css" type="text/css" />
 
 
 
@@ -288,8 +377,8 @@ class="section level1">
 <span style="text-align:right; display:block;"><span
 style="font-family:palatino; font-size: 10px;"> Art By: <span
 class="citation">@lalalyssh</span></span></p>
-<p><span style='font-family:palatino; font-size: 16px;'>After a
-successful heist, the Crown Keepers and Morrighan escape with
+<p><span style='font-family:palatino; font-size: 16px;line-height: 2;'>       After
+a successful heist, the Crown Keepers and Morrighan escape with
 brumestone. They flee north to Wildwood Valley, pursued by Poska and
 Fy’ra Kai, carrying a small cache of brumestone. While in hiding, rumors
 of the Apogee Solstice and Ruidus trapped over Marquet reach them,
@@ -398,30 +487,30 @@ Turned Foe</strong> ~ Episode 92</h5>
 <li><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'>7
 Spiders</li>
 </ul>
-<pre class="r"><code># Pre-Initiative 
-add_damage(&#39;Opal&#39;, &#39;Force&#39;, 31)
-  # Eldritch Blast 2/3
-update_damage_taken(&quot;Fy&#39;ra&quot;, 31)
-# Round 1
-add_damage(&#39;Morrighan&#39;, &#39;Piercing&#39;, 27)
-add_damage(&quot;Fy&#39;ra&quot;, &#39;Bludgeoning&#39;, 7)
-update_damage_taken(&#39;Opal&#39;, 7)
-add_enemy_damage(&#39;Ted&#39;, &#39;Piercing&#39;, 14)
-update_damage_taken(&#39;Morrighan&#39;, 14)
-update_damage_taken(&#39;Dariax&#39;, 2)
-# Round 2
-update_damage_taken(&#39;Morrighan&#39;, 5)
-update_healing(&#39;Morrighan&#39;, 31)
-  # Lay on Hands on Fy&#39;ra Rai
-add_damage(&#39;Opal&#39;, &#39;Force&#39;, 28)
-  # Eldritch Blast 3/3
-add_damage(&#39;Opal&#39;, &#39;Necrotic&#39;, 10)
-  # Baneful Scion
-update_healing(&#39;Opal&#39;, 10)
-  # Baneful Scion on herself
-update_damage_taken(&#39;Dariax&#39;, 38)
-add_enemy_damage(&#39;Ted&#39;, &#39;Piercing&#39;, 9)
-update_damage_taken(&#39;Dorian&#39;, 9)</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># Pre-Initiative </span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Opal&#39;</span>, <span class="st">&#39;Force&#39;</span>, <span class="dv">31</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>  <span class="co"># Eldritch Blast 2/3</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&quot;Fy&#39;ra&quot;</span>, <span class="dv">31</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="co"># Round 1</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Morrighan&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">27</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&quot;Fy&#39;ra&quot;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">7</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Opal&#39;</span>, <span class="dv">7</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Ted&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">14</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Morrighan&#39;</span>, <span class="dv">14</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Dariax&#39;</span>, <span class="dv">2</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a><span class="co"># Round 2</span></span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Morrighan&#39;</span>, <span class="dv">5</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a><span class="fu">update_healing</span>(<span class="st">&#39;Morrighan&#39;</span>, <span class="dv">31</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>  <span class="co"># Lay on Hands on Fy&#39;ra Rai</span></span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Opal&#39;</span>, <span class="st">&#39;Force&#39;</span>, <span class="dv">28</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>  <span class="co"># Eldritch Blast 3/3</span></span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Opal&#39;</span>, <span class="st">&#39;Necrotic&#39;</span>, <span class="dv">10</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a>  <span class="co"># Baneful Scion</span></span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a><span class="fu">update_healing</span>(<span class="st">&#39;Opal&#39;</span>, <span class="dv">10</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a>  <span class="co"># Baneful Scion on herself</span></span>
+<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Dariax&#39;</span>, <span class="dv">38</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Ted&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">9</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Dorian&#39;</span>, <span class="dv">9</span>)</span></code></pre></div>
 <p><br></p>
 </div>
 <div id="opal-the-twice-crowned-episode-93" class="section level5">
@@ -436,39 +525,38 @@ the Twice Crowned Champion of the Spider Queen</li>
 <li><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'>7
 Spiders</li>
 </ul>
-<pre class="r"><code># Round 1
-update_damage_taken(&#39;Morrighan&#39;, 14)
-update_damage_taken(&#39;Dariax&#39;, 14)
-update_damage_taken(&#39;Dorian&#39;, 14)
-add_damage(&#39;Morrighan&#39;, &#39;Piercing&#39;, 8)
-add_enemy_damage(&#39;Spiders&#39;, &#39;Poison&#39;, 15)
-update_damage_taken(&#39;Morrighan&#39;, 15)
-add_damage(&#39;Morrighan&#39;, &#39;Piercing&#39;, 8)
-add_damage(&#39;Morrighan&#39;, &#39;Radiant&#39;, 7)
-  # Divine Smite
-add_damage(&#39;Dorian&#39;, &#39;Thunder&#39;, 34)
-  # Chromatic Orb
-add_enemy_damage(&#39;Ted&#39;, &#39;Slashing&#39;, 44)
-update_damage_taken(&#39;Morrighan&#39;, 44)
-update_healing(&#39;Dariax&#39;, 69)
-  # Mass Cure Wounds on everyone except Fy&#39;ra Rai
-add_enemy_damage(&#39;Spiders&#39;, &#39;Piercing&#39;, 25)
-update_damage_taken(&#39;Morrighan&#39;, 14)
-update_damage_taken(&quot;Fy&#39;ra&quot;, 11)
-# Round 2
-add_damage(&#39;Morrighan&#39;, &#39;Piercing&#39;, 15)
-add_damage(&#39;Morrighan&#39;, &#39;Radiant&#39;, 15)
-  # Divine Smite
-increment_kills(&#39;Morrighan&#39;)
-  # Spider</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># Round 1</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Morrighan&#39;</span>, <span class="dv">14</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Dariax&#39;</span>, <span class="dv">14</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Dorian&#39;</span>, <span class="dv">14</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Morrighan&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">8</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Spiders&#39;</span>, <span class="st">&#39;Poison&#39;</span>, <span class="dv">15</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Morrighan&#39;</span>, <span class="dv">15</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Morrighan&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">8</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Morrighan&#39;</span>, <span class="st">&#39;Radiant&#39;</span>, <span class="dv">7</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>  <span class="co"># Divine Smite</span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Dorian&#39;</span>, <span class="st">&#39;Thunder&#39;</span>, <span class="dv">34</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>  <span class="co"># Chromatic Orb</span></span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Ted&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">44</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Morrighan&#39;</span>, <span class="dv">44</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="fu">update_healing</span>(<span class="st">&#39;Dariax&#39;</span>, <span class="dv">69</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a>  <span class="co"># Mass Cure Wounds on everyone except Fy&#39;ra Rai</span></span>
+<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Spiders&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">25</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Morrighan&#39;</span>, <span class="dv">14</span>)</span>
+<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&quot;Fy&#39;ra&quot;</span>, <span class="dv">11</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a><span class="co"># Round 2</span></span>
+<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Morrighan&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">15</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Morrighan&#39;</span>, <span class="st">&#39;Radiant&#39;</span>, <span class="dv">15</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" tabindex="-1"></a>  <span class="co"># Divine Smite</span></span>
+<span id="cb2-24"><a href="#cb2-24" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Morrighan&#39;</span>)</span>
+<span id="cb2-25"><a href="#cb2-25" tabindex="-1"></a>  <span class="co"># Spider</span></span></code></pre></div>
 <p><br></p>
 </div>
-<div id="burden-on-the-circlet-out-of-combat-actions"
-class="section level5">
-<h5><span style='font-family:palatino; font-size: 24px;'> <strong>Burden
-on the Circlet Out of Combat Actions</strong></h5>
-<pre class="r"><code># Negotiating with the Spider Queen
-update_damage_taken(&quot;Fy&#39;ra&quot;, 9)</code></pre>
+<div id="out-of-combat-actions" class="section level5">
+<h5><span style='font-family:palatino; font-size: 24px;'> <strong>Out of
+Combat Actions</strong></h5>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># Negotiating with the Spider Queen</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&quot;Fy&#39;ra&quot;</span>, <span class="dv">9</span>)</span></code></pre></div>
 <hr />
 <p><span style='font-family:palatino; font-size: 12px;'>* Note, the
 damage totals are not 100% accurate, this could be from players not

@@ -30,8 +30,6 @@
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -42,23 +40,114 @@
   ul.task-list{list-style: none;}
     </style>
 
-<style type="text/css">code{white-space: pre;}</style>
-<script type="text/javascript">
-if (window.hljs) {
-  hljs.configure({languages: []});
-  hljs.initHighlightingOnLoad();
-  if (document.readyState && document.readyState === "complete") {
-    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
   }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
 }
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #204a87; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #204a87; font-weight: bold; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #ce5c00; font-weight: bold; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
 </script>
 
 
 
 
-
-
-<link rel="stylesheet" href="styles.css" type="text/css" />
+<link rel="stylesheet" href="styles-exukymal.css" type="text/css" />
 
 
 
@@ -287,7 +376,7 @@ $(document).ready(function () {
 <span style="text-align:right; display:block;"><span
 style="font-family:palatino; font-size: 10px;"> Art By: <span
 class="citation">@agarthanguide</span></span></p>
-<p><span style='font-family:palatino; font-size: 16px;'>Brontë
+<p><span style='font-family:palatino; font-size: 16px;line-height: 2;'>       Brontë
 Wyvernwind, now known as Dorian Storm, is traveling with his brother
 Cyrus on a skyship to Emon, feeling conflicted between his
 responsibility to Cyrus and his life in Marquet with Bells Hells. They
@@ -298,30 +387,31 @@ searching for her sister, Opal hides the effects of the Circlet of
 Barbed Vision, and Dariax wins at a dice game, drawing the dealer’s
 suspicion. The group meets Morrighan Ferus, a bartender, and pursues a
 pickpocket who stole Opal’s Pearl of Power.</p>
-<p><span style='font-family:palatino; font-size: 16px;'>Dorian and Cyrus
-need money to pay off a bounty, and they plan to romance Morrighan to
-learn about potential opportunities. Morrighan, overhearing their
-conversation, later reveals she needs to steal from the casino’s vault
-due to threats from the Nameless Ones, a new group in town. She proposes
-a heist, and the group learns that the penthouse of actor Phaedrov
-Krishtan might hold valuable information. They break into the penthouse
-during Phaedrov’s performance, encounter guards, and face a chaotic
-battle involving Nameless Ones assassins. They manage to defeat the
-enemies, find blueprints, and a valuable urn.</p>
-<p><span style='font-family:palatino; font-size: 16px;'>The group plans
-a heist to get money for Cyrus’s bounty. They explore the tunnels
-beneath the casino and face a goliath lieutenant of the Nameless Ones.
-After a fierce battle, they find and steal 50,000 gold from the vault.
-Morrighan also discovers a disturbing marble carving linked to the Raven
-Queen, which she is compelled to destroy. The party plans their escape
-using the sky deck, which they plan to detach from the building.</p>
-<p><span style='font-family:palatino; font-size: 16px;'>As they prepare
-to leave, Cyrus brings explosives to help separate the sky deck. They
-encounter resistance from the Nameless Ones but manage to secure their
-escape route. Opal uses an illusion to fake the sky deck’s collapse,
-buying them time to flee. Dorian uses his mandolin to help Cyrus steady
-the sky deck, and the group successfully makes their getaway, ready to
-face their next challenge.</p>
+<p><span style='font-family:palatino; font-size: 16px;line-height: 2;'>       Dorian
+and Cyrus need money to pay off a bounty, and they plan to romance
+Morrighan to learn about potential opportunities. Morrighan, overhearing
+their conversation, later reveals she needs to steal from the casino’s
+vault due to threats from the Nameless Ones, a new group in town. She
+proposes a heist, and the group learns that the penthouse of actor
+Phaedrov Krishtan might hold valuable information. They break into the
+penthouse during Phaedrov’s performance, encounter guards, and face a
+chaotic battle involving Nameless Ones assassins. They manage to defeat
+the enemies, find blueprints, and a valuable urn.</p>
+<p><span style='font-family:palatino; font-size: 16px;line-height: 2;'>       The
+group plans a heist to get money for Cyrus’s bounty. They explore the
+tunnels beneath the casino and face a goliath lieutenant of the Nameless
+Ones. After a fierce battle, they find and steal 50,000 gold from the
+vault. Morrighan also discovers a disturbing marble carving linked to
+the Raven Queen, which she is compelled to destroy. The party plans
+their escape using the sky deck, which they plan to detach from the
+building.</p>
+<p><span style='font-family:palatino; font-size: 16px;line-height: 2;'>       As
+they prepare to leave, Cyrus brings explosives to help separate the sky
+deck. They encounter resistance from the Nameless Ones but manage to
+secure their escape route. Opal uses an illusion to fake the sky deck’s
+collapse, buying them time to flee. Dorian uses his mandolin to help
+Cyrus steady the sky deck, and the group successfully makes their
+getaway, ready to face their next challenge.</p>
 <hr />
 <p><span style='font-family:palatino; font-size: 24px;'>The characters
 are:</p>
@@ -390,67 +480,68 @@ class="section level5">
 Standoff in the Dressing Room</strong> ~ Episode 1</h5>
 </div>
 <div id="encounter" class="section level5">
-<h5><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'><strong>Encounter:</strong></h5>
+<h5><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'><strong>Encounter:</strong></h5>
 <ul>
-<li><span style='font-family:palatino; font-size: 16px;'>5 Guards</li>
-<li><span style='font-family:palatino; font-size: 16px;'>3
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'>5
+Guards</li>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'>3
 Assassins</li>
 </ul>
-<pre class="r"><code># Round 1 
-add_damage(&#39;Dorian&#39;, &#39;Slashing&#39;, 10)
-add_enemy_damage(&#39;Guard&#39;, &#39;Bludgeoning&#39;, 12)
-update_damage_taken(&#39;Dorian&#39;, 5)
-update_damage_taken(&#39;Morrighan&#39;, 7)
-add_damage(&quot;Fy&#39;ra&quot;, &#39;Bludgeoning&#39;, 7)
-# Round 2
-add_enemy_damage(&#39;Guard&#39;, &#39;Bludgeoning&#39;, 3)
-add_enemy_damage(&#39;Guard&#39;, &#39;Piercing&#39;, 11)
-update_damage_taken(&quot;Fy&#39;ra&quot;, 14)
-add_damage(&#39;Morrighan&#39;, &#39;Fire&#39;, 12)
-  # Burning Hands
-add_damage(&quot;Fy&#39;ra&quot;, &#39;Thunder&#39;, 37)
-  # Thunderwave
-add_damage(&#39;Opal&#39;, &#39;Cold&#39;, 7)
-  # Hunger of Hadar
-add_damage(&#39;Dariax&#39;, &#39;Fire&#39;, 105)
-  # Fireball
-increment_kills(&#39;Dariax&#39;)
-  # Assassin
-increment_kills(&#39;Dariax&#39;)
-  # Assassin
-increment_kills(&#39;Dariax&#39;)
-  # Assassin
-add_damage(&#39;Dariax&#39;, &#39;Radiant&#39;, 11)
-  # Sacred flame
-# Round 3
-add_enemy_damage(&#39;Guard&#39;, &#39;Bludgeponing&#39;, 7)
-update_damage_taken(&#39;Opal&#39;, 7)
-add_enemy_damage(&#39;Guard&#39;, &#39;Bludgeoning&#39;, 10)
-add_enemy_damage(&#39;Guard&#39;, &#39;Radiant&#39;, 3)
-  # Divine Smite
-update_damage_taken(&quot;Fy&#39;ra&quot;, 13)
-add_damage(&#39;Morrighan&#39;, &#39;Slashing&#39;, 16)
-add_enemy_damage(&#39;Guard&#39;, &#39;&#39;, 18)
-update_damage_taken(&#39;Dariax&#39;, 18)
-add_damage(&quot;Fy&#39;ra&quot;, &#39;Bludgeoning&#39;, 19)
-add_damage(&quot;Fy&#39;ra&quot;, &#39;Radiant&#39;, 3)
-increment_kills(&quot;Fy&#39;ra&quot;)
-  # Guard
-add_damage(&#39;Opal&#39;, &#39;Force&#39;, 9)
-  # Eldritch Blast
-increment_kills(&#39;Opal&#39;)
-  # Guard
-add_damage(&#39;Dariax&#39;, &#39;Radiant&#39;, 15)
-  # Sacred Flame
-increment_kills(&#39;Opal&#39;)
-  # Guard
-# Round 4
-add_damage(&#39;Dorian&#39;, &#39;Piercing&#39;, 5)
-add_damage(&quot;Fy&#39;ra&quot;, &#39;Bludgeoning&#39;, 8)
-add_damage(&#39;Dariax&#39;, &#39;Radiant&#39;, 10)
-  # Sacred Flame
-increment_kills(&#39;Morrighan&#39;)
-  # Guard</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># Round 1 </span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Dorian&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">10</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Guard&#39;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">12</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Dorian&#39;</span>, <span class="dv">5</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Morrighan&#39;</span>, <span class="dv">7</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&quot;Fy&#39;ra&quot;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">7</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="co"># Round 2</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Guard&#39;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">3</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Guard&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">11</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&quot;Fy&#39;ra&quot;</span>, <span class="dv">14</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Morrighan&#39;</span>, <span class="st">&#39;Fire&#39;</span>, <span class="dv">12</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>  <span class="co"># Burning Hands</span></span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&quot;Fy&#39;ra&quot;</span>, <span class="st">&#39;Thunder&#39;</span>, <span class="dv">37</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>  <span class="co"># Thunderwave</span></span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Opal&#39;</span>, <span class="st">&#39;Cold&#39;</span>, <span class="dv">7</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>  <span class="co"># Hunger of Hadar</span></span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Dariax&#39;</span>, <span class="st">&#39;Fire&#39;</span>, <span class="dv">105</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a>  <span class="co"># Fireball</span></span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Dariax&#39;</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a>  <span class="co"># Assassin</span></span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Dariax&#39;</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a>  <span class="co"># Assassin</span></span>
+<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Dariax&#39;</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" tabindex="-1"></a>  <span class="co"># Assassin</span></span>
+<span id="cb1-25"><a href="#cb1-25" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Dariax&#39;</span>, <span class="st">&#39;Radiant&#39;</span>, <span class="dv">11</span>)</span>
+<span id="cb1-26"><a href="#cb1-26" tabindex="-1"></a>  <span class="co"># Sacred flame</span></span>
+<span id="cb1-27"><a href="#cb1-27" tabindex="-1"></a><span class="co"># Round 3</span></span>
+<span id="cb1-28"><a href="#cb1-28" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Guard&#39;</span>, <span class="st">&#39;Bludgeponing&#39;</span>, <span class="dv">7</span>)</span>
+<span id="cb1-29"><a href="#cb1-29" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Opal&#39;</span>, <span class="dv">7</span>)</span>
+<span id="cb1-30"><a href="#cb1-30" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Guard&#39;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">10</span>)</span>
+<span id="cb1-31"><a href="#cb1-31" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Guard&#39;</span>, <span class="st">&#39;Radiant&#39;</span>, <span class="dv">3</span>)</span>
+<span id="cb1-32"><a href="#cb1-32" tabindex="-1"></a>  <span class="co"># Divine Smite</span></span>
+<span id="cb1-33"><a href="#cb1-33" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&quot;Fy&#39;ra&quot;</span>, <span class="dv">13</span>)</span>
+<span id="cb1-34"><a href="#cb1-34" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Morrighan&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">16</span>)</span>
+<span id="cb1-35"><a href="#cb1-35" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Guard&#39;</span>, <span class="st">&#39;&#39;</span>, <span class="dv">18</span>)</span>
+<span id="cb1-36"><a href="#cb1-36" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Dariax&#39;</span>, <span class="dv">18</span>)</span>
+<span id="cb1-37"><a href="#cb1-37" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&quot;Fy&#39;ra&quot;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">19</span>)</span>
+<span id="cb1-38"><a href="#cb1-38" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&quot;Fy&#39;ra&quot;</span>, <span class="st">&#39;Radiant&#39;</span>, <span class="dv">3</span>)</span>
+<span id="cb1-39"><a href="#cb1-39" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&quot;Fy&#39;ra&quot;</span>)</span>
+<span id="cb1-40"><a href="#cb1-40" tabindex="-1"></a>  <span class="co"># Guard</span></span>
+<span id="cb1-41"><a href="#cb1-41" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Opal&#39;</span>, <span class="st">&#39;Force&#39;</span>, <span class="dv">9</span>)</span>
+<span id="cb1-42"><a href="#cb1-42" tabindex="-1"></a>  <span class="co"># Eldritch Blast</span></span>
+<span id="cb1-43"><a href="#cb1-43" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Opal&#39;</span>)</span>
+<span id="cb1-44"><a href="#cb1-44" tabindex="-1"></a>  <span class="co"># Guard</span></span>
+<span id="cb1-45"><a href="#cb1-45" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Dariax&#39;</span>, <span class="st">&#39;Radiant&#39;</span>, <span class="dv">15</span>)</span>
+<span id="cb1-46"><a href="#cb1-46" tabindex="-1"></a>  <span class="co"># Sacred Flame</span></span>
+<span id="cb1-47"><a href="#cb1-47" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Opal&#39;</span>)</span>
+<span id="cb1-48"><a href="#cb1-48" tabindex="-1"></a>  <span class="co"># Guard</span></span>
+<span id="cb1-49"><a href="#cb1-49" tabindex="-1"></a><span class="co"># Round 4</span></span>
+<span id="cb1-50"><a href="#cb1-50" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Dorian&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">5</span>)</span>
+<span id="cb1-51"><a href="#cb1-51" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&quot;Fy&#39;ra&quot;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">8</span>)</span>
+<span id="cb1-52"><a href="#cb1-52" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Dariax&#39;</span>, <span class="st">&#39;Radiant&#39;</span>, <span class="dv">10</span>)</span>
+<span id="cb1-53"><a href="#cb1-53" tabindex="-1"></a>  <span class="co"># Sacred Flame</span></span>
+<span id="cb1-54"><a href="#cb1-54" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Morrighan&#39;</span>)</span>
+<span id="cb1-55"><a href="#cb1-55" tabindex="-1"></a>  <span class="co"># Guard</span></span></code></pre></div>
 <p><br></p>
 </div>
 <div id="clash-with-a-nameless-one-lieutenant-episode-2"
@@ -459,116 +550,59 @@ class="section level5">
 with a Nameless One Lieutenant</strong> ~ Episode 2</h5>
 </div>
 <div id="encounter-1" class="section level5">
-<h5><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'><strong>Encounter:</strong></h5>
+<h5><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'><strong>Encounter:</strong></h5>
 <ul>
-<li><span style='font-family:palatino; font-size: 16px;'>Half Giant</li>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'>Half
+Giant</li>
 </ul>
-<pre class="r"><code># Pre-Initiative
-add_enemy_damage(&#39;Giant&#39;, &#39;Poison&#39;, 12)
-  # Poison Cloud
-update_damage_taken(&#39;Opal&#39;, 4)
-update_damage_taken(&#39;Morrighan&#39;, 8)
-# Round 1
-add_damage(&#39;Morrighan&#39;, &#39;Slashing&#39;, 23)
-add_enemy_damage(&#39;Giant&#39;, &#39;Bludgeoning&#39;, 3)
-update_damage_taken(&#39;Morrighan&#39;, 3)
-add_damage(&quot;Fy&#39;ra&quot;, &#39;Bludgeoning&#39;, 20)
-add_enemy_damage(&#39;Giant&#39;, &#39;Bludgeoning&#39;, 5)
-update_damage_taken(&quot;Fy&#39;ra&quot;, 5)
-# Round 2
-add_damage(&#39;Morrighan&#39;, &#39;Slashing&#39;, 11)
-add_damage(&quot;Fy&#39;ra&quot;, &#39;Bludgeoning&#39;, 31)
-add_damage(&#39;Dorian&#39;, &#39;Psychic&#39;, 7)
-  # Dissonant Whispers
-add_damage(&#39;Opal&#39;, &#39;Force&#39;, 7)
-  # Eldritch Blast 2/2
-# Round 3
-add_damage(&quot;Fy&#39;ra&quot;, &#39;Bludgeoning&#39;, 21)
-add_damage(&#39;Opal&#39;, &#39;Piercing&#39;, 19)
-increment_kills(&#39;Opal&#39;)
-  # Half Giant</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># Pre-Initiative</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Giant&#39;</span>, <span class="st">&#39;Poison&#39;</span>, <span class="dv">12</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>  <span class="co"># Poison Cloud</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Opal&#39;</span>, <span class="dv">4</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Morrighan&#39;</span>, <span class="dv">8</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="co"># Round 1</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Morrighan&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">23</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Giant&#39;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">3</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Morrighan&#39;</span>, <span class="dv">3</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&quot;Fy&#39;ra&quot;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">20</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Giant&#39;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">5</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&quot;Fy&#39;ra&quot;</span>, <span class="dv">5</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="co"># Round 2</span></span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Morrighan&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">11</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&quot;Fy&#39;ra&quot;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">31</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Dorian&#39;</span>, <span class="st">&#39;Psychic&#39;</span>, <span class="dv">7</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a>  <span class="co"># Dissonant Whispers</span></span>
+<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Opal&#39;</span>, <span class="st">&#39;Force&#39;</span>, <span class="dv">7</span>)</span>
+<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a>  <span class="co"># Eldritch Blast 2/2</span></span>
+<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a><span class="co"># Round 3</span></span>
+<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&quot;Fy&#39;ra&quot;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">21</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Opal&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">19</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Opal&#39;</span>)</span>
+<span id="cb2-24"><a href="#cb2-24" tabindex="-1"></a>  <span class="co"># Half Giant</span></span></code></pre></div>
 <p><br></p>
 </div>
-<div id="non-fighting-damages" class="section level5">
-<h5><span style='font-family:palatino; font-size: 24px;'>
-<strong>Non-Fighting Damages</strong></h5>
-<pre class="r"><code># Dorian strums a mandolin
-update_damage_taken(&#39;Dorian&#39;, 10)
-
-# Opal takes damage
-update_damage_taken(&#39;Opal&#39;, 6)
-
-# Escaping with the brumestone
-add_damage(&#39;Dorian&#39;, &#39;Bludgeoning&#39;, 12)
-add_damage(&#39;Dorian&#39;, &#39;Thunder&#39;, 20)
-  # Shatter
-add_damage(&#39;Opal&#39;, &#39;Force&#39;, 10)
-  # Eldritch Blast
-add_damage(&quot;Fy&#39;ra&quot;, &#39;Bludgeoning&#39;, 8)
-add_damage(&#39;Morrighan&#39;, &#39;Slashing&#39;, 7)
-add_damage(&#39;Dorian&#39;, &#39;Thunder&#39;, 20)
-  # Chromatic Orb ~ Thunder
-add_damage(&#39;Dariax&#39;, &#39;Fire&#39;, 26)
-  # Fireball
-add_damage(&quot;Fy&#39;ra&quot;, &#39;Bludgeoning&#39;, 13)</code></pre>
-<hr />
-</div>
-<div id="total-stats" class="section level3">
-<h3><span style='font-family:palatino; font-size: 24px;'><strong>Total
-Stats</strong></h3>
-</div>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div id="dariax" class="section level3">
-<h3><span style='font-family:palatino; font-size: 24px;'><span style='color:#136163'><strong>Dariax</strong></h3>
-<p><span style='font-family:palatino; font-size: 16px;'><strong>Damage:<br>
-Fire: 131 <br> Radiant: 36 <br> Total Damage Done: 167<br> Healing:
-0<br> Damage Taken: 18<br> Times Knocked Unconscious: 0<br> Times
-Killed: 0<br> Amount of kills: 3</strong></p>
-</div>
-</div><div class="column" style="width:50%;">
-<div id="dorian" class="section level3">
-<h3><span style='font-family:palatino; font-size: 24px;'><span style='color:#136163'><strong>Dorian</strong></h3>
-<p><span style='font-family:palatino; font-size: 16px;'><strong>Damage:<br>
-Slashing: 10 <br> Piercing: 5 <br> Psychic: 7 <br> Bludgeoning: 12 <br>
-Thunder: 40 <br> Total Damage Done: 74<br> Healing: 0<br> Damage Taken:
-15<br> Times Knocked Unconscious: 0<br> Times Killed: 0<br> Amount of
-kills: </strong></p>
-</div>
-</div>
-</div>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div id="fyra" class="section level3">
-<h3><span style='font-family:palatino; font-size: 24px;'><span style='color:#136163'><strong>Fy’ra</strong></h3>
-<p><span style='font-family:palatino; font-size: 16px;'><strong>Damage:<br>
-Bludgeoning: 127 <br> Thunder: 37 <br> Radiant: 3 <br> Total Damage
-Done: 167<br> Healing: 0<br> Damage Taken: 32<br> Times Knocked
-Unconscious: 0<br> Times Killed: 0<br> Amount of kills: 1</strong></p>
-</div>
-</div><div class="column" style="width:50%;">
-<div id="morrighan" class="section level3">
-<h3><span style='font-family:palatino; font-size: 24px;'><span style='color:#136163'><strong>Morrighan</strong></h3>
-<p><span style='font-family:palatino; font-size: 16px;'><strong>Damage:<br>
-Fire: 12 <br> Slashing: 57 <br> Total Damage Done: 69<br> Healing: 0<br>
-Damage Taken: 18<br> Times Knocked Unconscious: 0<br> Times Killed:
-0<br> Amount of kills: 1</strong></p>
-</div>
-</div>
-</div>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div id="opal" class="section level3">
-<h3><span style='font-family:palatino; font-size: 24px;'><span style='color:#136163'><strong>Opal</strong></h3>
-<p><span style='font-family:palatino; font-size: 16px;'><strong>Damage:<br>
-Cold: 7 <br> Force: 26 <br> Piercing: 19 <br> Total Damage Done: 52<br>
-Healing: 0<br> Damage Taken: 17<br> Times Knocked Unconscious: 0<br>
-Times Killed: 0<br> Amount of kills: 3</strong></p>
-</div>
-</div><div class="column" style="width:50%;">
-
-</div>
-</div>
+<div id="out-of-combat-actions" class="section level5">
+<h5><span style='font-family:palatino; font-size: 24px;'> <strong>Out of
+Combat Actions</strong></h5>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># Dorian strums a mandolin</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Dorian&#39;</span>, <span class="dv">10</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="co"># Opal takes damage</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Opal&#39;</span>, <span class="dv">6</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="co"># Escaping with the brumestone</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Dorian&#39;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">12</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Dorian&#39;</span>, <span class="st">&#39;Thunder&#39;</span>, <span class="dv">20</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>  <span class="co"># Shatter</span></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Opal&#39;</span>, <span class="st">&#39;Force&#39;</span>, <span class="dv">10</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>  <span class="co"># Eldritch Blast</span></span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&quot;Fy&#39;ra&quot;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">8</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Morrighan&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">7</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Dorian&#39;</span>, <span class="st">&#39;Thunder&#39;</span>, <span class="dv">20</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a>  <span class="co"># Chromatic Orb ~ Thunder</span></span>
+<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Dariax&#39;</span>, <span class="st">&#39;Fire&#39;</span>, <span class="dv">26</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a>  <span class="co"># Fireball</span></span>
+<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&quot;Fy&#39;ra&quot;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">13</span>)</span></code></pre></div>
 <p><span style='font-family:palatino; font-size: 12px;'>* Note, the
 damage totals are not 100% accurate, this could be from players not
 saying what damage type the attack did or separating damage types (such
@@ -576,6 +610,7 @@ as Hex damage)</p>
 <hr />
 <p><span style='font-family:palatino; font-size: 12px;'>* The character
 artwork was made by: <span class="citation">@agarthanguide</span></p>
+</div>
 </div>
 
 

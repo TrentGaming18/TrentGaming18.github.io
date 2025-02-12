@@ -30,8 +30,6 @@
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -42,23 +40,114 @@
   ul.task-list{list-style: none;}
     </style>
 
-<style type="text/css">code{white-space: pre;}</style>
-<script type="text/javascript">
-if (window.hljs) {
-  hljs.configure({languages: []});
-  hljs.initHighlightingOnLoad();
-  if (document.readyState && document.readyState === "complete") {
-    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
   }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
 }
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #204a87; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #204a87; font-weight: bold; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #ce5c00; font-weight: bold; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
 </script>
 
 
 
 
-
-
-<link rel="stylesheet" href="styles.css" type="text/css" />
+<link rel="stylesheet" href="styles-downfall.css" type="text/css" />
 
 
 
@@ -409,14 +498,14 @@ she had two children, Haylie and Topher.</p>
 Cloaked Planetar</strong> ~ Episode 100</h5>
 </div>
 <div id="encounter" class="section level5">
-<h5><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'><strong>Encounter:</strong></h5>
+<h5><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'><strong>Encounter:</strong></h5>
 <ul>
-<li><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'>1
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'>1
 Planetar</li>
 </ul>
-<pre class="r"><code># Round 1
-add_damage(&#39;Emhira&#39;, &#39;Psychic&#39;, 12)
-  # Shadow Blade</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># Round 1</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Emhira&#39;</span>, <span class="st">&#39;Psychic&#39;</span>, <span class="dv">12</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>  <span class="co"># Shadow Blade</span></span></code></pre></div>
 <p><br></p>
 </div>
 <div id="the-scribes-ruin-episode-100" class="section level5">
@@ -424,25 +513,25 @@ add_damage(&#39;Emhira&#39;, &#39;Psychic&#39;, 12)
 Scribe’s Ruin</strong> ~ Episode 100</h5>
 </div>
 <div id="encounter-1" class="section level5">
-<h5><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'><strong>Encounter:</strong></h5>
+<h5><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'><strong>Encounter:</strong></h5>
 <ul>
-<li><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'>1
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'>1
 Aeorian Archmage</li>
-<li><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'>2
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'>2
 Constructs</li>
 </ul>
-<pre class="r"><code># Round 1
-add_damage(&#39;Emissary&#39;, &#39;Slashing&#39;, 35)
-add_damage(&#39;Trist&#39;, &#39;Radiant&#39;, 36)
-  # Guiding Bolt
-add_enemy_damage(&#39;Constuct&#39;, &#39;Bludgeoning&#39;, 44)
-add_damage(&#39;Asha&#39;, &#39;Piercing&#39;, 12)
-add_damage(&#39;Asha&#39;, &#39;Poison&#39;, 7)
-add_damage(&#39;Asha&#39;, &#39;Bludgeoning&#39;, 26)
-increment_kills(&#39;Asha&#39;)
-  # Aeorian Archmage
-add_damage(&#39;Ayden&#39;, &#39;Radiant&#39;, 20)
-  # Guiding Bolt</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># Round 1</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Emissary&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">35</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Trist&#39;</span>, <span class="st">&#39;Radiant&#39;</span>, <span class="dv">36</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>  <span class="co"># Guiding Bolt</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Constuct&#39;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">44</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Asha&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">12</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Asha&#39;</span>, <span class="st">&#39;Poison&#39;</span>, <span class="dv">7</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Asha&#39;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">26</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Asha&#39;</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>  <span class="co"># Aeorian Archmage</span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Ayden&#39;</span>, <span class="st">&#39;Radiant&#39;</span>, <span class="dv">20</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>  <span class="co"># Guiding Bolt</span></span></code></pre></div>
 <p><br></p>
 </div>
 <div id="the-fall-of-the-factorum-malleus-episode-101"
@@ -451,150 +540,150 @@ class="section level5">
 Fall of the Factorum Malleus</strong> ~ Episode 101</h5>
 </div>
 <div id="encounter-2" class="section level5">
-<h5><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'><strong>Encounter:</strong></h5>
+<h5><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'><strong>Encounter:</strong></h5>
 <ul>
-<li><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'>Acastriel</li>
-<li><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'>Adamar</li>
-<li><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'>Selena</li>
-<li><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'>Ataro
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'>Acastriel</li>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'>Adamar</li>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'>Selena</li>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'>Ataro
 the Undead Dragon</li>
-<li><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'>5
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'>5
 Aeorian Archmages</li>
-<li><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'>4
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'>4
 Aeorian Mages</li>
-<li><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'>2
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'>2
 Irrevocable Automatons</li>
-<li><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'>1
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'>1
 Glabrezu</li>
-<li><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'>1
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'>1
 Nalfeshnee</li>
-<li><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'>1
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'>1
 Brass Dragon</li>
-<li><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'>1
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'>1
 Silver Dragon</li>
 </ul>
-<pre class="r"><code># Round 1
-add_damage(&#39;Emissary&#39;, &#39;Slashing&#39;, 36)
-add_enemy_damage(&#39;Acastriel&#39;, &#39;Radiant&#39;, 28)
-  # Searing Burst
-add_enemy_damage(&#39;Acastriel&#39;, &#39;Fire&#39;, 28)
-  # Searing Burst
-update_damage_taken(&#39;SILAHA&#39;, 28)
-update_damage_taken(&#39;Emissary&#39;, 14)
-update_damage_taken(&#39;Ayden&#39;, 14)
-add_enemy_damage(&#39;Irrevocable&#39;, &#39;Radiant&#39;, 91)
-update_damage_taken(&#39;SILAHA&#39;, 45)
-update_damage_taken(&#39;Emissary&#39;, 23)
-update_damage_taken(&#39;Ayden&#39;, 23)
-add_enemy_damage(&#39;Glabrezu&#39;, &#39;Bludgeoning&#39;, 15)
-update_damage_taken(&#39;SILAHA&#39;, 7)
-update_damage_taken(&#39;Emissary&#39;, 4)
-update_damage_taken(&#39;Ayden&#39;, 4)
-add_enemy_damage(&#39;Nalfeshnee&#39;, &#39;Piercing&#39;, 32)
-update_damage_taken(&#39;Emissary&#39;, 16)
-update_damage_taken(&#39;Ayden&#39;, 16)
-add_enemy_damage(&#39;Brass Dragon&#39;, &#39;Fire&#39;, 91)
-update_damage_taken(&#39;SILAHA&#39;, 45)
-update_damage_taken(&#39;Emissary&#39;, 23)
-update_damage_taken(&#39;Ayden&#39;, 23)
-add_damage(&#39;Emhira&#39;, &#39;Radiant&#39;, 32)
-  # Crown of Stars
-add_damage(&#39;Emhira&#39;, &#39;Thunder&#39;, 40)
-  # Shatter
-add_enemy_damage(&#39;Acastriel&#39;, &#39;Slashing&#39;, 44)
-add_enemy_damage(&#39;Acastriel&#39;, &#39;Radiant&#39;, 54)
-update_damage_taken(&#39;Emhira&#39;, 49)
-update_damage_taken(&#39;Ayden&#39;, 49)
-add_damage(&#39;Asha&#39;, &#39;Piercing&#39;, 30)
-add_enemy_damage(&#39;Mage&#39;, &#39;Cold&#39;, 88)
-  # Cone of Cold
-update_damage_taken(&#39;Ayden&#39;, 22)
-update_damage_taken(&#39;SILAHA&#39;, 22)
-update_damage_taken(&#39;Asha&#39;, 22)
-update_damage_taken(&#39;Emhira&#39;, 11)
-update_damage_taken(&#39;Emissary&#39;, 11)
-add_enemy_damage(&#39;Adamar&#39;, &#39;Fore&#39;, 60)
-  # Wish ~ Finger of Death
-update_damage_taken(&#39;SILAHA&#39;, 60)
-update_healing(&#39;Ayden&#39;, 105)
-  # Mass Cure Wounds on himself, S.I.L.A.H.A., Emhira, The Emissary, and Zaharzht
-add_enemy_damage(&#39;Silver Dragon&#39;, &#39;Bludgeoning&#39;, 17)
-update_damage_taken(&#39;Emhira&#39;, 17)
-add_damage(&#39;Emhira&#39;, &#39;Necrotic&#39;, 25)
-  # Armor of Agathys
-add_enemy_damage(&#39;Ataro&#39;, &#39;Necrotic&#39;, 62)
-update_damage_taken(&#39;Ayden&#39;, 31)
-update_damage_taken(&#39;Emhira&#39;, 31)
-# Round 2
-add_enemy_damage(&#39;Irrevocable&#39;, &#39;Force&#39;, 60)
-update_damage_taken(&#39;Emissary&#39;, 30)
-update_damage_taken(&#39;Ayden&#39;, 30)
-add_enemy_damage(&#39;Glabrezu&#39;, &#39;Slashing&#39;, 23)
-update_damage_taken(&#39;Ayden&#39;, 15)
-update_damage_taken(&#39;Emissary&#39;, 8)
-add_enemy_damage(&#39;Nalfeshnee&#39;, &#39;Piercing&#39;, 30)
-update_damage_taken(&#39;Emissary&#39;, 15)
-update_damage_taken(&#39;Ayden&#39;, 15)
-add_damage(&#39;Emhira&#39;, &#39;Psychic&#39;, 305)
-  # Maddening Darkness
-update_damage_taken(&#39;Emissary&#39;, 9)
-update_damage_taken(&#39;Ayden&#39;, 16)
-add_enemy_damage(&#39;Acastriel&#39;, &#39;Piercing&#39;, 15)
-add_enemy_damage(&#39;Acastriel&#39;, &#39;Radiant&#39;, 27)
-update_damage_taken(&#39;Emhira&#39;, 42)
-add_damage(&#39;Asha&#39;, &#39;Piercing&#39;, 49)
-add_enemy_damage(&#39;Ataro&#39;, &#39;Bludgeoning&#39;, 17)
-update_damage_taken(&#39;Ayden&#39;, 17)
-update_healing(&#39;SILAHA&#39;, 100)
-  # Clockwork Cavalcade on himself
-add_damage(&#39;SILAHA&#39;, &#39;Fire&#39;, 380)
-  # Meteor Swarm
-add_damage(&#39;SILAHA&#39;, &#39;Bludgeoning&#39;, 610)
-  # Meteor Swarm
-increment_kills(&#39;SILAHA&#39;)
-  # Adamar
-increment_kills(&#39;SILAHA&#39;)
-  # Acastriel
-update_healing(&#39;Trist&#39;, 700)
-  # Mass Heal on The Emissary, Emhira, Ayden, S.I.L.A.H.A., Asha, and Zaharzht
-add_enemy_damage(&#39;Archmage&#39;, &#39;Necrotic&#39;, 120)
-  # Wish ~ Finger of Death
-add_enemy_damage(&#39;Archmage&#39;, &#39;Force&#39;, 120)
-  # Wish ~ Finger of Death
-update_damage_taken(&#39;Asha&#39;, 120)
-update_damage_taken(&#39;SILAHA&#39;, 120)
-add_enemy_damage(&#39;Archmage&#39;, &#39;Fire&#39;, 70)
-  # Meteor Swarm
-add_enemy_damage(&#39;Archmage&#39;, &#39;Bludgeoning&#39;, 70)
-  # Meteor Swarm
-update_damage_taken(&#39;Emissary&#39;, 70)
-update_damage_taken(&#39;Ayden&#39;, 70)
-add_damage(&#39;Emhira&#39;, &#39;Psychic&#39;, 160)
-  # Maddening Darkness
-increment_kills(&#39;Ayden&#39;)
-  # Brass Dragon 
-increment_kills(&#39;Ayden&#39;)
-  # Silver Dragon 
-increment_kills(&#39;Ayden&#39;)
-  # Ataro the Undead Dragon 
-increment_kills(&#39;Ayden&#39;)
-  # Nalfeshnee 
-increment_kills(&#39;Ayden&#39;)
-  # Glabrezu 
-increment_kills(&#39;Ayden&#39;)
-  # Aeorian Archmage 
-increment_kills(&#39;Ayden&#39;)
-  # Aeorian Archmage 
-increment_kills(&#39;Ayden&#39;)
-  # Aeorian Archmage 
-increment_kills(&#39;Ayden&#39;)
-  # Aeorian Archmage 
-increment_kills(&#39;Ayden&#39;)
-  # Aeorian Archmage 
-# Round 3
-add_damage(&#39;Emissary&#39;, &#39;Slashing&#39;, 116)
-add_damage(&#39;Emhira&#39;, &#39;Force&#39;, 220)
-  # Eldritch Blast 2/2</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># Round 1</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Emissary&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">36</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Acastriel&#39;</span>, <span class="st">&#39;Radiant&#39;</span>, <span class="dv">28</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>  <span class="co"># Searing Burst</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Acastriel&#39;</span>, <span class="st">&#39;Fire&#39;</span>, <span class="dv">28</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>  <span class="co"># Searing Burst</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;SILAHA&#39;</span>, <span class="dv">28</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Emissary&#39;</span>, <span class="dv">14</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Ayden&#39;</span>, <span class="dv">14</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Irrevocable&#39;</span>, <span class="st">&#39;Radiant&#39;</span>, <span class="dv">91</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;SILAHA&#39;</span>, <span class="dv">45</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Emissary&#39;</span>, <span class="dv">23</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Ayden&#39;</span>, <span class="dv">23</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Glabrezu&#39;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">15</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;SILAHA&#39;</span>, <span class="dv">7</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Emissary&#39;</span>, <span class="dv">4</span>)</span>
+<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Ayden&#39;</span>, <span class="dv">4</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Nalfeshnee&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">32</span>)</span>
+<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Emissary&#39;</span>, <span class="dv">16</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Ayden&#39;</span>, <span class="dv">16</span>)</span>
+<span id="cb3-21"><a href="#cb3-21" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Brass Dragon&#39;</span>, <span class="st">&#39;Fire&#39;</span>, <span class="dv">91</span>)</span>
+<span id="cb3-22"><a href="#cb3-22" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;SILAHA&#39;</span>, <span class="dv">45</span>)</span>
+<span id="cb3-23"><a href="#cb3-23" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Emissary&#39;</span>, <span class="dv">23</span>)</span>
+<span id="cb3-24"><a href="#cb3-24" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Ayden&#39;</span>, <span class="dv">23</span>)</span>
+<span id="cb3-25"><a href="#cb3-25" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Emhira&#39;</span>, <span class="st">&#39;Radiant&#39;</span>, <span class="dv">32</span>)</span>
+<span id="cb3-26"><a href="#cb3-26" tabindex="-1"></a>  <span class="co"># Crown of Stars</span></span>
+<span id="cb3-27"><a href="#cb3-27" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Emhira&#39;</span>, <span class="st">&#39;Thunder&#39;</span>, <span class="dv">40</span>)</span>
+<span id="cb3-28"><a href="#cb3-28" tabindex="-1"></a>  <span class="co"># Shatter</span></span>
+<span id="cb3-29"><a href="#cb3-29" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Acastriel&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">44</span>)</span>
+<span id="cb3-30"><a href="#cb3-30" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Acastriel&#39;</span>, <span class="st">&#39;Radiant&#39;</span>, <span class="dv">54</span>)</span>
+<span id="cb3-31"><a href="#cb3-31" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Emhira&#39;</span>, <span class="dv">49</span>)</span>
+<span id="cb3-32"><a href="#cb3-32" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Ayden&#39;</span>, <span class="dv">49</span>)</span>
+<span id="cb3-33"><a href="#cb3-33" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Asha&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">30</span>)</span>
+<span id="cb3-34"><a href="#cb3-34" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Mage&#39;</span>, <span class="st">&#39;Cold&#39;</span>, <span class="dv">88</span>)</span>
+<span id="cb3-35"><a href="#cb3-35" tabindex="-1"></a>  <span class="co"># Cone of Cold</span></span>
+<span id="cb3-36"><a href="#cb3-36" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Ayden&#39;</span>, <span class="dv">22</span>)</span>
+<span id="cb3-37"><a href="#cb3-37" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;SILAHA&#39;</span>, <span class="dv">22</span>)</span>
+<span id="cb3-38"><a href="#cb3-38" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Asha&#39;</span>, <span class="dv">22</span>)</span>
+<span id="cb3-39"><a href="#cb3-39" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Emhira&#39;</span>, <span class="dv">11</span>)</span>
+<span id="cb3-40"><a href="#cb3-40" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Emissary&#39;</span>, <span class="dv">11</span>)</span>
+<span id="cb3-41"><a href="#cb3-41" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Adamar&#39;</span>, <span class="st">&#39;Fore&#39;</span>, <span class="dv">60</span>)</span>
+<span id="cb3-42"><a href="#cb3-42" tabindex="-1"></a>  <span class="co"># Wish ~ Finger of Death</span></span>
+<span id="cb3-43"><a href="#cb3-43" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;SILAHA&#39;</span>, <span class="dv">60</span>)</span>
+<span id="cb3-44"><a href="#cb3-44" tabindex="-1"></a><span class="fu">update_healing</span>(<span class="st">&#39;Ayden&#39;</span>, <span class="dv">105</span>)</span>
+<span id="cb3-45"><a href="#cb3-45" tabindex="-1"></a>  <span class="co"># Mass Cure Wounds on himself, S.I.L.A.H.A., Emhira, The Emissary, and Zaharzht</span></span>
+<span id="cb3-46"><a href="#cb3-46" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Silver Dragon&#39;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">17</span>)</span>
+<span id="cb3-47"><a href="#cb3-47" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Emhira&#39;</span>, <span class="dv">17</span>)</span>
+<span id="cb3-48"><a href="#cb3-48" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Emhira&#39;</span>, <span class="st">&#39;Necrotic&#39;</span>, <span class="dv">25</span>)</span>
+<span id="cb3-49"><a href="#cb3-49" tabindex="-1"></a>  <span class="co"># Armor of Agathys</span></span>
+<span id="cb3-50"><a href="#cb3-50" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Ataro&#39;</span>, <span class="st">&#39;Necrotic&#39;</span>, <span class="dv">62</span>)</span>
+<span id="cb3-51"><a href="#cb3-51" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Ayden&#39;</span>, <span class="dv">31</span>)</span>
+<span id="cb3-52"><a href="#cb3-52" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Emhira&#39;</span>, <span class="dv">31</span>)</span>
+<span id="cb3-53"><a href="#cb3-53" tabindex="-1"></a><span class="co"># Round 2</span></span>
+<span id="cb3-54"><a href="#cb3-54" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Irrevocable&#39;</span>, <span class="st">&#39;Force&#39;</span>, <span class="dv">60</span>)</span>
+<span id="cb3-55"><a href="#cb3-55" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Emissary&#39;</span>, <span class="dv">30</span>)</span>
+<span id="cb3-56"><a href="#cb3-56" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Ayden&#39;</span>, <span class="dv">30</span>)</span>
+<span id="cb3-57"><a href="#cb3-57" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Glabrezu&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">23</span>)</span>
+<span id="cb3-58"><a href="#cb3-58" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Ayden&#39;</span>, <span class="dv">15</span>)</span>
+<span id="cb3-59"><a href="#cb3-59" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Emissary&#39;</span>, <span class="dv">8</span>)</span>
+<span id="cb3-60"><a href="#cb3-60" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Nalfeshnee&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">30</span>)</span>
+<span id="cb3-61"><a href="#cb3-61" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Emissary&#39;</span>, <span class="dv">15</span>)</span>
+<span id="cb3-62"><a href="#cb3-62" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Ayden&#39;</span>, <span class="dv">15</span>)</span>
+<span id="cb3-63"><a href="#cb3-63" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Emhira&#39;</span>, <span class="st">&#39;Psychic&#39;</span>, <span class="dv">305</span>)</span>
+<span id="cb3-64"><a href="#cb3-64" tabindex="-1"></a>  <span class="co"># Maddening Darkness</span></span>
+<span id="cb3-65"><a href="#cb3-65" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Emissary&#39;</span>, <span class="dv">9</span>)</span>
+<span id="cb3-66"><a href="#cb3-66" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Ayden&#39;</span>, <span class="dv">16</span>)</span>
+<span id="cb3-67"><a href="#cb3-67" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Acastriel&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">15</span>)</span>
+<span id="cb3-68"><a href="#cb3-68" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Acastriel&#39;</span>, <span class="st">&#39;Radiant&#39;</span>, <span class="dv">27</span>)</span>
+<span id="cb3-69"><a href="#cb3-69" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Emhira&#39;</span>, <span class="dv">42</span>)</span>
+<span id="cb3-70"><a href="#cb3-70" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Asha&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">49</span>)</span>
+<span id="cb3-71"><a href="#cb3-71" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Ataro&#39;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">17</span>)</span>
+<span id="cb3-72"><a href="#cb3-72" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Ayden&#39;</span>, <span class="dv">17</span>)</span>
+<span id="cb3-73"><a href="#cb3-73" tabindex="-1"></a><span class="fu">update_healing</span>(<span class="st">&#39;SILAHA&#39;</span>, <span class="dv">100</span>)</span>
+<span id="cb3-74"><a href="#cb3-74" tabindex="-1"></a>  <span class="co"># Clockwork Cavalcade on himself</span></span>
+<span id="cb3-75"><a href="#cb3-75" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;SILAHA&#39;</span>, <span class="st">&#39;Fire&#39;</span>, <span class="dv">380</span>)</span>
+<span id="cb3-76"><a href="#cb3-76" tabindex="-1"></a>  <span class="co"># Meteor Swarm</span></span>
+<span id="cb3-77"><a href="#cb3-77" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;SILAHA&#39;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">610</span>)</span>
+<span id="cb3-78"><a href="#cb3-78" tabindex="-1"></a>  <span class="co"># Meteor Swarm</span></span>
+<span id="cb3-79"><a href="#cb3-79" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;SILAHA&#39;</span>)</span>
+<span id="cb3-80"><a href="#cb3-80" tabindex="-1"></a>  <span class="co"># Adamar</span></span>
+<span id="cb3-81"><a href="#cb3-81" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;SILAHA&#39;</span>)</span>
+<span id="cb3-82"><a href="#cb3-82" tabindex="-1"></a>  <span class="co"># Acastriel</span></span>
+<span id="cb3-83"><a href="#cb3-83" tabindex="-1"></a><span class="fu">update_healing</span>(<span class="st">&#39;Trist&#39;</span>, <span class="dv">700</span>)</span>
+<span id="cb3-84"><a href="#cb3-84" tabindex="-1"></a>  <span class="co"># Mass Heal on The Emissary, Emhira, Ayden, S.I.L.A.H.A., Asha, and Zaharzht</span></span>
+<span id="cb3-85"><a href="#cb3-85" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Archmage&#39;</span>, <span class="st">&#39;Necrotic&#39;</span>, <span class="dv">120</span>)</span>
+<span id="cb3-86"><a href="#cb3-86" tabindex="-1"></a>  <span class="co"># Wish ~ Finger of Death</span></span>
+<span id="cb3-87"><a href="#cb3-87" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Archmage&#39;</span>, <span class="st">&#39;Force&#39;</span>, <span class="dv">120</span>)</span>
+<span id="cb3-88"><a href="#cb3-88" tabindex="-1"></a>  <span class="co"># Wish ~ Finger of Death</span></span>
+<span id="cb3-89"><a href="#cb3-89" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Asha&#39;</span>, <span class="dv">120</span>)</span>
+<span id="cb3-90"><a href="#cb3-90" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;SILAHA&#39;</span>, <span class="dv">120</span>)</span>
+<span id="cb3-91"><a href="#cb3-91" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Archmage&#39;</span>, <span class="st">&#39;Fire&#39;</span>, <span class="dv">70</span>)</span>
+<span id="cb3-92"><a href="#cb3-92" tabindex="-1"></a>  <span class="co"># Meteor Swarm</span></span>
+<span id="cb3-93"><a href="#cb3-93" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Archmage&#39;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">70</span>)</span>
+<span id="cb3-94"><a href="#cb3-94" tabindex="-1"></a>  <span class="co"># Meteor Swarm</span></span>
+<span id="cb3-95"><a href="#cb3-95" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Emissary&#39;</span>, <span class="dv">70</span>)</span>
+<span id="cb3-96"><a href="#cb3-96" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Ayden&#39;</span>, <span class="dv">70</span>)</span>
+<span id="cb3-97"><a href="#cb3-97" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Emhira&#39;</span>, <span class="st">&#39;Psychic&#39;</span>, <span class="dv">160</span>)</span>
+<span id="cb3-98"><a href="#cb3-98" tabindex="-1"></a>  <span class="co"># Maddening Darkness</span></span>
+<span id="cb3-99"><a href="#cb3-99" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Ayden&#39;</span>)</span>
+<span id="cb3-100"><a href="#cb3-100" tabindex="-1"></a>  <span class="co"># Brass Dragon </span></span>
+<span id="cb3-101"><a href="#cb3-101" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Ayden&#39;</span>)</span>
+<span id="cb3-102"><a href="#cb3-102" tabindex="-1"></a>  <span class="co"># Silver Dragon </span></span>
+<span id="cb3-103"><a href="#cb3-103" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Ayden&#39;</span>)</span>
+<span id="cb3-104"><a href="#cb3-104" tabindex="-1"></a>  <span class="co"># Ataro the Undead Dragon </span></span>
+<span id="cb3-105"><a href="#cb3-105" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Ayden&#39;</span>)</span>
+<span id="cb3-106"><a href="#cb3-106" tabindex="-1"></a>  <span class="co"># Nalfeshnee </span></span>
+<span id="cb3-107"><a href="#cb3-107" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Ayden&#39;</span>)</span>
+<span id="cb3-108"><a href="#cb3-108" tabindex="-1"></a>  <span class="co"># Glabrezu </span></span>
+<span id="cb3-109"><a href="#cb3-109" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Ayden&#39;</span>)</span>
+<span id="cb3-110"><a href="#cb3-110" tabindex="-1"></a>  <span class="co"># Aeorian Archmage </span></span>
+<span id="cb3-111"><a href="#cb3-111" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Ayden&#39;</span>)</span>
+<span id="cb3-112"><a href="#cb3-112" tabindex="-1"></a>  <span class="co"># Aeorian Archmage </span></span>
+<span id="cb3-113"><a href="#cb3-113" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Ayden&#39;</span>)</span>
+<span id="cb3-114"><a href="#cb3-114" tabindex="-1"></a>  <span class="co"># Aeorian Archmage </span></span>
+<span id="cb3-115"><a href="#cb3-115" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Ayden&#39;</span>)</span>
+<span id="cb3-116"><a href="#cb3-116" tabindex="-1"></a>  <span class="co"># Aeorian Archmage </span></span>
+<span id="cb3-117"><a href="#cb3-117" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Ayden&#39;</span>)</span>
+<span id="cb3-118"><a href="#cb3-118" tabindex="-1"></a>  <span class="co"># Aeorian Archmage </span></span>
+<span id="cb3-119"><a href="#cb3-119" tabindex="-1"></a><span class="co"># Round 3</span></span>
+<span id="cb3-120"><a href="#cb3-120" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Emissary&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">116</span>)</span>
+<span id="cb3-121"><a href="#cb3-121" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Emhira&#39;</span>, <span class="st">&#39;Force&#39;</span>, <span class="dv">220</span>)</span>
+<span id="cb3-122"><a href="#cb3-122" tabindex="-1"></a>  <span class="co"># Eldritch Blast 2/2</span></span></code></pre></div>
 <p><br></p>
 </div>
 <div id="echoes-of-cassidas-demise-episode-101" class="section level5">
@@ -602,89 +691,84 @@ add_damage(&#39;Emhira&#39;, &#39;Force&#39;, 220)
 of Cassida’s Demise</strong> ~ Episode 101</h5>
 </div>
 <div id="encounter-3" class="section level5">
-<h5><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'><strong>Encounter:</strong></h5>
+<h5><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'><strong>Encounter:</strong></h5>
 <ul>
-<li><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'>Asmodeus</li>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'>Asmodeus</li>
 </ul>
-<pre class="r"><code># Round 1
-add_damage(&#39;Trist&#39;, &#39;Radiant&#39;, 500)
-  # Guiding Bolt</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># Round 1</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Trist&#39;</span>, <span class="st">&#39;Radiant&#39;</span>, <span class="dv">500</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>  <span class="co"># Guiding Bolt</span></span></code></pre></div>
 <p><br></p>
 </div>
 <div id="out-of-combat-actions" class="section level5">
 <h5><span style='font-family:palatino; font-size: 24px;'> <strong>Out of
 Combat Actions</strong></h5>
-<pre class="r"><code># Trist heals Hallis
-update_healing(&#39;Trist&#39;, 70)
-  # Lay on Hands
-
-# Ayden heals in the hospital
-update_healing(&#39;Ayden&#39;, 75)</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># Trist heals Hallis</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="fu">update_healing</span>(<span class="st">&#39;Trist&#39;</span>, <span class="dv">70</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>  <span class="co"># Lay on Hands</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="co"># Ayden heals in the hospital</span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="fu">update_healing</span>(<span class="st">&#39;Ayden&#39;</span>, <span class="dv">75</span>)</span></code></pre></div>
 <hr />
 </div>
-<div id="total-stats" class="section level3">
+<div id="total-damage-stats" class="section level3">
 <h3><span style='font-family:palatino; font-size: 24px;'><strong>Total
-Stats</strong></h3>
+Damage Stats</strong></h3>
+<div class="carousel" style="text-align: center;">
+<p><button onclick="prevImage('carousel1')" style="position: absolute; left: 0; top: 50%; font-size: 42px; background: none; border: none; cursor: pointer; color: #5a6666;">
+← <!-- Left arrow --> </button>
+<img src="images/Asha_Damage.png" style="width:80%; height:auto; display:none; margin: 0 auto;" class="carousel1-images">
+<img src="images/Ayden_Damage.png" style="width:80%; height:auto; display:none; margin: 0 auto;" class="carousel1-images">
+<img src="images/Emhira_Damage.png" style="width:80%; height:auto; display:none; margin: 0 auto;" class="carousel1-images">
+<img src="images/SILAHA_Damage.png" style="width:80%; height:auto; display:none; margin: 0 auto;" class="carousel1-images">
+<img src="images/Emissary_Damage.png" style="width:80%; height:auto; display:none; margin: 0 auto;" class="carousel1-images">
+<img src="images/Trist_Damage.png" style="width:80%; height:auto; display:none; margin: 0 auto;" class="carousel1-images">
+<button onclick="nextImage('carousel1')" style="position: absolute; right: 0; top: 50%; font-size: 42px; background: none; border: none; cursor: pointer; color: #5a6666;">
+→ <!-- Right arrow --> </button></p>
 </div>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div id="asha" class="section level3">
-<h3><span style='font-family:palatino; font-size: 24px;'><span style='color:#5a6666'><strong>Asha</strong></h3>
-<p><span style='font-family:palatino; font-size: 16px;'>Damage:<br>
-Piercing: 91 <br> Poison: 7 <br> Bludgeoning: 26<br> Total Damage Done:
-124<br> Healing: 0<br> Damage Taken: 142<br> Times Knocked Unconscious:
-0<br> Times Killed: 0<br> Amount of kills: 1</p>
+<p><br></p>
+<hr />
 </div>
-</div><div class="column" style="width:50%;">
-<div id="ayden" class="section level3">
-<h3><span style='font-family:palatino; font-size: 24px;'><span style='color:#5a6666'><strong>Ayden</strong></h3>
-<p><span style='font-family:palatino; font-size: 16px;'>Damage:<br>
-Radiant: 20<br> Total Damage Done: 20<br> Healing: 180<br> Damage Taken:
-345<br> Times Knocked Unconscious: 0<br> Times Killed: 0<br> Amount of
-kills: 10</p>
+<div id="total-combat-performance-stats" class="section level3">
+<h3><span style="font-family:palatino; font-size: 24px;"><strong>Total
+Combat Performance Stats</strong></span></h3>
+<div class="carousel" style="text-align: center;">
+<p><button onclick="prevImage('carousel2')" style="position: absolute; left: 0; top: 50%; font-size: 42px; background: none; border: none; cursor: pointer; color: #5a6666;">
+← <!-- Left arrow --> </button>
+<img src="images/Downfall_Healing.png" style="width:80%; height:auto; display:none; margin: 0 auto;" class="carousel2-images">
+<img src="images/Downfall_DamageTaken.png" style="width:80%; height:auto; display:none; margin: 0 auto;" class="carousel2-images">
+<img src="images/Downfall_Kills.png" style="width:80%; height:auto; display:none; margin: 0 auto;" class="carousel2-images">
+<img src="images/Downfall_Knocked.png" style="width:80%; height:auto; display:none; margin: 0 auto;" class="carousel2-images">
+<img src="images/Downfall_Deaths.png" style="width:80%; height:auto; display:none; margin: 0 auto;" class="carousel2-images">
+<button onclick="nextImage('carousel2')" style="position: absolute; right: 0; top: 50%; font-size: 42px; background: none; border: none; cursor: pointer; color: #5a6666;">
+→ <!-- Right arrow --> </button></p>
 </div>
-</div>
-</div>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div id="emhira" class="section level3">
-<h3><span style='font-family:palatino; font-size: 24px;'><span style='color:#5a6666'><strong>Emhira</strong></h3>
-<p><span style='font-family:palatino; font-size: 16px;'>Damage:<br>
-Psychic: 477<br> Radiant: 32<br> Thunder: 40<br> Necrotic: 25<br> Force:
-220<br> Total Damage Done: 794<br> Healing: 0<br> Damage Taken: 150<br>
-Times Knocked Unconscious: 0<br> Times Killed: 0<br> Amount of kills:
-0</p>
-</div>
-</div><div class="column" style="width:50%;">
-<div id="s.i.l.a.h.a." class="section level3">
-<h3><span style='font-family:palatino; font-size: 24px;'><span style='color:#5a6666'><strong>S.I.L.A.H.A.</strong></h3>
-<p><span style='font-family:palatino; font-size: 16px;'>Damage:<br>
-Fire: 380<br> Bludgeoning: 610<br> Total Damage Done: 990<br> Healing:
-100<br> Damage Taken: 327<br> Times Knocked Unconscious: 0<br> Times
-Killed: 0<br> Amount of kills: 2</p>
-</div>
-</div>
-</div>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div id="the-emissary" class="section level3">
-<h3><span style='font-family:palatino; font-size: 24px;'><span style='color:#5a6666'><strong>The
-Emissary</strong></h3>
-<p><span style='font-family:palatino; font-size: 16px;'>Damage:<br>
-Slashing: 187<br> Total Damage Done: 187<br> Healing: 0<br> Damage
-Taken: 223<br> Times Knocked Unconscious: 0<br> Times Killed: 0<br>
-Amount of kills: 0</p>
-</div>
-</div><div class="column" style="width:50%;">
-<div id="trist" class="section level3">
-<h3><span style='font-family:palatino; font-size: 24px;'><span style='color:#5a6666'><strong>Trist</strong></h3>
-<p><span style='font-family:palatino; font-size: 16px;'>Damage:<br>
-Radiant: 536<br> Total Damage Done: 536<br> Healing: 770<br> Damage
-Taken: 0<br> Times Knocked Unconscious: 0<br> Times Killed: 0<br> Amount
-of kills: 0</p>
-</div>
-</div>
-</div>
+<script>
+  // Create an object to store indexes for multiple carousels
+  let carouselIndices = {
+    'carousel1': 0,
+    'carousel2': 0
+  };
+
+  function nextImage(carouselClass) {
+    let images = document.querySelectorAll(`.${carouselClass}-images`);
+    images[carouselIndices[carouselClass]].style.display = "none";
+    carouselIndices[carouselClass] = (carouselIndices[carouselClass] + 1) % images.length;
+    images[carouselIndices[carouselClass]].style.display = "block";
+  }
+
+  function prevImage(carouselClass) {
+    let images = document.querySelectorAll(`.${carouselClass}-images`);
+    images[carouselIndices[carouselClass]].style.display = "none";
+    carouselIndices[carouselClass] = (carouselIndices[carouselClass] - 1 + images.length) % images.length;
+    images[carouselIndices[carouselClass]].style.display = "block";
+  }
+
+  // Initialize both carousels by displaying the first image
+  document.querySelectorAll('.carousel1-images')[0].style.display = "block";
+  document.querySelectorAll('.carousel2-images')[0].style.display = "block";
+</script>
+<p><br> <br></p>
 <p><span style='font-family:palatino; font-size: 12px;'>* Note, the
 damage totals are not 100% accurate, this could be from players not
 saying what damage type the attack did or separating damage types (such
@@ -692,6 +776,7 @@ as Hex damage)</p>
 <hr />
 <p><span style='font-family:palatino; font-size: 12px;'>* The character
 artwork was made by: <span class="citation">@agarthanguide</span></p>
+</div>
 </div>
 
 

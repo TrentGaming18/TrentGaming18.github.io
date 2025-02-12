@@ -30,8 +30,6 @@
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -42,23 +40,114 @@
   ul.task-list{list-style: none;}
     </style>
 
-<style type="text/css">code{white-space: pre;}</style>
-<script type="text/javascript">
-if (window.hljs) {
-  hljs.configure({languages: []});
-  hljs.initHighlightingOnLoad();
-  if (document.readyState && document.readyState === "complete") {
-    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
   }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
 }
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #204a87; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #204a87; font-weight: bold; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #ce5c00; font-weight: bold; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
 </script>
 
 
 
 
-
-
-<link rel="stylesheet" href="styles.css" type="text/css" />
+<link rel="stylesheet" href="styles-exuprime.css" type="text/css" />
 
 
 
@@ -287,15 +376,15 @@ $(document).ready(function () {
 <span style="text-align:right; display:block;"><span
 style="font-family:palatino; font-size: 10px;"> Art By: <span
 class="citation">@agarthanguide</span></span></p>
-<p><span style='font-family:palatino; font-size: 16px;'>In the wake of a
-harrowing encounter, the group finds themselves grappling with both
-internal and external challenges. As they navigate a city fraught with
-danger and intrigue, each member confronts their own fears and doubts.
-Dariax receives a mysterious boon from an enigmatic entity, while Fearne
-grapples with unsettling dreams and Orym questions his place among his
-newfound companions. Meanwhile, Dorian struggles to reconcile his
-actions during a perilous chase, haunted by the voice of a malevolent
-force.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>       In the
+wake of a harrowing encounter, the group finds themselves grappling with
+both internal and external challenges. As they navigate a city fraught
+with danger and intrigue, each member confronts their own fears and
+doubts. Dariax receives a mysterious boon from an enigmatic entity,
+while Fearne grapples with unsettling dreams and Orym questions his
+place among his newfound companions. Meanwhile, Dorian struggles to
+reconcile his actions during a perilous chase, haunted by the voice of a
+malevolent force.</p>
 <p><span style='font-family:palatino; font-size: 16px;'>Driven by a
 shared sense of purpose, the group embarks on a journey southward,
 guided by cryptic instructions and facing formidable adversaries along
@@ -399,42 +488,42 @@ journey to seek justice for his loved ones.</p>
 and Daggers</strong> ~ Episode 1</h5>
 </div>
 <div id="encounter" class="section level5">
-<h5><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'><strong>Encounter:</strong></h5>
+<h5><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'><strong>Encounter:</strong></h5>
 <ul>
-<li><span style='font-family:palatino; font-size: 16px;'>4
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'>4
 Assassins</li>
 </ul>
-<pre class="r"><code># Round 1
-add_damage(&#39;Opal&#39;, &#39;Lightning&#39;, 11)
-  # Witchbolt
-increment_kills(&#39;Opal&#39;)
-  # Assassin
-add_damage(&#39;Orym&#39;, &#39;Piercing&#39;, 7)
-add_enemy_damage(&#39;Assassin&#39;, &#39;Piercing&#39;, 10)
-update_damage_taken(&#39;Opal&#39;, 10)
-add_enemy_damage(&#39;Assassin&#39;, &#39;Slashing&#39;, 2)
-update_damage_taken(&#39;Dorian&#39;, 2)
-# Round 2
-update_healing(&#39;Dorian&#39;, 5)
-  # Cure Wounds on Opal
-add_damage(&#39;Fearne&#39;, &#39;Fire&#39;, 14)
-  # Burning Hands
-add_damage(&#39;Dorian&#39;, &#39;Slashing&#39;, 5)
-add_enemy_damage(&#39;Assassin&#39;, &#39;Piercing&#39;, 5)
-update_damage_taken(&#39;Dariax&#39;, 5)
-# Round 3
-add_damage(&#39;Orym&#39;, &#39;Slashing&#39;, 8)
-add_damage(&#39;Opal&#39;, &#39;Piercing&#39;, 5)
-increment_kills(&#39;Opal&#39;)
-  # Assassin
-increment_kills(&#39;Opal&#39;)
-  # Assassin
-update_healing(&#39;Opal&#39;, 5)
-  # Hexblade&#39;s Curse
-add_damage(&#39;Dariax&#39;, &#39;Radiant&#39;, 8)
-  # Sacred Flame
-increment_kills(&#39;Dariax&#39;)
-  # Assassin</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># Round 1</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Opal&#39;</span>, <span class="st">&#39;Lightning&#39;</span>, <span class="dv">11</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>  <span class="co"># Witchbolt</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Opal&#39;</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>  <span class="co"># Assassin</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Orym&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">7</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Assassin&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">10</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Opal&#39;</span>, <span class="dv">10</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Assassin&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">2</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Dorian&#39;</span>, <span class="dv">2</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="co"># Round 2</span></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a><span class="fu">update_healing</span>(<span class="st">&#39;Dorian&#39;</span>, <span class="dv">5</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>  <span class="co"># Cure Wounds on Opal</span></span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Fearne&#39;</span>, <span class="st">&#39;Fire&#39;</span>, <span class="dv">14</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>  <span class="co"># Burning Hands</span></span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Dorian&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">5</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Assassin&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">5</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Dariax&#39;</span>, <span class="dv">5</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a><span class="co"># Round 3</span></span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Orym&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">8</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Opal&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">5</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Opal&#39;</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a>  <span class="co"># Assassin</span></span>
+<span id="cb1-24"><a href="#cb1-24" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Opal&#39;</span>)</span>
+<span id="cb1-25"><a href="#cb1-25" tabindex="-1"></a>  <span class="co"># Assassin</span></span>
+<span id="cb1-26"><a href="#cb1-26" tabindex="-1"></a><span class="fu">update_healing</span>(<span class="st">&#39;Opal&#39;</span>, <span class="dv">5</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" tabindex="-1"></a>  <span class="co"># Hexblade&#39;s Curse</span></span>
+<span id="cb1-28"><a href="#cb1-28" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Dariax&#39;</span>, <span class="st">&#39;Radiant&#39;</span>, <span class="dv">8</span>)</span>
+<span id="cb1-29"><a href="#cb1-29" tabindex="-1"></a>  <span class="co"># Sacred Flame</span></span>
+<span id="cb1-30"><a href="#cb1-30" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Dariax&#39;</span>)</span>
+<span id="cb1-31"><a href="#cb1-31" tabindex="-1"></a>  <span class="co"># Assassin</span></span></code></pre></div>
 <p><br></p>
 </div>
 <div id="escape-from-emon-episode-2" class="section level5">
@@ -442,22 +531,23 @@ increment_kills(&#39;Dariax&#39;)
 from Emon</strong> ~ Episode 2</h5>
 </div>
 <div id="encounter-1" class="section level5">
-<h5><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'><strong>Encounter:</strong></h5>
+<h5><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'><strong>Encounter:</strong></h5>
 <ul>
-<li><span style='font-family:palatino; font-size: 16px;'>2 Guards</li>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'>2
+Guards</li>
 </ul>
-<pre class="r"><code># Round 1
-add_enemy_damage(&#39;Guard&#39;, &#39;Bludgeoning&#39;, 2)
-update_damage_taken(&#39;Dorian&#39;, 2)
-add_damage(&#39;Orym&#39;, &#39;Bludgeoning&#39;, 9)
-# Round 2
-add_damage(&#39;Dorian&#39;, &#39;Psychic&#39;, 6)
-  # Dissonant Whispers
-add_damage(&#39;Dariax&#39;, &#39;Piercing&#39;, 9)
-increment_kills(&#39;Dariax&#39;)
-  # Guard
-add_damage(&#39;Opal&#39;, &#39;Force&#39;, 15)
-  # Eldritch Blast</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># Round 1</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Guard&#39;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">2</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Dorian&#39;</span>, <span class="dv">2</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Orym&#39;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">9</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="co"># Round 2</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Dorian&#39;</span>, <span class="st">&#39;Psychic&#39;</span>, <span class="dv">6</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>  <span class="co"># Dissonant Whispers</span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Dariax&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">9</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Dariax&#39;</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>  <span class="co"># Guard</span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Opal&#39;</span>, <span class="st">&#39;Force&#39;</span>, <span class="dv">15</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>  <span class="co"># Eldritch Blast</span></span></code></pre></div>
 <p><br></p>
 </div>
 <div id="ashen-betrayal-episode-2" class="section level5">
@@ -465,21 +555,21 @@ add_damage(&#39;Opal&#39;, &#39;Force&#39;, 15)
 Betrayal</strong> ~ Episode 2</h5>
 </div>
 <div id="encounter-2" class="section level5">
-<h5><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'><strong>Encounter:</strong></h5>
+<h5><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'><strong>Encounter:</strong></h5>
 <ul>
-<li><span style='font-family:palatino; font-size: 16px;'>Ash
-Elemental</li>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'>1
+Ash Elemental</li>
 </ul>
-<pre class="r"><code># Round 1
-add_damage(&#39;Opal&#39;, &#39;Piercing&#39;, 7)
-add_damage(&#39;Fearne&#39;, &#39;Piercing&#39;, 14)
-  # Wild Shape ~ Dire Wolf
-# Round 2
-add_damage(&#39;Opal&#39;, &#39;Piercing&#39;, 13)
-add_damage(&#39;Dorian&#39;, &#39;Psychic&#39;, 8)
-  # Dissonant Whispers
-add_damage(&#39;Orym&#39;, &#39;Slashing&#39;, 7)
-update_damage_taken(&#39;Dariax&#39;, 7)</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># Round 1</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Opal&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">7</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Fearne&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">14</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>  <span class="co"># Wild Shape ~ Dire Wolf</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="co"># Round 2</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Opal&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">13</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Dorian&#39;</span>, <span class="st">&#39;Psychic&#39;</span>, <span class="dv">8</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>  <span class="co"># Dissonant Whispers</span></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Orym&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">7</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Dariax&#39;</span>, <span class="dv">7</span>)</span></code></pre></div>
 <p><br></p>
 </div>
 <div id="the-mirrors-call-episode-4" class="section level5">
@@ -487,70 +577,70 @@ update_damage_taken(&#39;Dariax&#39;, 7)</code></pre>
 Mirror’s Call</strong> ~ Episode 4</h5>
 </div>
 <div id="encounter-3" class="section level5">
-<h5><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'><strong>Encounter:</strong></h5>
+<h5><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'><strong>Encounter:</strong></h5>
 <ul>
-<li><span style='font-family:palatino; font-size: 16px;'>Dark
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'>Dark
 Fearne</li>
-<li><span style='font-family:palatino; font-size: 16px;'>4
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'>4
 Scorpions</li>
 </ul>
-<pre class="r"><code># Round 1
-add_damage(&#39;Dorian&#39;, &#39;Slashing&#39;, 8)
-add_enemy_damage(&#39;Scorpion&#39;, &#39;Piercing&#39;, 9)
-update_damage_taken(&#39;Dariax&#39;, 4)
-update_damage_taken(&#39;Dorian&#39;, 5)
-add_damage(&quot;Fy&#39;ra&quot;, &#39;Bludgeoning&#39;, 15)
-# Round 2
-add_damage(&#39;Orym&#39;, &#39;Slashing&#39;, 6)
-increment_kills(&#39;Orym&#39;)
-  # Scorpion
-add_damage(&#39;Fearne&#39;, &#39;Acid&#39;, 10)
-  # Primal Savagery
-add_enemy_damage(&#39;Dark Fearne&#39;, &#39;Fire&#39;, 1)
-update_damage_taken(&#39;Fearne&#39;, 1)
-add_damage(&quot;Fy&#39;ra&quot;, &#39;Bludgeoning&#39;, 13)
-add_enemy_damage(&#39;Dark Fearne&#39;, &#39;Fire&#39;, 21)
-  # Burning Hands
-update_damage_taken(&#39;Orym&#39;, 7)
-update_damage_taken(&#39;Fearne&#39;, 7)
-update_damage_taken(&quot;Fy&#39;ra&quot;, 7)
-add_enemy_damage(&#39;Dark Fearne&#39;, &#39;Fire&#39;, 10)
-  # Dark Mister&#39;s Flame Seed
-add_damage(&#39;Opal&#39;, &#39;Piercing&#39;, 5)
-add_damage(&#39;Dorian&#39;, &#39;Thunder&#39;, 14)
-  # Thunderwave
-update_healing(&#39;Dorian&#39;, 11)
-  # Cure Wounds on Mister 
-add_enemy_damage(&#39;Scoprion&#39;, &#39;Piercing&#39;, 11)
-update_damage_taken(&#39;Opal&#39;, 3)
-update_damage_taken(&#39;Dorian&#39;, 3)
-# Round 3
-add_damage(&#39;Orym&#39;, &#39;Slashing&#39;, 24)
-add_enemy_damage(&#39;Dark Fearne&#39;, &#39;Fire&#39;, 7)
-  # Hellish Rebuke
-update_damage_taken(&#39;Orym&#39;, 7)
-add_damage(&#39;Fearne&#39;, &#39;Fire&#39;, 3)
-  # Mister&#39;s Flame Seed
-add_damage(&quot;Fy&#39;ra&quot;, &#39;Bludgeoning&#39;, 5)
-increment_kills(&quot;Fy&#39;ra&quot;)
-  # Dark Fearne
-add_damage(&#39;Opal&#39;, &#39;Piercing&#39;, 6)
-add_damage(&#39;Dorian&#39;, &#39;Slashing&#39;, 6)
-add_damage(&#39;Dariax&#39;, &#39;Fire&#39;, 28)
-  # Burning Hands
-increment_kills(&#39;Dariax&#39;)
-  # Scorpion
-increment_kills(&#39;Dariax&#39;)
-  # Scorpion
-add_enemy_damage(&#39;Scorpion&#39;, &#39;Piercing&#39;, 21)
-update_damage_taken(&quot;Fy&#39;ra&quot;, 4)
-update_damage_taken(&#39;Opal&#39;, 17)
-update_times_knocked_unconscious(&#39;Opal&#39;)
-  # Knocked unconscious from the Scorpion&#39;s attacks
-increment_kills(&#39;Dariax&#39;)
-  # Big Mister
-update_healing(&#39;Fearne&#39;, 12)
-  # Cure Wounds on Opal bringing her back to consciousness </code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># Round 1</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Dorian&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">8</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Scorpion&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">9</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Dariax&#39;</span>, <span class="dv">4</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Dorian&#39;</span>, <span class="dv">5</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&quot;Fy&#39;ra&quot;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">15</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="co"># Round 2</span></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Orym&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">6</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Orym&#39;</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a>  <span class="co"># Scorpion</span></span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Fearne&#39;</span>, <span class="st">&#39;Acid&#39;</span>, <span class="dv">10</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a>  <span class="co"># Primal Savagery</span></span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Dark Fearne&#39;</span>, <span class="st">&#39;Fire&#39;</span>, <span class="dv">1</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Fearne&#39;</span>, <span class="dv">1</span>)</span>
+<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&quot;Fy&#39;ra&quot;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">13</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Dark Fearne&#39;</span>, <span class="st">&#39;Fire&#39;</span>, <span class="dv">21</span>)</span>
+<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a>  <span class="co"># Burning Hands</span></span>
+<span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Orym&#39;</span>, <span class="dv">7</span>)</span>
+<span id="cb4-19"><a href="#cb4-19" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Fearne&#39;</span>, <span class="dv">7</span>)</span>
+<span id="cb4-20"><a href="#cb4-20" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&quot;Fy&#39;ra&quot;</span>, <span class="dv">7</span>)</span>
+<span id="cb4-21"><a href="#cb4-21" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Dark Fearne&#39;</span>, <span class="st">&#39;Fire&#39;</span>, <span class="dv">10</span>)</span>
+<span id="cb4-22"><a href="#cb4-22" tabindex="-1"></a>  <span class="co"># Dark Mister&#39;s Flame Seed</span></span>
+<span id="cb4-23"><a href="#cb4-23" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Opal&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">5</span>)</span>
+<span id="cb4-24"><a href="#cb4-24" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Dorian&#39;</span>, <span class="st">&#39;Thunder&#39;</span>, <span class="dv">14</span>)</span>
+<span id="cb4-25"><a href="#cb4-25" tabindex="-1"></a>  <span class="co"># Thunderwave</span></span>
+<span id="cb4-26"><a href="#cb4-26" tabindex="-1"></a><span class="fu">update_healing</span>(<span class="st">&#39;Dorian&#39;</span>, <span class="dv">11</span>)</span>
+<span id="cb4-27"><a href="#cb4-27" tabindex="-1"></a>  <span class="co"># Cure Wounds on Mister </span></span>
+<span id="cb4-28"><a href="#cb4-28" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Scoprion&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">11</span>)</span>
+<span id="cb4-29"><a href="#cb4-29" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Opal&#39;</span>, <span class="dv">3</span>)</span>
+<span id="cb4-30"><a href="#cb4-30" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Dorian&#39;</span>, <span class="dv">3</span>)</span>
+<span id="cb4-31"><a href="#cb4-31" tabindex="-1"></a><span class="co"># Round 3</span></span>
+<span id="cb4-32"><a href="#cb4-32" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Orym&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">24</span>)</span>
+<span id="cb4-33"><a href="#cb4-33" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Dark Fearne&#39;</span>, <span class="st">&#39;Fire&#39;</span>, <span class="dv">7</span>)</span>
+<span id="cb4-34"><a href="#cb4-34" tabindex="-1"></a>  <span class="co"># Hellish Rebuke</span></span>
+<span id="cb4-35"><a href="#cb4-35" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Orym&#39;</span>, <span class="dv">7</span>)</span>
+<span id="cb4-36"><a href="#cb4-36" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Fearne&#39;</span>, <span class="st">&#39;Fire&#39;</span>, <span class="dv">3</span>)</span>
+<span id="cb4-37"><a href="#cb4-37" tabindex="-1"></a>  <span class="co"># Mister&#39;s Flame Seed</span></span>
+<span id="cb4-38"><a href="#cb4-38" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&quot;Fy&#39;ra&quot;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">5</span>)</span>
+<span id="cb4-39"><a href="#cb4-39" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&quot;Fy&#39;ra&quot;</span>)</span>
+<span id="cb4-40"><a href="#cb4-40" tabindex="-1"></a>  <span class="co"># Dark Fearne</span></span>
+<span id="cb4-41"><a href="#cb4-41" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Opal&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">6</span>)</span>
+<span id="cb4-42"><a href="#cb4-42" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Dorian&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">6</span>)</span>
+<span id="cb4-43"><a href="#cb4-43" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Dariax&#39;</span>, <span class="st">&#39;Fire&#39;</span>, <span class="dv">28</span>)</span>
+<span id="cb4-44"><a href="#cb4-44" tabindex="-1"></a>  <span class="co"># Burning Hands</span></span>
+<span id="cb4-45"><a href="#cb4-45" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Dariax&#39;</span>)</span>
+<span id="cb4-46"><a href="#cb4-46" tabindex="-1"></a>  <span class="co"># Scorpion</span></span>
+<span id="cb4-47"><a href="#cb4-47" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Dariax&#39;</span>)</span>
+<span id="cb4-48"><a href="#cb4-48" tabindex="-1"></a>  <span class="co"># Scorpion</span></span>
+<span id="cb4-49"><a href="#cb4-49" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Scorpion&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">21</span>)</span>
+<span id="cb4-50"><a href="#cb4-50" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&quot;Fy&#39;ra&quot;</span>, <span class="dv">4</span>)</span>
+<span id="cb4-51"><a href="#cb4-51" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Opal&#39;</span>, <span class="dv">17</span>)</span>
+<span id="cb4-52"><a href="#cb4-52" tabindex="-1"></a><span class="fu">update_times_knocked_unconscious</span>(<span class="st">&#39;Opal&#39;</span>)</span>
+<span id="cb4-53"><a href="#cb4-53" tabindex="-1"></a>  <span class="co"># Knocked unconscious from the Scorpion&#39;s attacks</span></span>
+<span id="cb4-54"><a href="#cb4-54" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Dariax&#39;</span>)</span>
+<span id="cb4-55"><a href="#cb4-55" tabindex="-1"></a>  <span class="co"># Big Mister</span></span>
+<span id="cb4-56"><a href="#cb4-56" tabindex="-1"></a><span class="fu">update_healing</span>(<span class="st">&#39;Fearne&#39;</span>, <span class="dv">12</span>)</span>
+<span id="cb4-57"><a href="#cb4-57" tabindex="-1"></a>  <span class="co"># Cure Wounds on Opal bringing her back to consciousness </span></span></code></pre></div>
 <p><br></p>
 </div>
 <div id="the-trial-of-the-wildmother-episode-5" class="section level5">
@@ -558,25 +648,25 @@ update_healing(&#39;Fearne&#39;, 12)
 Trial of the Wildmother</strong> ~ Episode 5</h5>
 </div>
 <div id="encounter-4" class="section level5">
-<h5><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'><strong>Encounter:</strong></h5>
+<h5><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'><strong>Encounter:</strong></h5>
 <ul>
-<li><span style='font-family:palatino; font-size: 16px;'>Fey
-Crocodile</li>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'>1
+Fey Crocodile</li>
 </ul>
-<pre class="r"><code># Round 1
-add_damage(&quot;Fy&#39;ra&quot;, &#39;Bludgeoning&#39;, 5)
-add_damage(&#39;Opal&#39;, &#39;Force&#39;, 13)
-  # Eldritch Blast
-add_enemy_damage(&#39;Fey Croc&#39;, &#39;Piercing&#39;, 3)
-update_damage_taken(&quot;Fy&#39;ra&quot;, 3)
-add_damage(&#39;Dorian&#39;, &#39;Slashing&#39;, 3)
-add_damage(&#39;Orym&#39;, &#39;Slashing&#39;, 7)
-add_damage(&#39;Dariax&#39;, &#39;Fire&#39;, 19)
-  # Burning Hands
-# Round 2
-add_damage(&quot;Fy&#39;ra&quot;, &#39;Bludgeoning&#39;, 23)
-update_healing(&#39;Dorian&#39;, 6)
-  # Cure Wounds on Fy&#39;ra </code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># Round 1</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&quot;Fy&#39;ra&quot;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">5</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Opal&#39;</span>, <span class="st">&#39;Force&#39;</span>, <span class="dv">13</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  <span class="co"># Eldritch Blast</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Fey Croc&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">3</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&quot;Fy&#39;ra&quot;</span>, <span class="dv">3</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Dorian&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">3</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Orym&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">7</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Dariax&#39;</span>, <span class="st">&#39;Fire&#39;</span>, <span class="dv">19</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a>  <span class="co"># Burning Hands</span></span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a><span class="co"># Round 2</span></span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&quot;Fy&#39;ra&quot;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">23</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a><span class="fu">update_healing</span>(<span class="st">&#39;Dorian&#39;</span>, <span class="dv">6</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a>  <span class="co"># Cure Wounds on Fy&#39;ra </span></span></code></pre></div>
 <p><br></p>
 </div>
 <div id="a-glimpse-into-darkness-episode-6" class="section level5">
@@ -584,57 +674,58 @@ update_healing(&#39;Dorian&#39;, 6)
 Glimpse into Darkness</strong> ~ Episode 6</h5>
 </div>
 <div id="encounter-5" class="section level5">
-<h5><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'><strong>Encounter:</strong></h5>
+<h5><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'><strong>Encounter:</strong></h5>
 <ul>
-<li><span style='font-family:palatino; font-size: 16px;'>Myr’atta</li>
-<li><span style='font-family:palatino; font-size: 16px;'>Invisible
+<li><span style='font-family:palatino; font-size: 16px;'>Myr’atta
+Niselor</li>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'>1
 Mage</li>
-<li><span style='font-family:palatino; font-size: 16px;'>2 Meat Beast
-Statues</li>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'>2
+Meat Beast Statues</li>
 </ul>
-<pre class="r"><code># Surprise Round
-update_damage_taken(&#39;Fearne&#39;, 7)
-add_damage(&quot;Fy&#39;ra&quot;, &quot;Bludgeoning&quot;, 9)
-# Round 1
-add_damage(&#39;Dorian&#39;, &#39;Piercing&#39;, 7)
-add_damage(&#39;Orym&#39;, &#39;Slashing&#39;, 6)
-add_damage(&#39;Opal&#39;, &#39;Radiant&#39;, 5)
-  # Word of Radiance
-# Round 2
-add_damage(&#39;Dorian&#39;, &#39;Thunder&#39;, 12)
-  # Thunderwave
-add_enemy_damage(&#39;Statue&#39;, &#39;Piercing&#39;, 16)
-update_damage_taken(&#39;Dorian&#39;, 16)
-add_enemy_damage(&#39;Mage&#39;, &#39;Necrotic&#39;, 11)
-  # Inflict Wounds
-update_damage_taken(&#39;Orym&#39;, 11)
-add_damage(&#39;Orym&#39;, &#39;Slashing&#39;, 12)
-# Round 3
-add_damage(&#39;Fearne&#39;, &#39;Piercing&#39;, 10)
-  # Wild Shape ~ Dire wolf
-increment_kills(&#39;Fearne&#39;)
-  # Mage 
-add_damage(&quot;Fy&#39;ra&quot;, &#39;Bludgeoning&#39;, 19)
-add_enemy_damage(&#39;Statue&#39;, &#39;Piercing&#39;, 16)
-update_damage_taken(&quot;Fy&#39;ra&quot;, 7)
-update_damage_taken(&#39;Orym&#39;, 9)
-update_healing(&#39;Orym&#39;, 12)
-  # Second Wind
-add_damage(&#39;Orym&#39;, &#39;Slashing&#39;, 12)
-increment_kills(&#39;Orym&#39;)
-  # Statue
-update_healing(&#39;Dariax&#39;, 14)
-  # Cure Wounds on Dorian
-add_damage(&#39;Dariax&#39;, &#39;Radiant&#39;, 8)
-  # Sacred Flame
-# Round 4
-add_damage(&#39;Dorian&#39;, &#39;Psychic&#39;, 13)
-  # Dissonant Whispers
-add_damage(&quot;Fy&#39;ra&quot;, &#39;Fire&#39;, 13)
-  # Burning Hands
-add_damage(&quot;Fy&#39;ra&quot;, &#39;Bludgeoning&#39;, 5)
-add_damage(&#39;Fearne&#39;, &#39;Piercing&#39;, 12)
-  # Wild Shape ~ Dire Wolf</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co"># Surprise Round</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Fearne&#39;</span>, <span class="dv">7</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&quot;Fy&#39;ra&quot;</span>, <span class="st">&quot;Bludgeoning&quot;</span>, <span class="dv">9</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="co"># Round 1</span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Dorian&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">7</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Orym&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">6</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Opal&#39;</span>, <span class="st">&#39;Radiant&#39;</span>, <span class="dv">5</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>  <span class="co"># Word of Radiance</span></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="co"># Round 2</span></span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Dorian&#39;</span>, <span class="st">&#39;Thunder&#39;</span>, <span class="dv">12</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a>  <span class="co"># Thunderwave</span></span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Statue&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">16</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Dorian&#39;</span>, <span class="dv">16</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Mage&#39;</span>, <span class="st">&#39;Necrotic&#39;</span>, <span class="dv">11</span>)</span>
+<span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a>  <span class="co"># Inflict Wounds</span></span>
+<span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Orym&#39;</span>, <span class="dv">11</span>)</span>
+<span id="cb6-17"><a href="#cb6-17" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Orym&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">12</span>)</span>
+<span id="cb6-18"><a href="#cb6-18" tabindex="-1"></a><span class="co"># Round 3</span></span>
+<span id="cb6-19"><a href="#cb6-19" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Fearne&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">10</span>)</span>
+<span id="cb6-20"><a href="#cb6-20" tabindex="-1"></a>  <span class="co"># Wild Shape ~ Dire wolf</span></span>
+<span id="cb6-21"><a href="#cb6-21" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Fearne&#39;</span>)</span>
+<span id="cb6-22"><a href="#cb6-22" tabindex="-1"></a>  <span class="co"># Mage </span></span>
+<span id="cb6-23"><a href="#cb6-23" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&quot;Fy&#39;ra&quot;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">19</span>)</span>
+<span id="cb6-24"><a href="#cb6-24" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Statue&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">16</span>)</span>
+<span id="cb6-25"><a href="#cb6-25" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&quot;Fy&#39;ra&quot;</span>, <span class="dv">7</span>)</span>
+<span id="cb6-26"><a href="#cb6-26" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Orym&#39;</span>, <span class="dv">9</span>)</span>
+<span id="cb6-27"><a href="#cb6-27" tabindex="-1"></a><span class="fu">update_healing</span>(<span class="st">&#39;Orym&#39;</span>, <span class="dv">12</span>)</span>
+<span id="cb6-28"><a href="#cb6-28" tabindex="-1"></a>  <span class="co"># Second Wind</span></span>
+<span id="cb6-29"><a href="#cb6-29" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Orym&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">12</span>)</span>
+<span id="cb6-30"><a href="#cb6-30" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Orym&#39;</span>)</span>
+<span id="cb6-31"><a href="#cb6-31" tabindex="-1"></a>  <span class="co"># Statue</span></span>
+<span id="cb6-32"><a href="#cb6-32" tabindex="-1"></a><span class="fu">update_healing</span>(<span class="st">&#39;Dariax&#39;</span>, <span class="dv">14</span>)</span>
+<span id="cb6-33"><a href="#cb6-33" tabindex="-1"></a>  <span class="co"># Cure Wounds on Dorian</span></span>
+<span id="cb6-34"><a href="#cb6-34" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Dariax&#39;</span>, <span class="st">&#39;Radiant&#39;</span>, <span class="dv">8</span>)</span>
+<span id="cb6-35"><a href="#cb6-35" tabindex="-1"></a>  <span class="co"># Sacred Flame</span></span>
+<span id="cb6-36"><a href="#cb6-36" tabindex="-1"></a><span class="co"># Round 4</span></span>
+<span id="cb6-37"><a href="#cb6-37" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Dorian&#39;</span>, <span class="st">&#39;Psychic&#39;</span>, <span class="dv">13</span>)</span>
+<span id="cb6-38"><a href="#cb6-38" tabindex="-1"></a>  <span class="co"># Dissonant Whispers</span></span>
+<span id="cb6-39"><a href="#cb6-39" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&quot;Fy&#39;ra&quot;</span>, <span class="st">&#39;Fire&#39;</span>, <span class="dv">13</span>)</span>
+<span id="cb6-40"><a href="#cb6-40" tabindex="-1"></a>  <span class="co"># Burning Hands</span></span>
+<span id="cb6-41"><a href="#cb6-41" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&quot;Fy&#39;ra&quot;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">5</span>)</span>
+<span id="cb6-42"><a href="#cb6-42" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Fearne&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">12</span>)</span>
+<span id="cb6-43"><a href="#cb6-43" tabindex="-1"></a>  <span class="co"># Wild Shape ~ Dire Wolf</span></span></code></pre></div>
 <p><br></p>
 </div>
 <div id="arcane-boons-and-blessings-episode-7" class="section level5">
@@ -642,55 +733,55 @@ add_damage(&#39;Fearne&#39;, &#39;Piercing&#39;, 12)
 Boons and Blessings</strong> ~ Episode 7</h5>
 </div>
 <div id="encounter-6" class="section level5">
-<h5><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'><strong>Encounter:</strong></h5>
+<h5><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'><strong>Encounter:</strong></h5>
 <ul>
-<li><span style='font-family:palatino; font-size: 16px;'>4
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'>4
 Constructs</li>
 </ul>
-<pre class="r"><code># Round 1
-update_damage_taken(&#39;Orym&#39;, 2)
-add_enemy_damage(&#39;Construct&#39;, &#39;Bludgeoning&#39;, 10)
-update_damage_taken(&#39;Dariax&#39;, 4)
-update_damage_taken(&#39;Orym&#39;, 6)
-update_damage_taken(&#39;Opal&#39;, 2)
-add_damage(&#39;Fearne&#39;, &#39;Fire&#39;, 17)
-  # Flame Sword
-# Round 2
-add_damage(&#39;Orym&#39;, &#39;Slashing&#39;, 34)
-update_damage_taken(&#39;Orym&#39;, 2)
-add_damage(&#39;Dariax&#39;, &#39;Piercing&#39;, 14)
-add_enemy_damage(&#39;Construct&#39;, &#39;Bludgeoning&#39;, 7)
-update_damage_taken(&#39;Opal&#39;, 7)
-add_damage(&#39;Dorian&#39;, &#39;Slashing&#39;, 6)
-add_damage(&#39;Opal&#39;, &#39;Force&#39;, 4)
-  # Eldritch Blast
-update_healing(&#39;Opal&#39;, 5)
-  # Heals Orym from ??
-add_enemy_damage(&#39;Construct&#39;, &#39;Bludgeoning&#39;, 6)
-update_damage_taken(&#39;Dorian&#39;, 3)
-update_damage_taken(&#39;Opal&#39;, 3)
-add_damage(&#39;Fearne&#39;, &#39;Fire&#39;, 14)
-  # Flame Blade
-# Round 3
-add_damage(&#39;Orym&#39;, &#39;Slashing&#39;, 10)
-add_damage(&#39;Dariax&#39;, &#39;Fire&#39;, 30)
-  # Burning Hands
-increment_kills(&#39;Dariax&#39;)
-  # Construct
-add_damage(&#39;Opal&#39;, &#39;Piercing&#39;, 15)
-add_damage(&#39;Fearne&#39;, &#39;Fire&#39;, 14)
-  # Flame Sword
-add_enemy_damage(&#39;Construct&#39;, &#39;Bludgeoning&#39;, 5)
-update_healing(&#39;Dariax&#39;, 5)
-  # Cure Wounds on Fearne
-add_damage(&#39;Dariax&#39;, &#39;Piercing&#39;, 44)
-increment_kills(&#39;Dariax&#39;)
-  # Construct
-add_damage(&#39;Dorian&#39;, &#39;Slashing&#39;, 6)
-add_damage(&#39;Dorian&#39;, &#39;Thunder&#39;, 13)
-  # Shatter
-increment_kills(&#39;Dorian&#39;)
-  # Construct</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co"># Round 1</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Orym&#39;</span>, <span class="dv">2</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Construct&#39;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">10</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Dariax&#39;</span>, <span class="dv">4</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Orym&#39;</span>, <span class="dv">6</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Opal&#39;</span>, <span class="dv">2</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Fearne&#39;</span>, <span class="st">&#39;Fire&#39;</span>, <span class="dv">17</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>  <span class="co"># Flame Sword</span></span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a><span class="co"># Round 2</span></span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Orym&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">34</span>)</span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Orym&#39;</span>, <span class="dv">2</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Dariax&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">14</span>)</span>
+<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Construct&#39;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">7</span>)</span>
+<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Opal&#39;</span>, <span class="dv">7</span>)</span>
+<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Dorian&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">6</span>)</span>
+<span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Opal&#39;</span>, <span class="st">&#39;Force&#39;</span>, <span class="dv">4</span>)</span>
+<span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a>  <span class="co"># Eldritch Blast</span></span>
+<span id="cb7-18"><a href="#cb7-18" tabindex="-1"></a><span class="fu">update_healing</span>(<span class="st">&#39;Opal&#39;</span>, <span class="dv">5</span>)</span>
+<span id="cb7-19"><a href="#cb7-19" tabindex="-1"></a>  <span class="co"># Heals Orym from ??</span></span>
+<span id="cb7-20"><a href="#cb7-20" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Construct&#39;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">6</span>)</span>
+<span id="cb7-21"><a href="#cb7-21" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Dorian&#39;</span>, <span class="dv">3</span>)</span>
+<span id="cb7-22"><a href="#cb7-22" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Opal&#39;</span>, <span class="dv">3</span>)</span>
+<span id="cb7-23"><a href="#cb7-23" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Fearne&#39;</span>, <span class="st">&#39;Fire&#39;</span>, <span class="dv">14</span>)</span>
+<span id="cb7-24"><a href="#cb7-24" tabindex="-1"></a>  <span class="co"># Flame Blade</span></span>
+<span id="cb7-25"><a href="#cb7-25" tabindex="-1"></a><span class="co"># Round 3</span></span>
+<span id="cb7-26"><a href="#cb7-26" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Orym&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">10</span>)</span>
+<span id="cb7-27"><a href="#cb7-27" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Dariax&#39;</span>, <span class="st">&#39;Fire&#39;</span>, <span class="dv">30</span>)</span>
+<span id="cb7-28"><a href="#cb7-28" tabindex="-1"></a>  <span class="co"># Burning Hands</span></span>
+<span id="cb7-29"><a href="#cb7-29" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Dariax&#39;</span>)</span>
+<span id="cb7-30"><a href="#cb7-30" tabindex="-1"></a>  <span class="co"># Construct</span></span>
+<span id="cb7-31"><a href="#cb7-31" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Opal&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">15</span>)</span>
+<span id="cb7-32"><a href="#cb7-32" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Fearne&#39;</span>, <span class="st">&#39;Fire&#39;</span>, <span class="dv">14</span>)</span>
+<span id="cb7-33"><a href="#cb7-33" tabindex="-1"></a>  <span class="co"># Flame Sword</span></span>
+<span id="cb7-34"><a href="#cb7-34" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Construct&#39;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">5</span>)</span>
+<span id="cb7-35"><a href="#cb7-35" tabindex="-1"></a><span class="fu">update_healing</span>(<span class="st">&#39;Dariax&#39;</span>, <span class="dv">5</span>)</span>
+<span id="cb7-36"><a href="#cb7-36" tabindex="-1"></a>  <span class="co"># Cure Wounds on Fearne</span></span>
+<span id="cb7-37"><a href="#cb7-37" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Dariax&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">44</span>)</span>
+<span id="cb7-38"><a href="#cb7-38" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Dariax&#39;</span>)</span>
+<span id="cb7-39"><a href="#cb7-39" tabindex="-1"></a>  <span class="co"># Construct</span></span>
+<span id="cb7-40"><a href="#cb7-40" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Dorian&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">6</span>)</span>
+<span id="cb7-41"><a href="#cb7-41" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Dorian&#39;</span>, <span class="st">&#39;Thunder&#39;</span>, <span class="dv">13</span>)</span>
+<span id="cb7-42"><a href="#cb7-42" tabindex="-1"></a>  <span class="co"># Shatter</span></span>
+<span id="cb7-43"><a href="#cb7-43" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Dorian&#39;</span>)</span>
+<span id="cb7-44"><a href="#cb7-44" tabindex="-1"></a>  <span class="co"># Construct</span></span></code></pre></div>
 <p><br></p>
 </div>
 <div id="the-fall-of-myratta-episode-8" class="section level5">
@@ -698,193 +789,227 @@ increment_kills(&#39;Dorian&#39;)
 Fall of Myr’atta</strong> ~ Episode 8</h5>
 </div>
 <div id="encounter-7" class="section level5">
-<h5><span style='font-family:palatino; font-size: 16px;'><span style='color:gray'><strong>Encounter:</strong></h5>
+<h5><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'><strong>Encounter:</strong></h5>
 <ul>
-<li><span style='font-family:palatino; font-size: 16px;'>Myr’atta
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'>Myr’atta
 Niselor</li>
-<li><span style='font-family:palatino; font-size: 16px;'>2 Guards</li>
-<li><span style='font-family:palatino; font-size: 16px;'>Construct</li>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'>2
+Guards</li>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'>1
+Construct</li>
 </ul>
-<pre class="r"><code># Round 1
-add_enemy_damage(&#39;Construct&#39;, &#39;Bludgeoning&#39;, 5)
-update_damage_taken(&#39;Dariax&#39;, 5)
-add_damage(&#39;Dorian&#39;, &#39;Thunder&#39;, 10)
-  # Thunderwave 
-add_damage(&#39;Orym&#39;, &#39;Slashing&#39;, 5)
-add_damage(&#39;Fearne&#39;, &#39;Fire&#39;, 5)
-  # Mister&#39;s Flame Seed
-add_damage(&#39;Fearne&#39;, &#39;Slashing&#39;, 4)
-# Round 2
-increment_kills(&#39;Dorian&#39;)
-  # Construct
-add_enemy_damage(&quot;My&#39;ratta&quot;, &#39;Force&#39;, 12)
-  # Eldritch Blast 2/2
-update_damage_taken(&#39;Dorian&#39;, 5)
-update_damage_taken(&#39;Dariax&#39;, 7)
-add_damage(&#39;Orym&#39;, &#39;Slashing&#39;, 14)
-add_enemy_damage(&#39;Guard&#39;, &#39;Slashing&#39;, 7)
-update_damage_taken(&#39;Orym&#39;, 7)
-add_damage(&#39;Fearne&#39;, &#39;Piercing&#39;, 11)
-  # Wild Shape ~ Dire Wolf
-add_damage(&#39;Fearne&#39;, &#39;Fire&#39;, 7)
-  # Mister&#39;s Flame Seed
-add_enemy_damage(&#39;Guard&#39;, &#39;&#39;, 4)
-update_damage_taken(&#39;Fearne&#39;, 4)
-add_enemy_damage(&quot;My&#39;ratta&quot;, &#39;Force&#39;, 8)
-  # Eldritch Blast
-update_damage_taken(&#39;Fearne&#39;, 8)
-# Round 3
-update_healing(&#39;Dariax&#39;, 8)
-  # Cure Wounds on himself
-update_damage_taken(&#39;Dorian&#39;, 2)
-update_damage_taken(&#39;Opal&#39;, 1)
-update_healing(&#39;Dorian&#39;, 4)
-  # Regular Healing Potion on himself
-add_enemy_damage(&quot;My&#39;ratta&quot;, &#39;Force&#39;, 9)
-  # Eldritch Blast 1/2
-update_damage_taken(&#39;Dorian&#39;, 9)
-update_times_knocked_unconscious(&#39;Dorian&#39;)
-  # Knocked unconscious by My&#39;ratta&#39;s Eldritch Blast
-add_damage(&#39;Orym&#39;, &#39;Slashing&#39;, 8)
-add_damage(&#39;Orym&#39;, &#39;Piercing&#39;, 28)
-increment_kills(&#39;Orym&#39;)
-  # Guard
-add_damage(&#39;Fearne&#39;, &#39;Piercing&#39;, 8)
-  # Wild Shape ~ Dire Wolf
-add_damage(&#39;Fearne&#39;, &#39;Fire&#39;, 8)
-  # Mister&#39;s Flame Seed
-add_enemy_damage(&#39;Guard&#39;, &#39;Cold&#39;, 28)
-  # Cone of Cold
-update_damage_taken(&#39;Fearne&#39;, 7)
-update_damage_taken(&#39;Dariax&#39;, 7)
-# Dorian auto-fails two death saving throws from the Cone of Cold 
-increment_kills(&#39;Fearne&#39;)
-  # Guard
-update_damage_taken(&#39;Opal&#39;, 1)
-# Round 4
-update_healing(&#39;Dariax&#39;, 5)
-  # Cure Wound on Dorian bringing him back to consciousness 
-add_damage(&#39;Dariax&#39;, &#39;Piercing&#39;, 28)
-add_enemy_damage(&#39;Ted&#39;, &#39;Poison&#39;, 36)
-  # Poison Cloud
-update_damage_taken(&#39;Opal&#39;, 9)
-update_damage_taken(&#39;Fearne&#39;, 9)
-update_healing(&#39;Dorian&#39;, 3)
-  # Cure Wounds on himself
-add_damage(&#39;Orym&#39;, &#39;Piercing&#39;, 12)
-update_healing(&#39;Orym&#39;, 5)
-  # Second Wind
-add_enemy_damage(&quot;My&#39;ratta&quot;, &#39;Necrotic&#39;, 10)
-  # Inflict Wounds
-update_damage_taken(&#39;Dariax&#39;, 10)
-update_times_knocked_unconscious(&#39;Dariax&#39;)
-  # Knocked unconscious by My&#39;ratta&#39;s Inflict Wounds
-# Round 5
-# Dariax fails a death saving throw
-update_healing(&#39;Dorian&#39;, 16)
-  # Cure Wounds on Dariax bringing him back to consciousness
-add_damage(&#39;Dorian&#39;, &#39;Bludgeoning&#39;, 3)
-add_damage(&#39;Opal&#39;, &#39;Slashing&#39;, 5)
-increment_kills(&#39;Opal&#39;)
-  # My&#39;ratta
-update_healing(&#39;Fearne&#39;, 8)
-  # Cure Wounds on Mister</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co"># Round 1</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Construct&#39;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">5</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Dariax&#39;</span>, <span class="dv">5</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Dorian&#39;</span>, <span class="st">&#39;Thunder&#39;</span>, <span class="dv">10</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>  <span class="co"># Thunderwave </span></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Orym&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">5</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Fearne&#39;</span>, <span class="st">&#39;Fire&#39;</span>, <span class="dv">5</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>  <span class="co"># Mister&#39;s Flame Seed</span></span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Fearne&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">4</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a><span class="co"># Round 2</span></span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Dorian&#39;</span>)</span>
+<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a>  <span class="co"># Construct</span></span>
+<span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&quot;My&#39;ratta&quot;</span>, <span class="st">&#39;Force&#39;</span>, <span class="dv">12</span>)</span>
+<span id="cb8-14"><a href="#cb8-14" tabindex="-1"></a>  <span class="co"># Eldritch Blast 2/2</span></span>
+<span id="cb8-15"><a href="#cb8-15" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Dorian&#39;</span>, <span class="dv">5</span>)</span>
+<span id="cb8-16"><a href="#cb8-16" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Dariax&#39;</span>, <span class="dv">7</span>)</span>
+<span id="cb8-17"><a href="#cb8-17" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Orym&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">14</span>)</span>
+<span id="cb8-18"><a href="#cb8-18" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Guard&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">7</span>)</span>
+<span id="cb8-19"><a href="#cb8-19" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Orym&#39;</span>, <span class="dv">7</span>)</span>
+<span id="cb8-20"><a href="#cb8-20" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Fearne&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">11</span>)</span>
+<span id="cb8-21"><a href="#cb8-21" tabindex="-1"></a>  <span class="co"># Wild Shape ~ Dire Wolf</span></span>
+<span id="cb8-22"><a href="#cb8-22" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Fearne&#39;</span>, <span class="st">&#39;Fire&#39;</span>, <span class="dv">7</span>)</span>
+<span id="cb8-23"><a href="#cb8-23" tabindex="-1"></a>  <span class="co"># Mister&#39;s Flame Seed</span></span>
+<span id="cb8-24"><a href="#cb8-24" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Guard&#39;</span>, <span class="st">&#39;&#39;</span>, <span class="dv">4</span>)</span>
+<span id="cb8-25"><a href="#cb8-25" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Fearne&#39;</span>, <span class="dv">4</span>)</span>
+<span id="cb8-26"><a href="#cb8-26" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&quot;My&#39;ratta&quot;</span>, <span class="st">&#39;Force&#39;</span>, <span class="dv">8</span>)</span>
+<span id="cb8-27"><a href="#cb8-27" tabindex="-1"></a>  <span class="co"># Eldritch Blast</span></span>
+<span id="cb8-28"><a href="#cb8-28" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Fearne&#39;</span>, <span class="dv">8</span>)</span>
+<span id="cb8-29"><a href="#cb8-29" tabindex="-1"></a><span class="co"># Round 3</span></span>
+<span id="cb8-30"><a href="#cb8-30" tabindex="-1"></a><span class="fu">update_healing</span>(<span class="st">&#39;Dariax&#39;</span>, <span class="dv">8</span>)</span>
+<span id="cb8-31"><a href="#cb8-31" tabindex="-1"></a>  <span class="co"># Cure Wounds on himself</span></span>
+<span id="cb8-32"><a href="#cb8-32" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Dorian&#39;</span>, <span class="dv">2</span>)</span>
+<span id="cb8-33"><a href="#cb8-33" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Opal&#39;</span>, <span class="dv">1</span>)</span>
+<span id="cb8-34"><a href="#cb8-34" tabindex="-1"></a><span class="fu">update_healing</span>(<span class="st">&#39;Dorian&#39;</span>, <span class="dv">4</span>)</span>
+<span id="cb8-35"><a href="#cb8-35" tabindex="-1"></a>  <span class="co"># Regular Healing Potion on himself</span></span>
+<span id="cb8-36"><a href="#cb8-36" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&quot;My&#39;ratta&quot;</span>, <span class="st">&#39;Force&#39;</span>, <span class="dv">9</span>)</span>
+<span id="cb8-37"><a href="#cb8-37" tabindex="-1"></a>  <span class="co"># Eldritch Blast 1/2</span></span>
+<span id="cb8-38"><a href="#cb8-38" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Dorian&#39;</span>, <span class="dv">9</span>)</span>
+<span id="cb8-39"><a href="#cb8-39" tabindex="-1"></a><span class="fu">update_times_knocked_unconscious</span>(<span class="st">&#39;Dorian&#39;</span>)</span>
+<span id="cb8-40"><a href="#cb8-40" tabindex="-1"></a>  <span class="co"># Knocked unconscious by My&#39;ratta&#39;s Eldritch Blast</span></span>
+<span id="cb8-41"><a href="#cb8-41" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Orym&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">8</span>)</span>
+<span id="cb8-42"><a href="#cb8-42" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Orym&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">28</span>)</span>
+<span id="cb8-43"><a href="#cb8-43" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Orym&#39;</span>)</span>
+<span id="cb8-44"><a href="#cb8-44" tabindex="-1"></a>  <span class="co"># Guard</span></span>
+<span id="cb8-45"><a href="#cb8-45" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Fearne&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">8</span>)</span>
+<span id="cb8-46"><a href="#cb8-46" tabindex="-1"></a>  <span class="co"># Wild Shape ~ Dire Wolf</span></span>
+<span id="cb8-47"><a href="#cb8-47" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Fearne&#39;</span>, <span class="st">&#39;Fire&#39;</span>, <span class="dv">8</span>)</span>
+<span id="cb8-48"><a href="#cb8-48" tabindex="-1"></a>  <span class="co"># Mister&#39;s Flame Seed</span></span>
+<span id="cb8-49"><a href="#cb8-49" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Guard&#39;</span>, <span class="st">&#39;Cold&#39;</span>, <span class="dv">28</span>)</span>
+<span id="cb8-50"><a href="#cb8-50" tabindex="-1"></a>  <span class="co"># Cone of Cold</span></span>
+<span id="cb8-51"><a href="#cb8-51" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Fearne&#39;</span>, <span class="dv">7</span>)</span>
+<span id="cb8-52"><a href="#cb8-52" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Dariax&#39;</span>, <span class="dv">7</span>)</span>
+<span id="cb8-53"><a href="#cb8-53" tabindex="-1"></a><span class="co"># Dorian auto-fails two death saving throws from the Cone of Cold </span></span>
+<span id="cb8-54"><a href="#cb8-54" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Fearne&#39;</span>)</span>
+<span id="cb8-55"><a href="#cb8-55" tabindex="-1"></a>  <span class="co"># Guard</span></span>
+<span id="cb8-56"><a href="#cb8-56" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Opal&#39;</span>, <span class="dv">1</span>)</span>
+<span id="cb8-57"><a href="#cb8-57" tabindex="-1"></a><span class="co"># Round 4</span></span>
+<span id="cb8-58"><a href="#cb8-58" tabindex="-1"></a><span class="fu">update_healing</span>(<span class="st">&#39;Dariax&#39;</span>, <span class="dv">5</span>)</span>
+<span id="cb8-59"><a href="#cb8-59" tabindex="-1"></a>  <span class="co"># Cure Wound on Dorian bringing him back to consciousness </span></span>
+<span id="cb8-60"><a href="#cb8-60" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Dariax&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">28</span>)</span>
+<span id="cb8-61"><a href="#cb8-61" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Ted&#39;</span>, <span class="st">&#39;Poison&#39;</span>, <span class="dv">36</span>)</span>
+<span id="cb8-62"><a href="#cb8-62" tabindex="-1"></a>  <span class="co"># Poison Cloud</span></span>
+<span id="cb8-63"><a href="#cb8-63" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Opal&#39;</span>, <span class="dv">9</span>)</span>
+<span id="cb8-64"><a href="#cb8-64" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Fearne&#39;</span>, <span class="dv">9</span>)</span>
+<span id="cb8-65"><a href="#cb8-65" tabindex="-1"></a><span class="fu">update_healing</span>(<span class="st">&#39;Dorian&#39;</span>, <span class="dv">3</span>)</span>
+<span id="cb8-66"><a href="#cb8-66" tabindex="-1"></a>  <span class="co"># Cure Wounds on himself</span></span>
+<span id="cb8-67"><a href="#cb8-67" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Orym&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">12</span>)</span>
+<span id="cb8-68"><a href="#cb8-68" tabindex="-1"></a><span class="fu">update_healing</span>(<span class="st">&#39;Orym&#39;</span>, <span class="dv">5</span>)</span>
+<span id="cb8-69"><a href="#cb8-69" tabindex="-1"></a>  <span class="co"># Second Wind</span></span>
+<span id="cb8-70"><a href="#cb8-70" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&quot;My&#39;ratta&quot;</span>, <span class="st">&#39;Necrotic&#39;</span>, <span class="dv">10</span>)</span>
+<span id="cb8-71"><a href="#cb8-71" tabindex="-1"></a>  <span class="co"># Inflict Wounds</span></span>
+<span id="cb8-72"><a href="#cb8-72" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Dariax&#39;</span>, <span class="dv">10</span>)</span>
+<span id="cb8-73"><a href="#cb8-73" tabindex="-1"></a><span class="fu">update_times_knocked_unconscious</span>(<span class="st">&#39;Dariax&#39;</span>)</span>
+<span id="cb8-74"><a href="#cb8-74" tabindex="-1"></a>  <span class="co"># Knocked unconscious by My&#39;ratta&#39;s Inflict Wounds</span></span>
+<span id="cb8-75"><a href="#cb8-75" tabindex="-1"></a><span class="co"># Round 5</span></span>
+<span id="cb8-76"><a href="#cb8-76" tabindex="-1"></a><span class="co"># Dariax fails a death saving throw</span></span>
+<span id="cb8-77"><a href="#cb8-77" tabindex="-1"></a><span class="fu">update_healing</span>(<span class="st">&#39;Dorian&#39;</span>, <span class="dv">16</span>)</span>
+<span id="cb8-78"><a href="#cb8-78" tabindex="-1"></a>  <span class="co"># Cure Wounds on Dariax bringing him back to consciousness</span></span>
+<span id="cb8-79"><a href="#cb8-79" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Dorian&#39;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">3</span>)</span>
+<span id="cb8-80"><a href="#cb8-80" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Opal&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">5</span>)</span>
+<span id="cb8-81"><a href="#cb8-81" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Opal&#39;</span>)</span>
+<span id="cb8-82"><a href="#cb8-82" tabindex="-1"></a>  <span class="co"># My&#39;ratta</span></span>
+<span id="cb8-83"><a href="#cb8-83" tabindex="-1"></a><span class="fu">update_healing</span>(<span class="st">&#39;Fearne&#39;</span>, <span class="dv">8</span>)</span>
+<span id="cb8-84"><a href="#cb8-84" tabindex="-1"></a>  <span class="co"># Cure Wounds on Mister</span></span></code></pre></div>
 <p><br></p>
 </div>
-<div id="non-fighting-damages" class="section level5">
-<h5><span style='font-family:palatino; font-size: 24px;'>
-<strong>Non-Fighting Damages</strong></h5>
-<pre class="r"><code># Checking the Blightstar
-add_damage(&#39;Orym&#39;, &#39;Slashing&#39;, 9)
-
-# Doors...
-add_damage(&#39;Orym&#39;, &#39;Slashing&#39;, 9)
-update_damage_taken(&#39;Fearne&#39;, 1)
-add_damage(&#39;Opal&#39;, &#39;Force&#39;, 9)
-  # Eldritch Blast 
-
-# Fearne falls while climbing the cliff
-update_damage_taken(&#39;Fearne&#39;, 6)
-
-# A dart hits Fearne
-update_damage_taken(&#39;Fearne&#39;, 1)
-
-# A Horse runs over Fearne
-update_damage_taken(&#39;Fearne&#39;, 2)
-
-# Dorian feels the after effects of the Circlet
-update_damage_taken(&#39;Dorian&#39;, 3)
-
-# Fy&#39;ra&#39;s mission
-update_damage_taken(&quot;Fy&#39;ra&quot;, 1)
-
-# Dariax does something stupid
-update_damage_taken(&#39;Dariax&#39;, 2)</code></pre>
+<div id="out-of-combat-actions" class="section level5">
+<h5><span style='font-family:palatino; font-size: 24px;'> <strong>Out of
+Combat Actions</strong></h5>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co"># Checking the Blightstar</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Orym&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">9</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="co"># Doors...</span></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Orym&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">9</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Fearne&#39;</span>, <span class="dv">1</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Opal&#39;</span>, <span class="st">&#39;Force&#39;</span>, <span class="dv">9</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>  <span class="co"># Eldritch Blast </span></span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a><span class="co"># Fearne falls while climbing the cliff</span></span>
+<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Fearne&#39;</span>, <span class="dv">6</span>)</span>
+<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a><span class="co"># A dart hits Fearne</span></span>
+<span id="cb9-14"><a href="#cb9-14" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Fearne&#39;</span>, <span class="dv">1</span>)</span>
+<span id="cb9-15"><a href="#cb9-15" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" tabindex="-1"></a><span class="co"># A Horse runs over Fearne</span></span>
+<span id="cb9-17"><a href="#cb9-17" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Fearne&#39;</span>, <span class="dv">2</span>)</span>
+<span id="cb9-18"><a href="#cb9-18" tabindex="-1"></a></span>
+<span id="cb9-19"><a href="#cb9-19" tabindex="-1"></a><span class="co"># Dorian feels the after effects of the Circlet</span></span>
+<span id="cb9-20"><a href="#cb9-20" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Dorian&#39;</span>, <span class="dv">3</span>)</span>
+<span id="cb9-21"><a href="#cb9-21" tabindex="-1"></a></span>
+<span id="cb9-22"><a href="#cb9-22" tabindex="-1"></a><span class="co"># Fy&#39;ra&#39;s mission</span></span>
+<span id="cb9-23"><a href="#cb9-23" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&quot;Fy&#39;ra&quot;</span>, <span class="dv">1</span>)</span>
+<span id="cb9-24"><a href="#cb9-24" tabindex="-1"></a></span>
+<span id="cb9-25"><a href="#cb9-25" tabindex="-1"></a><span class="co"># Dariax does something stupid</span></span>
+<span id="cb9-26"><a href="#cb9-26" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Dariax&#39;</span>, <span class="dv">2</span>)</span></code></pre></div>
 <hr />
 </div>
 <div id="total-stats" class="section level3">
-<h3><span style='font-family:palatino; font-size: 24px;'> <strong>Total
+<h3><span style='font-family:palatino; font-size: 24px;'><strong>Total
 Stats</strong></h3>
+<div class="carousel" style="text-align: center;">
+<p><button onclick="prevImage()" style="position: absolute; left: 0; top: 50%; font-size: 24px; background: none; border: none; cursor: pointer;">
+← <!-- Left arrow --> </button>
+<img src="images/Dariax_Damage2.png" style="width:80%; height:auto; display:none; margin: 0 auto;" class="carousel-images">
+<img src="images/Dorian_Damage2.png" style="width:80%; height:auto; display:none; margin: 0 auto;" class="carousel-images">
+<img src="images/Fyra_Damage2.png" style="width:80%; height:auto; display:none; margin: 0 auto;" class="carousel-images">
+<img src="images/Morrighan_Damage.png" style="width:80%; height:auto; display:none; margin: 0 auto;" class="carousel-images">
+<img src="images/Opal_Damage2.png" style="width:80%; height:auto; display:none; margin: 0 auto;" class="carousel-images">
+<button onclick="nextImage()" style="position: absolute; right: 0; top: 50%; font-size: 24px; background: none; border: none; cursor: pointer;">
+→ <!-- Right arrow --> </button></p>
 </div>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div id="dariax" class="section level3">
-<h3><span style='font-family:palatino; font-size: 24px;'><span style='color:#136163'><strong>Dariax</strong></h3>
-<p><span style='font-family:palatino; font-size: 16px;'>Damage:<br>
-Radiant: 36 <br> Piercing: 95 <br> Fire: 77 <br> Total Damage Done:
-208<br> Healing: 32<br> Damage Taken: 51<br> Times Knocked Unconscious:
-1<br> Times Killed: 0<br> Amount of kills: 7</p>
+<script>
+  let currentImageIndex = 0;
+  const images = document.querySelectorAll('.carousel-images');
+
+  // Function to show the next image
+  function nextImage() {
+    images[currentImageIndex].style.display = "none"; // Hide current image
+    currentImageIndex = (currentImageIndex + 1) % images.length; // Move to the next image
+    images[currentImageIndex].style.display = "block"; // Show the next image
+  }
+
+  // Function to show the previous image
+  function prevImage() {
+    images[currentImageIndex].style.display = "none"; // Hide current image
+    currentImageIndex = (currentImageIndex - 1 + images.length) % images.length; // Move to the previous image
+    images[currentImageIndex].style.display = "block"; // Show the previous image
+  }
+
+  // Show the first image initially
+  images[currentImageIndex].style.display = "block";
+</script>
+<p><br> <br></p>
 </div>
-</div><div class="column" style="width:50%;">
-<div id="dorian" class="section level3">
-<h3><span style='font-family:palatino; font-size: 24px;'><span style='color:#136163'><strong>Dorian</strong></h3>
-<p><span style='font-family:palatino; font-size: 16px;'>Damage:<br>
-Slashing: 34 <br> Psychic: 27 <br> Thunder: 49 <br> Piercing: 7 <br>
-Bludgeoning: 3 <br> Total Damage Done: 120<br> Healing: 45<br> Damage
-Taken: 50<br> Times Knocked Unconscious: 1<br> Times Killed: 0<br>
-Amount of kills: 2</p>
+<div id="total-damage-stats" class="section level3">
+<h3><span style='font-family:palatino; font-size: 24px;'><strong>Total
+Damage Stats</strong></h3>
+<div class="carousel" style="text-align: center;">
+<p><button onclick="prevImage('carousel1')" style="position: absolute; left: 0; top: 50%; font-size: 42px; background: none; border: none; cursor: pointer; color: #136163;">
+← <!-- Left arrow --> </button>
+<img src="images/Dariax_Damage.png" style="width:80%; height:auto; display:none; margin: 0 auto;" class="carousel1-images">
+<img src="images/Dorian_Damage.png" style="width:80%; height:auto; display:none; margin: 0 auto;" class="carousel1-images">
+<img src="images/Fearne_Damage.png" style="width:80%; height:auto; display:none; margin: 0 auto;" class="carousel1-images">
+<img src="images/Fyra_Damage.png" style="width:80%; height:auto; display:none; margin: 0 auto;" class="carousel1-images">
+<img src="images/Opal_Damage.png" style="width:80%; height:auto; display:none; margin: 0 auto;" class="carousel1-images">
+<img src="images/Orym_Damage.png" style="width:80%; height:auto; display:none; margin: 0 auto;" class="carousel1-images">
+<button onclick="nextImage('carousel1')" style="position: absolute; right: 0; top: 50%; font-size: 42px; background: none; border: none; cursor: pointer; color: #136163;">
+→ <!-- Right arrow --> </button></p>
 </div>
+<p><br></p>
+<hr />
 </div>
+<div id="total-combat-performance-stats" class="section level3">
+<h3><span style="font-family:palatino; font-size: 24px;"><strong>Total
+Combat Performance Stats</strong></span></h3>
+<div class="carousel" style="text-align: center;">
+<p><button onclick="prevImage('carousel2')" style="position: absolute; left: 0; top: 50%; font-size: 42px; background: none; border: none; cursor: pointer; color: #136163;">
+← <!-- Left arrow --> </button>
+<img src="images/EXUPrime_Healing.png" style="width:80%; height:auto; display:none; margin: 0 auto;" class="carousel2-images">
+<img src="images/EXUPrime_DamageTaken.png" style="width:80%; height:auto; display:none; margin: 0 auto;" class="carousel2-images">
+<img src="images/EXUPrime_Kills.png" style="width:80%; height:auto; display:none; margin: 0 auto;" class="carousel2-images">
+<img src="images/EXUPrime_Knocked.png" style="width:80%; height:auto; display:none; margin: 0 auto;" class="carousel2-images">
+<img src="images/EXUPrime_Deaths.png" style="width:80%; height:auto; display:none; margin: 0 auto;" class="carousel2-images">
+<button onclick="nextImage('carousel2')" style="position: absolute; right: 0; top: 50%; font-size: 42px; background: none; border: none; cursor: pointer; color: #136163;">
+→ <!-- Right arrow --> </button></p>
 </div>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div id="fearne" class="section level3">
-<h3><span style='font-family:palatino; font-size: 24px;'><span style='color:#136163'><strong>Fearne</strong></h3>
-<p><span style='font-family:palatino; font-size: 16px;'>Damage:<br>
-Fire: 82 <br> Piercing: 55 <br> Acid: 10 <br> Slashing: 4<br> Total
-Damage Done: 151<br> Healing: 20<br> Damage Taken: 53<br> Times Knocked
-Unconscious: 0<br> Times Killed: 0<br> Amount of kills: 2</p>
-</div>
-</div><div class="column" style="width:50%;">
-<div id="fyra" class="section level3">
-<h3><span style='font-family:palatino; font-size: 24px;'><span style='color:#136163'><strong>Fy’ra</strong></h3>
-<p><span style='font-family:palatino; font-size: 16px;'>Damage:<br>
-Bludgeoning: 94 <br> Fire: 13 <br> Total Damage Done: 107<br> Healing:
-0<br> Damage Taken: 22<br> Times Knocked Unconscious: 0<br> Times
-Killed: 0<br> Amount of kills: 1</p>
-</div>
-</div>
-</div>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div id="opal" class="section level3">
-<h3><span style='font-family:palatino; font-size: 24px;'><span style='color:#136163'><strong>Opal</strong></h3>
-<p><span style='font-family:palatino; font-size: 16px;'>Damage:<br>
-Lightning: 11 <br> Piercing: 51 <br> Force: 41 <br> Radiant: 5 <br>
-Slashing: 5<br> Total Damage Done: 113<br> Healing: 10<br> Damage Taken:
-53<br> Times Knocked Unconscious: 1<br> Times Killed: 0<br> Amount of
-kills: 4</p>
-</div>
-</div><div class="column" style="width:50%;">
-<div id="orym" class="section level3">
-<h3><span style='font-family:palatino; font-size: 24px;'><span style='color:#136163'><strong>Orym</strong></h3>
-<p><span style='font-family:palatino; font-size: 16px;'>Damage:<br>
-Piercing: 47 <br> Slashing: 171<br> Bludgeoning: 9 <br> Total Damage
-Done: 227<br> Healing: 17<br> Damage Taken: 51<br> Times Knocked
-Unconscious: 0<br> Times Killed: 0<br> Amount of kills: 3</p>
-</div>
-</div>
-</div>
+<script>
+  // Create an object to store indexes for multiple carousels
+  let carouselIndices = {
+    'carousel1': 0,
+    'carousel2': 0
+  };
+
+  function nextImage(carouselClass) {
+    let images = document.querySelectorAll(`.${carouselClass}-images`);
+    images[carouselIndices[carouselClass]].style.display = "none";
+    carouselIndices[carouselClass] = (carouselIndices[carouselClass] + 1) % images.length;
+    images[carouselIndices[carouselClass]].style.display = "block";
+  }
+
+  function prevImage(carouselClass) {
+    let images = document.querySelectorAll(`.${carouselClass}-images`);
+    images[carouselIndices[carouselClass]].style.display = "none";
+    carouselIndices[carouselClass] = (carouselIndices[carouselClass] - 1 + images.length) % images.length;
+    images[carouselIndices[carouselClass]].style.display = "block";
+  }
+
+  // Initialize both carousels by displaying the first image
+  document.querySelectorAll('.carousel1-images')[0].style.display = "block";
+  document.querySelectorAll('.carousel2-images')[0].style.display = "block";
+</script>
+<p><br> <br></p>
 <p><span style='font-family:palatino; font-size: 12px;'>* Note, the
 damage totals are not 100% accurate, this could be from players not
 saying what damage type the attack did or separating damage types (such
@@ -892,6 +1017,7 @@ as Hex damage)</p>
 <hr />
 <p><span style='font-family:palatino; font-size: 12px;'>* The character
 artwork was made by: <span class="citation">@agarthanguide</span></p>
+</div>
 </div>
 
 
