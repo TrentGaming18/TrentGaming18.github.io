@@ -1,0 +1,54 @@
+hr {
+  border: 2px solid #73001d; /* Change color and thickness */
+}
+
+/* Code block container */
+pre {
+    background-color: #666666; /* Darker background (dark mode) */
+    border: 3px solid black; /* Darker border */
+    padding: 5px 10px; /* Padding around the code */
+    border-radius: 5px; /* Rounded corners */
+    color: black; /* Default text color (light gray) */
+    font-family: 'Palatino', Palatino, Monospace; /* Monospace font */
+    font-size: 12px; /* Adjust font size */
+    line-height: 1.5; /* Line spacing */
+    overflow-x: auto; /* Horizontal scroll */
+    max-width: 100%; /* Ensure the container doesn't overflow the screen */
+    height: auto; /* Let content define height, but avoid excess */
+}
+
+/* Optional: Hover effect for the code block container */
+pre:hover {
+    background-color: darkgray; /* Slightly lighter dark background on hover */
+    border: 3px solid black; /* Light blue border on hover */
+}
+
+/* Function names (Keywords like add_damage) */
+.sourceCode .fu { color: black; font-weight: normal; } /* Orange-Red */
+
+/* Strings ('Laerryn', 'Bludgeoning') */
+.sourceCode .st { color: #73001d; font-style: italic; } /* Green Italic */
+
+/* Numbers (26, etc.) */
+.sourceCode .dv { color: black; } /* Blue Bold */
+
+/* Operators (+, -, *, /, =) */
+.sourceCode .op { color: #73001d; } /* Purple */
+
+/* Comments (# This is a comment) */
+.sourceCode .co { color: #444444; font-style: italic; } /* Gray Italic */
+
+/* Change background color of entire HTML document */
+body {
+    background-color: lightgray; /* Dark background color */
+    color: black; /* Default text color (light gray for readability) */
+    font-family: 'Palatino', Palatino; /* Font for the document */
+    margin: 0;
+    padding: 0;
+}
+
+.graph-container {
+  border: 2px solid black; /* Border color and thickness */
+  border-radius: 5px; /* Adjust the radius value for roundness */
+  padding: 10px; /* Optional: Adds space inside the border */
+}
