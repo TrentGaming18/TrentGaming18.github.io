@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>EXU-Divergence.knit</title>
+
+<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #204a87; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #204a87; font-weight: bold; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #ce5c00; font-weight: bold; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<link rel="stylesheet" href="styles-divergence.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Exandria Stat Tracker</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="C1-Stat-Tracker.html">Vox Machina</a>
+</li>
+<li>
+  <a href="C2-Stat-Tracker.html">Mighty Nein</a>
+</li>
+<li>
+  <a href="C3-Stat-Tracker.html">Bells Hells</a>
+</li>
+<li>
+  <a href="Exandria-Unlimited-Stats.html">Exandria Unlimited</a>
+</li>
+<li>
+  <a href="One-Shots.html">One Shots</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<center>
+<div id="exandria-unlimited-divergence" class="section level1">
+<h1><span style='font-family:palatino; font-size: 42px;'><span style='color:#446c34'>
+<strong>Exandria Unlimited: Divergence</strong></h1>
+</center>
+<hr />
+<p><img src="images/EXUDivergence.png" width="100%" style="display: block; margin: auto;" />
+<span style="text-align:right; display:block;"><span
+style="font-family:palatino; font-size: 10px;"> Art By: <span
+class="citation">@agarthanguide</span></span></p>
+<p><span style='font-family:palatino; font-size: 16px;'>In the
+oppressive fortress prison of Rybad-Kol, the Strife Emperor rules with
+an iron fist, crushing hope at every turn. Amidst the despair, Garen, a
+seasoned dwarf stonecutter, and Nia, a hopeful half-elven medic, form an
+unlikely alliance. While Garen is worn down by the brutal treatment of
+the prison and his own haunting past, Nia clings to the belief that
+change is possible. Together, they devise a plan to escape, aided by the
+mysterious happenings within the prison’s walls. As they navigate the
+dangers and unravel secrets, they manage to free a group of prisoners
+and begin their journey into the unknown.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>After escaping
+the crumbling fortress, the group—now including the dragonborn Crokas
+and the halfling Fiedra—ventures into the harsh wilderness, where they
+are tested by starvation, exhaustion, and a powerful storm that seems to
+answer their desperate prayers. As Nia’s connection with the divine
+strengthens, they find a brief respite in Torm’s Hill, a refugee haven,
+where they battle both internal and external forces. Their journey
+becomes one of survival, with Nia and her companions facing betrayals,
+losses, and the brutal reality of a world ravaged by the Strife
+Emperor’s reign.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>The group
+eventually learns of Nia’s sister, Liana, and her mysterious connection
+to the Moonweaver. As Nia’s quest for her sister unfolds, the group
+discovers hidden treasures, powerful artifacts, and truths that
+challenge their understanding of the gods and their roles in the world.
+Along the way, they encounter dangerous creatures, allies from the past,
+and untold mysteries that lead them to Vasselheim, where Nia hopes to
+find the answers to her destiny. Along with their personal growth, the
+bonds between the group members deepen, and they struggle with the
+weight of their responsibilities.</p>
+<p><span style='font-family:palatino; font-size: 16px;'>The final leg of
+their journey brings them face to face with the forces of the Betrayer
+Gods, culminating in a battle that will determine the fate of their
+world. In the aftermath, the group begins to find their place in a new
+world, where the gods are fading, and their actions will shape the
+future. Nia and her companions confront their pasts, and through trials,
+reconciliation, and sacrifice, they work to protect the divine gate and
+ensure that hope will endure, even in the face of the gods’ absence.
+Together, they forge a new path, one where the remnants of the past and
+the promise of change coexist, and the future remains uncertain but
+filled with possibility.</p>
+<hr />
+<p><span style='font-family:palatino; font-size: 24px;'>The characters
+are:</p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#446c34'><strong>Crokas</strong>
+<img src="images/Crokas.png" width="55%" style="display: block; margin: auto;" /></p>
+<p><span style='font-family:palatino; font-size: 16px;'>Crokas is a
+white dragonborn monk who hatched about fifteen years before the
+Divergence. Raised by Fiedra Marrow, a halfling girl who won his egg in
+a card game, he grew up in an urban environment until he and Fiedra were
+captured and taken to Rybad-Kol when he was around ten or eleven. There,
+Crokas became Fiedra’s bodyguard, and together they worked in the
+kitchens while forming their own gang, the Roaches.</p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#446c34'><strong>Erro
+Mordaurum</strong>
+<img src="images/Erro.png" width="40%" style="display: block; margin: auto;" /></p>
+<p><span style='font-family:palatino; font-size: 16px;'>Erro Mordaurum,
+a gold dragonborn ranger, was born in Issylra in the town of Seagate,
+where his devout parents aided refugees fleeing to Vasselheim. When he
+was young, a battle involving Asmodeus led to his father’s death,
+forcing him and his mother to flee across the ocean to Gwessar. Raised
+in the wilds by a mentor named Skoll, Erro learned survival and druidic
+magic, but after his mother and later Skoll passed away, he became a
+wanderer, disillusioned with life. Near death, he met a dragonborn woman
+named Donaea by a lake in Snowgrave Pass, and for a year, they lived
+together until soldiers of the Strife Emperor attacked, killing her and
+nearly killing him. Grief-stricken, Erro spent decades mapping Gwessar,
+avoiding civilization, and witnessing divine conflicts, one of which saw
+a god fall. Eventually, he was captured by the forces of the Betrayer
+Gods and taken to Rybad-Kol.</p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#446c34'><strong>Fiedra
+Marrow</strong>
+<img src="images/Fiedra.png" width="35%" style="display: block; margin: auto;" /></p>
+<p><span style='font-family:palatino; font-size: 16px;'>Fiedra Marrow is
+a halfling rogue and kitchen worker who grew up orphaned in a city,
+eventually becoming the leader of a gang. Around age 13, she won a
+dragon egg in a card game, which later hatched into Crokas, whom she
+raised. When Crokas was ten or eleven, both were captured and taken to
+Rybad-Kol, where Fiedra worked in the kitchens, gaining some influence
+and the trust of at least one guard. Crokas served as her bodyguard, and
+together they spent several years in the Slop, forming a gang known as
+the Roaches with other workers.</p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#446c34'><strong>Garen</strong>
+<img src="images/Garen.png" width="40%" style="display: block; margin: auto;" /></p>
+<p><span style='font-family:palatino; font-size: 16px;'>Garen
+Hearthheart, a dwarf stonemason, was captured by the forces of the
+Betrayer Gods about a century before the Divergence and taken to the
+fortress prison of Rybad-Kol, allegedly becoming its first prisoner.
+Forced to work on the prison’s modifications due to his expertise, he
+subtly introduced structural weaknesses into the stonework. During his
+labor, a basalt block crushed his left arm, leading to its amputation.
+After years of hardship and suffering, Garen’s mind deteriorated,
+leaving him unable to clearly recall his life before imprisonment.</p>
+<p><span style='font-family:palatino; font-size: 24px;'><span style='color:#446c34'><strong>Rei’Nia
+Saph</strong>
+<img src="images/ReiNia.png" width="40%" style="display: block; margin: auto;" /></p>
+<p><span style='font-family:palatino; font-size: 16px;'>Rei’nia Saph, a
+half-elf nurse and cleric, grew up during the Calamity alongside her
+younger sister, Liana. They were both inspired by their tiefling friend
+Luz, who shared stories of Sehanine the Moonweaver, shaping their
+personal beliefs connected to the goddess and Catha. Toward the end of
+the war, the sisters were separated from their parents and traveled
+across Gwessar with companions. Liana eventually left to search for
+their family, promising to meet Nia at Torm’s Hill. Nia traveled under
+the guidance of Erro Mordaurum, but their journey was cut short when
+they were captured and taken to the prison fortress of Rybad-Kol.</p>
+<hr />
+<div id="a-narrow-escape-episode-1" class="section level5">
+<h5><span style='font-family:palatino; font-size: 24px;'> <strong>A
+Narrow Escape</strong> ~ Episode 1</h5>
+</div>
+<div id="encounter" class="section level5">
+<h5><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'><strong>Encounter:</strong></h5>
+<ul>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'>1
+Prison Guard</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># Surprise Round</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Garen&#39;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">5</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="co"># Round 1</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Garen&#39;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">5</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Garen&#39;</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>  <span class="co"># Prison Guard</span></span></code></pre></div>
+<p><br></p>
+</div>
+<div id="fury-and-faith-episode-2" class="section level5">
+<h5><span style='font-family:palatino; font-size: 24px;'> <strong>Fury
+and Faith</strong> ~ Episode 2</h5>
+</div>
+<div id="encounter-1" class="section level5">
+<h5><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'><strong>Encounter:</strong></h5>
+<ul>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'>1
+Captain of the Strife Emperor’s Guard</li>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'>6
+Soldiers of the Strife Emperor’s Guard</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># Pre-Initiative</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Erro&#39;</span>, <span class="st">&#39;Fire&#39;</span>, <span class="dv">2</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="co"># Round 1</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Fiedra&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">4</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Crokas&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">9</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&quot;Rei&#39;Nia&quot;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">3</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;SE Guards&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">31</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Erro&#39;</span>, <span class="dv">9</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Crokas&#39;</span>, <span class="dv">6</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Garen&#39;</span>, <span class="dv">10</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&quot;Rei&#39;Nia&quot;</span>, <span class="dv">6</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Erro&#39;</span>, <span class="st">&#39;Fire&#39;</span>, <span class="dv">12</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;SE Captain&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">7</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Erro&#39;</span>, <span class="dv">7</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="fu">update_times_knocked_unconscious</span>(<span class="st">&#39;Erro&#39;</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a>  <span class="co"># Knocked unconscious by the Captain of the Strife Emperor&#39;s Guard strike</span></span>
+<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a><span class="co"># Round 2</span></span>
+<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Fiedra&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">5</span>)</span>
+<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Crokas&#39;</span>, <span class="st">&#39;Lightning&#39;</span>, <span class="dv">15</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a>  <span class="co"># Stormgirdle</span></span>
+<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Garen&#39;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">10</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&quot;Rei&#39;Nia&quot;</span>, <span class="st">&#39;Radiant&#39;</span>, <span class="dv">11</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" tabindex="-1"></a>  <span class="co"># Inflict Wounds</span></span>
+<span id="cb2-24"><a href="#cb2-24" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&quot;Rei&#39;Nia&quot;</span>)</span>
+<span id="cb2-25"><a href="#cb2-25" tabindex="-1"></a>  <span class="co"># Captain of the Strife Emperor&#39;s Guard</span></span>
+<span id="cb2-26"><a href="#cb2-26" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;SE Guards&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">4</span>)</span>
+<span id="cb2-27"><a href="#cb2-27" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Crokas&#39;</span>, <span class="dv">4</span>)</span>
+<span id="cb2-28"><a href="#cb2-28" tabindex="-1"></a><span class="fu">update_times_knocked_unconscious</span>(<span class="st">&#39;Crokas&#39;</span>)</span>
+<span id="cb2-29"><a href="#cb2-29" tabindex="-1"></a>  <span class="co"># Knocked unconscious by the Soldier of the Strife Emperor&#39;s Guard strike</span></span>
+<span id="cb2-30"><a href="#cb2-30" tabindex="-1"></a><span class="co"># Erro fails a death save</span></span>
+<span id="cb2-31"><a href="#cb2-31" tabindex="-1"></a><span class="co"># Round 3</span></span>
+<span id="cb2-32"><a href="#cb2-32" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Fiedra&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">9</span>)</span>
+<span id="cb2-33"><a href="#cb2-33" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Fiedra&#39;</span>)</span>
+<span id="cb2-34"><a href="#cb2-34" tabindex="-1"></a>  <span class="co"># Soldier of the Strife Emperor&#39;s Guard</span></span>
+<span id="cb2-35"><a href="#cb2-35" tabindex="-1"></a><span class="fu">update_healing</span>(<span class="st">&#39;Crokas&#39;</span>, <span class="dv">1</span>)</span>
+<span id="cb2-36"><a href="#cb2-36" tabindex="-1"></a>  <span class="co"># Nat 20 on the death save brings him to 1 HP</span></span>
+<span id="cb2-37"><a href="#cb2-37" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Crokas&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">18</span>)</span>
+<span id="cb2-38"><a href="#cb2-38" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Crokas&#39;</span>)</span>
+<span id="cb2-39"><a href="#cb2-39" tabindex="-1"></a>  <span class="co"># Soldier of the Strife Emperor&#39;s Guard</span></span>
+<span id="cb2-40"><a href="#cb2-40" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Garen&#39;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">10</span>)</span>
+<span id="cb2-41"><a href="#cb2-41" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Garen&#39;</span>)</span>
+<span id="cb2-42"><a href="#cb2-42" tabindex="-1"></a>  <span class="co"># Soldier of the Strife Emperor&#39;s Guard</span></span>
+<span id="cb2-43"><a href="#cb2-43" tabindex="-1"></a><span class="fu">update_healing</span>(<span class="st">&quot;Rei&#39;Nia&quot;</span>, <span class="dv">4</span>)</span>
+<span id="cb2-44"><a href="#cb2-44" tabindex="-1"></a>  <span class="co"># Cure Wounds on Erro, bringing him back to consciousness </span></span>
+<span id="cb2-45"><a href="#cb2-45" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;SE Guards&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">17</span>)</span>
+<span id="cb2-46"><a href="#cb2-46" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&quot;Rei&#39;Nia&quot;</span>, <span class="dv">8</span>)</span>
+<span id="cb2-47"><a href="#cb2-47" tabindex="-1"></a><span class="fu">update_times_knocked_unconscious</span>(<span class="st">&quot;Rei&#39;Nia&quot;</span>)</span>
+<span id="cb2-48"><a href="#cb2-48" tabindex="-1"></a>  <span class="co"># Knocked unconscious by the Soldier of the Strife Emperor&#39;s Guard strike</span></span>
+<span id="cb2-49"><a href="#cb2-49" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Garen&#39;</span>, <span class="dv">9</span>)</span>
+<span id="cb2-50"><a href="#cb2-50" tabindex="-1"></a><span class="co"># Round 4</span></span>
+<span id="cb2-51"><a href="#cb2-51" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Fiedra&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">10</span>)</span>
+<span id="cb2-52"><a href="#cb2-52" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Fiedra&#39;</span>)</span>
+<span id="cb2-53"><a href="#cb2-53" tabindex="-1"></a>  <span class="co"># Soldier of the Strife Emperor&#39;s Guard</span></span>
+<span id="cb2-54"><a href="#cb2-54" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Crokas&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">8</span>)</span>
+<span id="cb2-55"><a href="#cb2-55" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Crokas&#39;</span>)</span>
+<span id="cb2-56"><a href="#cb2-56" tabindex="-1"></a>  <span class="co"># Soldier of the Strife Emperor&#39;s Guard</span></span>
+<span id="cb2-57"><a href="#cb2-57" tabindex="-1"></a><span class="co"># Garen fails a death save</span></span>
+<span id="cb2-58"><a href="#cb2-58" tabindex="-1"></a><span class="co"># Rei&#39;Nia fails a death save</span></span>
+<span id="cb2-59"><a href="#cb2-59" tabindex="-1"></a><span class="fu">update_healing</span>(<span class="st">&#39;Erro&#39;</span>, <span class="dv">1</span>)</span>
+<span id="cb2-60"><a href="#cb2-60" tabindex="-1"></a>  <span class="co"># Cure Wounds on Rei&#39;Nia, bringing her back to consciousness</span></span></code></pre></div>
+<p><br></p>
+</div>
+<div id="fiends-among-the-fields-episode-3" class="section level5">
+<h5><span style='font-family:palatino; font-size: 24px;'> <strong>Fiends
+Among the Fields</strong> ~ Episode 3</h5>
+</div>
+<div id="encounter-2" class="section level5">
+<h5><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'><strong>Encounter:</strong></h5>
+<ul>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'>2
+Bearded Devils</li>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'>1
+Imp</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># Round 1</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Fiedra&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">10</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Fiedra&#39;</span>, <span class="st">&#39;Poison&#39;</span>, <span class="dv">3</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Devil&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">7</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Fiedra&#39;</span>, <span class="dv">7</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="fu">update_times_knocked_unconscious</span>(<span class="st">&#39;Fiedra&#39;</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>  <span class="co"># Knocked unconscious by the Bearded Devil&#39;s beard attack</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Devil&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">5</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Garen&#39;</span>, <span class="dv">5</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Crokas&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">12</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&quot;Rei&#39;Nia&quot;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">1</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a><span class="fu">update_healing</span>(<span class="st">&quot;Rei&#39;Nia&quot;</span>, <span class="dv">4</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>  <span class="co"># Healing Word on Fiedra, bringing her back to consciousness</span></span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Garen&#39;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">10</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Erro&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">8</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Erro&#39;</span>)</span>
+<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a>  <span class="co"># Bearded Devil</span></span>
+<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Imp&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">7</span>)</span>
+<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Imp&#39;</span>, <span class="st">&#39;Poison&#39;</span>, <span class="dv">5</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&quot;Rei&#39;Nia&quot;</span>, <span class="dv">12</span>)</span>
+<span id="cb3-21"><a href="#cb3-21" tabindex="-1"></a><span class="fu">update_times_knocked_unconscious</span>(<span class="st">&quot;Rei&#39;Nia&quot;</span>)</span>
+<span id="cb3-22"><a href="#cb3-22" tabindex="-1"></a>  <span class="co"># Knocked unconscious by the Imp&#39;s stinger </span></span>
+<span id="cb3-23"><a href="#cb3-23" tabindex="-1"></a><span class="co"># Round 2</span></span>
+<span id="cb3-24"><a href="#cb3-24" tabindex="-1"></a><span class="fu">update_healing</span>(<span class="st">&#39;Fiedra&#39;</span>, <span class="dv">9</span>)</span>
+<span id="cb3-25"><a href="#cb3-25" tabindex="-1"></a>  <span class="co"># Feeds Rei&#39;Nia a Healing Nut, bringing her back to consciousness</span></span>
+<span id="cb3-26"><a href="#cb3-26" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Fiedra&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">16</span>)</span>
+<span id="cb3-27"><a href="#cb3-27" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Fiedra&#39;</span>, <span class="st">&#39;Poison&#39;</span>, <span class="dv">3</span>)</span>
+<span id="cb3-28"><a href="#cb3-28" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Devil&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">6</span>)</span>
+<span id="cb3-29"><a href="#cb3-29" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Garen&#39;</span>, <span class="dv">6</span>)</span>
+<span id="cb3-30"><a href="#cb3-30" tabindex="-1"></a><span class="fu">update_times_knocked_unconscious</span>(<span class="st">&#39;Garen&#39;</span>)</span>
+<span id="cb3-31"><a href="#cb3-31" tabindex="-1"></a>  <span class="co"># Knocked unconscious by the Bearded Devil&#39;s glaive swipe</span></span>
+<span id="cb3-32"><a href="#cb3-32" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Crokas&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">9</span>)</span>
+<span id="cb3-33"><a href="#cb3-33" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Crokas&#39;</span>)</span>
+<span id="cb3-34"><a href="#cb3-34" tabindex="-1"></a>  <span class="co"># Imp</span></span>
+<span id="cb3-35"><a href="#cb3-35" tabindex="-1"></a><span class="fu">update_healing</span>(<span class="st">&quot;Rei&#39;Nia&quot;</span>, <span class="dv">6</span>)</span>
+<span id="cb3-36"><a href="#cb3-36" tabindex="-1"></a>  <span class="co"># Feeds Garen a Healing Nut, bringing him back to consciousness</span></span>
+<span id="cb3-37"><a href="#cb3-37" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Garen&#39;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">8</span>)</span>
+<span id="cb3-38"><a href="#cb3-38" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Erro&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">7</span>)</span>
+<span id="cb3-39"><a href="#cb3-39" tabindex="-1"></a><span class="co"># Round 3</span></span>
+<span id="cb3-40"><a href="#cb3-40" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Devil&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">5</span>)</span>
+<span id="cb3-41"><a href="#cb3-41" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Erro&#39;</span>, <span class="dv">5</span>)</span>
+<span id="cb3-42"><a href="#cb3-42" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Erro&#39;</span>, <span class="st">&#39;Force&#39;</span>, <span class="dv">5</span>)</span>
+<span id="cb3-43"><a href="#cb3-43" tabindex="-1"></a>  <span class="co"># Honor&#39;s Last Stand</span></span>
+<span id="cb3-44"><a href="#cb3-44" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Crokas&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">15</span>)</span>
+<span id="cb3-45"><a href="#cb3-45" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&quot;Rei&#39;Nia&quot;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">3</span>)</span>
+<span id="cb3-46"><a href="#cb3-46" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Garen&#39;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">11</span>)</span>
+<span id="cb3-47"><a href="#cb3-47" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Garen&#39;</span>)</span>
+<span id="cb3-48"><a href="#cb3-48" tabindex="-1"></a>  <span class="co"># Bearded Devil</span></span></code></pre></div>
+<p><br></p>
+</div>
+<div id="the-price-of-intrusion-episode-4" class="section level5">
+<h5><span style='font-family:palatino; font-size: 24px;'> <strong>The
+Price of Intrusion</strong> ~ Episode 4</h5>
+</div>
+<div id="encounter-3" class="section level5">
+<h5><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'><strong>Encounter:</strong></h5>
+<ul>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'>Lord
+Callister</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># Round 1</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="co"># Round 2</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Lord Callister&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">6</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Fiedra&#39;</span>, <span class="dv">6</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="co"># Round 3</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Lord Callister&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">6</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Fiedra&#39;</span>, <span class="dv">6</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="fu">update_times_knocked_unconscious</span>(<span class="st">&#39;Fiedra&#39;</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>  <span class="co"># Knocked unconscious trying to run away from Lord Callister</span></span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="co"># Round 4</span></span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="co"># Fiedra fails a death save</span></span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Crokas&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">10</span>)</span></code></pre></div>
+<p><br></p>
+</div>
+<div id="the-hidden-lord-revealed-episode-4" class="section level5">
+<h5><span style='font-family:palatino; font-size: 24px;'> <strong>The
+Hidden Lord Revealed</strong> ~ Episode 4</h5>
+</div>
+<div id="encounter-4" class="section level5">
+<h5><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'><strong>Encounter:</strong></h5>
+<ul>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'>Asmodeus</li>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'>Lord
+Callister</li>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'>4
+Devils</li>
+<li><span style='font-family:palatino; font-size: 16px;'><span style='color:#444444'>1
+Imp</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># Surprise Round</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Crokas&#39;</span>, <span class="st">&#39;Lightning&#39;</span>, <span class="dv">9</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>  <span class="co"># Lightning Bolt</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Erro&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">3</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Garen&#39;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">68</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Garen&#39;</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>  <span class="co"># Devil</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="co"># Round 1</span></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Devil&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">6</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Garen&#39;</span>, <span class="dv">6</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Crokas&#39;</span>, <span class="st">&#39;Lightning&#39;</span>, <span class="dv">9</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a>  <span class="co"># Stormgirdle</span></span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Crokas&#39;</span>, <span class="st">&#39;Lightning&#39;</span>, <span class="dv">13</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a>  <span class="co"># Lightning Bolt</span></span>
+<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a><span class="fu">update_healing</span>(<span class="st">&quot;Rei&#39;Nia&quot;</span>, <span class="dv">6</span>)</span>
+<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a>  <span class="co"># Healing Word on Garen</span></span>
+<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Erro&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">11</span>)</span>
+<span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Garen&#39;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">18</span>)</span>
+<span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a><span class="co"># Round 2</span></span>
+<span id="cb5-20"><a href="#cb5-20" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Imp&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">5</span>)</span>
+<span id="cb5-21"><a href="#cb5-21" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Imp&#39;</span>, <span class="st">&#39;Poison&#39;</span>, <span class="dv">1</span>)</span>
+<span id="cb5-22"><a href="#cb5-22" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Garen&#39;</span>, <span class="dv">6</span>)</span>
+<span id="cb5-23"><a href="#cb5-23" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Devil&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">17</span>)</span>
+<span id="cb5-24"><a href="#cb5-24" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&quot;Rei&#39;Nia&quot;</span>, <span class="dv">7</span>)</span>
+<span id="cb5-25"><a href="#cb5-25" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Garen&#39;</span>, <span class="dv">4</span>)</span>
+<span id="cb5-26"><a href="#cb5-26" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Erro&#39;</span>, <span class="dv">6</span>)</span>
+<span id="cb5-27"><a href="#cb5-27" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Crokas&#39;</span>, <span class="st">&#39;Lightning&#39;</span>, <span class="dv">10</span>)</span>
+<span id="cb5-28"><a href="#cb5-28" tabindex="-1"></a>  <span class="co"># Stormgirdle</span></span>
+<span id="cb5-29"><a href="#cb5-29" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Crokas&#39;</span>, <span class="st">&#39;Lightning&#39;</span>, <span class="dv">11</span>)</span>
+<span id="cb5-30"><a href="#cb5-30" tabindex="-1"></a>  <span class="co"># Lightning Bolt</span></span>
+<span id="cb5-31"><a href="#cb5-31" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Crokas&#39;</span>)</span>
+<span id="cb5-32"><a href="#cb5-32" tabindex="-1"></a>  <span class="co"># Lord Callister</span></span>
+<span id="cb5-33"><a href="#cb5-33" tabindex="-1"></a><span class="fu">update_healing</span>(<span class="st">&quot;Rei&#39;Nia&quot;</span>, <span class="dv">7</span>)</span>
+<span id="cb5-34"><a href="#cb5-34" tabindex="-1"></a>  <span class="co"># Healing Word on Garen</span></span>
+<span id="cb5-35"><a href="#cb5-35" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Erro&#39;</span>, <span class="st">&#39;Slashing&#39;</span>, <span class="dv">10</span>)</span>
+<span id="cb5-36"><a href="#cb5-36" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Erro&#39;</span>)</span>
+<span id="cb5-37"><a href="#cb5-37" tabindex="-1"></a>  <span class="co"># Devil</span></span>
+<span id="cb5-38"><a href="#cb5-38" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Asmodeus&#39;</span>, <span class="st">&#39;Fire&#39;</span>, <span class="dv">26</span>)</span>
+<span id="cb5-39"><a href="#cb5-39" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Erro&#39;</span>, <span class="dv">26</span>)</span>
+<span id="cb5-40"><a href="#cb5-40" tabindex="-1"></a><span class="fu">update_times_killed</span>(<span class="st">&#39;Erro&#39;</span>)</span>
+<span id="cb5-41"><a href="#cb5-41" tabindex="-1"></a>  <span class="co"># Erro saves Garen&#39;s life by taking a firebolt from Asmodeus</span></span>
+<span id="cb5-42"><a href="#cb5-42" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Garen&#39;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">11</span>)</span>
+<span id="cb5-43"><a href="#cb5-43" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Garen&#39;</span>)</span>
+<span id="cb5-44"><a href="#cb5-44" tabindex="-1"></a>  <span class="co"># Devil</span></span>
+<span id="cb5-45"><a href="#cb5-45" tabindex="-1"></a><span class="co"># Round 3</span></span>
+<span id="cb5-46"><a href="#cb5-46" tabindex="-1"></a><span class="fu">add_enemy_damage</span>(<span class="st">&#39;Imp&#39;</span>, <span class="st">&#39;Piercing&#39;</span>, <span class="dv">6</span>)</span>
+<span id="cb5-47"><a href="#cb5-47" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Garen&#39;</span>, <span class="dv">6</span>)</span>
+<span id="cb5-48"><a href="#cb5-48" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Crokas&#39;</span>, <span class="st">&#39;Lightning&#39;</span>, <span class="dv">12</span>)</span>
+<span id="cb5-49"><a href="#cb5-49" tabindex="-1"></a>  <span class="co"># Stormgirdle</span></span>
+<span id="cb5-50"><a href="#cb5-50" tabindex="-1"></a><span class="fu">increment_kills</span>(<span class="st">&#39;Crokas&#39;</span>)</span>
+<span id="cb5-51"><a href="#cb5-51" tabindex="-1"></a>  <span class="co"># Imp</span></span></code></pre></div>
+<p><br></p>
+</div>
+<div id="out-of-combat-actions" class="section level5">
+<h5><span style='font-family:palatino; font-size: 24px;'> <strong>Out of
+Combat Actions</strong></h5>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co"># Garen is punished for falling unconscious due to exhaustion</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="fu">update_damage_taken</span>(<span class="st">&#39;Garen&#39;</span>, <span class="dv">9</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="co"># Attempting to get Crokas about of the Wandering Walls</span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Erro&#39;</span>, <span class="st">&#39;Fire&#39;</span>, <span class="dv">14</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Garen&#39;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">8</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="fu">add_damage</span>(<span class="st">&#39;Crokas&#39;</span>, <span class="st">&#39;Bludgeoning&#39;</span>, <span class="dv">9</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="co"># Bringing Fiedra back </span></span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="fu">update_healing</span>(<span class="st">&quot;Rei&#39;Nia&quot;</span>, <span class="dv">6</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a>  <span class="co"># Healing Word on Fiedra bringing her back to consciousness</span></span></code></pre></div>
+<hr />
+</div>
+<div id="total-damage-stats" class="section level3">
+<h3><span style='font-family:palatino; font-size: 24px;'><strong>Total
+Damage Stats</strong></h3>
+<div class="carousel" style="text-align: center;">
+<p><button onclick="prevImage('carousel1')" style="position: absolute; left: 0; top: 50%; font-size: 42px; background: none; border: none; cursor: pointer; color: #446c34;">
+← <!-- Left arrow --> </button>
+<img src="images/Crokas_Damage.png" style="width:80%; height:auto; display:none; margin: 0 auto;" class="carousel1-images">
+<img src="images/Erro_Damage.png" style="width:80%; height:auto; display:none; margin: 0 auto;" class="carousel1-images">
+<img src="images/Fiedra_Damage.png" style="width:80%; height:auto; display:none; margin: 0 auto;" class="carousel1-images">
+<img src="images/Garen_Damage.png" style="width:80%; height:auto; display:none; margin: 0 auto;" class="carousel1-images">
+<img src="images/ReiNia_Damage.png" style="width:80%; height:auto; display:none; margin: 0 auto;" class="carousel1-images">
+<button onclick="nextImage('carousel1')" style="position: absolute; right: 0; top: 50%; font-size: 42px; background: none; border: none; cursor: pointer; color: #446c34;">
+→ <!-- Right arrow --> </button></p>
+</div>
+<p><br></p>
+<hr />
+</div>
+<div id="total-combat-performance-stats" class="section level3">
+<h3><span style="font-family:palatino; font-size: 24px;"><strong>Total
+Combat Performance Stats</strong></span></h3>
+<div class="carousel" style="text-align: center;">
+<p><button onclick="prevImage('carousel2')" style="position: absolute; left: 0; top: 50%; font-size: 42px; background: none; border: none; cursor: pointer; color: #446c34;">
+← <!-- Left arrow --> </button>
+<img src="images/Divergence_Healing.png" style="width:80%; height:auto; display:none; margin: 0 auto;" class="carousel2-images">
+<img src="images/Divergence_DamageTaken.png" style="width:80%; height:auto; display:none; margin: 0 auto;" class="carousel2-images">
+<img src="images/Divergence_Kills.png" style="width:80%; height:auto; display:none; margin: 0 auto;" class="carousel2-images">
+<img src="images/Divergence_Knocked.png" style="width:80%; height:auto; display:none; margin: 0 auto;" class="carousel2-images">
+<img src="images/Divergence_Deaths.png" style="width:80%; height:auto; display:none; margin: 0 auto;" class="carousel2-images">
+<button onclick="nextImage('carousel2')" style="position: absolute; right: 0; top: 50%; font-size: 42px; background: none; border: none; cursor: pointer; color: #446c34;">
+→ <!-- Right arrow --> </button></p>
+</div>
+<script>
+  // Create an object to store indexes for multiple carousels
+  let carouselIndices = {
+    'carousel1': 0,
+    'carousel2': 0
+  };
+
+  function nextImage(carouselClass) {
+    let images = document.querySelectorAll(`.${carouselClass}-images`);
+    images[carouselIndices[carouselClass]].style.display = "none";
+    carouselIndices[carouselClass] = (carouselIndices[carouselClass] + 1) % images.length;
+    images[carouselIndices[carouselClass]].style.display = "block";
+  }
+
+  function prevImage(carouselClass) {
+    let images = document.querySelectorAll(`.${carouselClass}-images`);
+    images[carouselIndices[carouselClass]].style.display = "none";
+    carouselIndices[carouselClass] = (carouselIndices[carouselClass] - 1 + images.length) % images.length;
+    images[carouselIndices[carouselClass]].style.display = "block";
+  }
+
+  // Initialize both carousels by displaying the first image
+  document.querySelectorAll('.carousel1-images')[0].style.display = "block";
+  document.querySelectorAll('.carousel2-images')[0].style.display = "block";
+</script>
+<p><br> <br></p>
+<p><span style='font-family:palatino; font-size: 12px;'>* Note, the
+damage totals are not 100% accurate, this could be from players not
+saying what damage type the attack did or separating damage types (such
+as Hex damage)</p>
+<hr />
+<p><span style='font-family:palatino; font-size: 12px;'>* The character
+artwork was made by: @</p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
